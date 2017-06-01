@@ -7,13 +7,14 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        <Button x:Name="quitButton" Content="Quit" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="396,176,0,0" Click="quitButton_Click" Height="22"/>
-        <Button x:Name="refreshButton" Content="Refresh" HorizontalAlignment="Left" Margin="396,116,0,0" VerticalAlignment="Top" Width="75" Height="22"/>
-        <Label x:Name="label" Content="Exchange Service1" Margin="64,145,3,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="26"/>
-        <Ellipse Fill="#FFF14545" Margin="22,145,475,149" Stroke="Black"/>
-        <Label x:Name="label1" Content="" HorizontalAlignment="Left" Margin="106,145,0,0" VerticalAlignment="Top" Grid.Column="2" Height="26" Width="10"/>
-        <Label x:Name="statusLabel" Content="Connection: " HorizontalAlignment="Left" Margin="147,29,0,0" VerticalAlignment="Top" Height="26" Width="77"/>
-        <Label x:Name="connectionLabel" Content="Offline" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="229,29,0,0" Width="162" Height="26"/>
-
+        <Label x:Name="label" Content="User Name: " HorizontalAlignment="Left" Margin="25,118,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="usernameInput" HorizontalAlignment="Left" Height="23" Margin="105,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" MaxLength="15"/>
+        <Label x:Name="label1" Content="Password: " HorizontalAlignment="Left" Margin="25,144,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.12,0.408"/>
+        <PasswordBox x:Name="passwordInput" HorizontalAlignment="Left" Margin="105,150,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox x:Name="serverCombo" HorizontalAlignment="Left" Margin="105,187,0,0" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="label2" Content="Server: " HorizontalAlignment="Left" Margin="25,183,0,0" VerticalAlignment="Top"/>
+        <GroupBox x:Name="serverInfoBox" Header="GroupBox" HorizontalAlignment="Left" Margin="299,51,0,0" VerticalAlignment="Top" Height="218" Width="154"/>
+        <Button x:Name="connectButton" Content="Connect" HorizontalAlignment="Left" Margin="25,235,0,0" VerticalAlignment="Top" Width="75" Click="connectButton_Click"/>
+        <Button x:Name="quitButton" Content="Exit" HorizontalAlignment="Left" Margin="150,235,0,0" VerticalAlignment="Top" Width="75" Click="quitButton_Click"/>
     </Grid>
 </Window>

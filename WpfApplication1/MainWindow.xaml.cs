@@ -27,29 +27,13 @@ namespace WpfApplication1
         public MainWindow()
         {            
             InitializeComponent();
-            connectToSql();
+            
         }
 
-        private void connectToSql()
+        private void connectButton_Click(object sender, RoutedEventArgs e)
         {
-            DbConnectionStringBuilder builder = new DbConnectionStringBuilder();
-            builder.Add("Server", "192.168.7.24");
-            builder.Add("Port", "3306");
-            builder.Add("Uid", "wddev_prog");
-            builder.Add("Pwd", "d3Ve7op%#4wd$?");
-            builder.Add("Database", "server_programs");
-
-            connect = new MySqlConnection();
-            connect.ConnectionString = builder.ConnectionString;
-
-            try
-            {
-                connect.Open();
-                connectionLabel.Content = "Connected";
-            } catch(Exception e)
-            {
-                System.Environment.Exit(1);
-            }
+            Window win2 = new SubWindow();
+            win2.Show();
         }
 
         private void quitButton_Click(object sender, RoutedEventArgs e)
@@ -57,4 +41,6 @@ namespace WpfApplication1
             System.Environment.Exit(0);
         }
     }
+
+
 }
