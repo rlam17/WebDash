@@ -7,14 +7,18 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        <Label x:Name="label" Content="User Name: " HorizontalAlignment="Left" Margin="25,118,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="usernameInput" HorizontalAlignment="Left" Height="23" Margin="105,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" MaxLength="15"/>
-        <Label x:Name="label1" Content="Password: " HorizontalAlignment="Left" Margin="25,144,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.12,0.408"/>
-        <PasswordBox x:Name="passwordInput" HorizontalAlignment="Left" Margin="105,150,0,0" VerticalAlignment="Top" Width="120"/>
-        <ComboBox x:Name="serverCombo" HorizontalAlignment="Left" Margin="105,187,0,0" VerticalAlignment="Top" Width="120"/>
-        <Label x:Name="label2" Content="Server: " HorizontalAlignment="Left" Margin="25,183,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label" Content="User Name: " HorizontalAlignment="Left" Margin="18,63,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="usernameInput" HorizontalAlignment="Left" Height="23" Margin="98,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" MaxLength="15"/>
+        <Label x:Name="label1" Content="Password: " HorizontalAlignment="Left" Margin="18,89,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.12,0.408"/>
+        <PasswordBox x:Name="passwordInput" HorizontalAlignment="Left" Margin="98,95,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox x:Name="serverCombo" HorizontalAlignment="Left" Margin="98,188,0,0" VerticalAlignment="Top" Width="120" Visibility="Hidden"/>
+        <Label x:Name="serverLabel" Content="Server: " HorizontalAlignment="Left" Margin="18,188,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
         <GroupBox x:Name="serverInfoBox" Header="GroupBox" HorizontalAlignment="Left" Margin="299,51,0,0" VerticalAlignment="Top" Height="218" Width="154"/>
-        <Button x:Name="connectButton" Content="Connect" HorizontalAlignment="Left" Margin="25,235,0,0" VerticalAlignment="Top" Width="75" Click="connectButton_Click"/>
-        <Button x:Name="quitButton" Content="Exit" HorizontalAlignment="Left" Margin="150,235,0,0" VerticalAlignment="Top" Width="75" Click="quitButton_Click"/>
+        <Button x:Name="connectButton" Content="Connect" HorizontalAlignment="Left" Margin="18,132,0,0" VerticalAlignment="Top" Width="75" Click="connectButton_Click"/>
+        <Button x:Name="quitButton" Content="Exit" HorizontalAlignment="Left" Margin="143,132,0,0" VerticalAlignment="Top" Width="75" Click="quitButton_Click"/>
+        <Button x:Name="viewServerButton" Content="View Server" HorizontalAlignment="Left" Margin="143,238,0,0" VerticalAlignment="Top" Width="75" Click="viewServerButton_Click" Visibility="Hidden"/>
+        <Label x:Name="label2" Content="SQL Server Status:" HorizontalAlignment="Left" Margin="143,10,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="sqlStatus" Content="Offline" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="254,10,0,0"/>
+        <Ellipse x:Name="sqlStatusLight" Fill="#FFF14545" HorizontalAlignment="Left" Height="23" Margin="304,13,0,0" Stroke="Black" VerticalAlignment="Top" Width="26"/>
     </Grid>
 </Window>
