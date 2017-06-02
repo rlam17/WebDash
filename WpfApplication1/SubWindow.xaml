@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApplication1"
         mc:Ignorable="d"
-        Title="SubWindow" Height="720.3" Width="1235">
-    <DataGrid AutoGenerateColumns="False" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+        Title="SubWindow" >
+    <DataGrid AutoGenerateColumns="False" HorizontalAlignment="Stretch" VerticalAlignment="Top"
 Name="dataGridResult" ItemsSource="{Binding Path=LoadDataBinding}"
 CanUserResizeRows="False">
         <DataGrid.Columns>
