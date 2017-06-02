@@ -46,7 +46,12 @@ namespace WpfApplication1
 
         private void loadRecentReboot()
         {
-
+            string query = "Select t1.conf_settings from server_programs.configfile_info t1 inner join (select max(conf_timestmp) recent from server_programs.configfile_info) t2 on t1.conf_timestmp = t2.recent where t1.conf_tagline=\"[configured reboot times]\" LIMIT 1;";
+            MySqlCommand cmd = new MySqlCommand(query, connect);
+            string result = cmd.ExecuteScalar().ToString();
+            string[] split = result.Split('\n');
+            string restartDate = split[0].Split('=')[1];
+            LastReboot.Content = restartDate;
         }
 
     }
