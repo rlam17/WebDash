@@ -68,7 +68,11 @@ namespace WpfApplication1
                 serverLabel.Visibility = Visibility.Visible;
                 serverCombo.Visibility = Visibility.Visible;
                 viewServerButton.Visibility = Visibility.Visible;
+                disconnectButton.Visibility = Visibility.Visible;
+                connectButton.Visibility = Visibility.Hidden;
 
+                usernameInput.IsEnabled = false;
+                passwordInput.IsEnabled = false;
 
             }
             catch (Exception ex)
@@ -92,7 +96,21 @@ namespace WpfApplication1
             win2.Show();
         }
 
-        
+        private void disconnectButton_Click(object sender, RoutedEventArgs e)
+        {
+            connect.Close();
+            serverLabel.Visibility = Visibility.Hidden;
+            serverCombo.Visibility = Visibility.Hidden;
+            viewServerButton.Visibility = Visibility.Hidden;
+            disconnectButton.Visibility = Visibility.Hidden;
+            connectButton.Visibility = Visibility.Visible;
+
+            usernameInput.Clear();
+            passwordInput.Clear();
+
+            usernameInput.IsEnabled = true;
+            passwordInput.IsEnabled = true;
+        }
     }
 
 
