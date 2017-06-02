@@ -77,7 +77,7 @@
         <RadioButton Checked ="radioButton_Checked" x:Name="Days" Content="day" Grid.Row="9" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="305,0,0,0"/>
         <RadioButton Checked ="radioButton_Checked" x:Name="Weeks" Content="week" Grid.Row="9" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="348,0,0,0"/>
         <RadioButton Checked ="radioButton_Checked" x:Name="Months" Content="month" Grid.Row="9" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="396,0,0,0"/>
-        <Label x:Name="NumberLabel" Grid.Row="10" Grid.Column="2" Content="Input Amount:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="27,8,0,6" FontWeight="Bold"/>
+        <Label x:Name="NumberLabel" Grid.Row="10" Grid.Column="2" Content="Input Interval:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="27,8,0,6" FontWeight="Bold"/>
 
         <Button x:Name="button" Grid.Row="11" Grid.Column="2"  Content="Change Time" HorizontalAlignment="Center" VerticalAlignment="Center" Width="227" Height="50" Grid.RowSpan="2" Click="button_Click"/>
 

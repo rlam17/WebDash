@@ -57,8 +57,15 @@ namespace WpfApplication1
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            DateTime newStartDate = (DateTime)dtpStartTime.Value;
-            int interval = (int)intervalAmount.Value;
+            try
+            {
+                DateTime newStartDate = (DateTime)dtpStartTime.Value;
+                int interval = (int)intervalAmount.Value;
+            } catch (Exception ex)
+            {
+                
+                MessageBoxResult warning = MessageBox.Show("Invalid start date or interval!");
+            }            
         }
 
         private void radioButton_Checked(object sender, RoutedEventArgs e)
