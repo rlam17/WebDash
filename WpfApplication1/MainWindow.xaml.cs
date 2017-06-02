@@ -36,10 +36,11 @@ namespace WpfApplication1
             if(response.Status == IPStatus.Success)
             {
                 sqlStatus.Content = "Online";
-                sqlStatusLight.Fill = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromArgb(0, 0, 0, 0));
+                sqlStatusLight.Fill = new SolidColorBrush(Colors.Green);
             } else
             {
                 sqlStatus.Content = "Offline";
+                sqlStatusLight.Fill = new SolidColorBrush(Colors.Red);
             }
         }
 
