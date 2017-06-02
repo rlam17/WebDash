@@ -7,7 +7,15 @@
         mc:Ignorable="d"
         Title="SubWindow" d:DesignWidth="926" d:DesignHeight="886" >
     <Grid>
-        <DataGrid AutoGenerateColumns="False" HorizontalAlignment="Stretch" VerticalAlignment="Top"
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <DataGrid Grid.Row="2" AutoGenerateColumns="False" HorizontalAlignment="Stretch"
 Name="dataGridResult" ItemsSource="{Binding Path=LoadDataBinding}"
 CanUserResizeRows="False">
             <DataGrid.Columns>
@@ -24,6 +32,6 @@ IsReadOnly="True" />
 IsReadOnly="True" />
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Margin="83,648,0,0" VerticalAlignment="Top" Width="75"/>
+
     </Grid>
 </Window>
