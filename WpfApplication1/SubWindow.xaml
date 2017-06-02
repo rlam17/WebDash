@@ -54,7 +54,7 @@
         <Label x:Name="DateLabel" Grid.Row="8" Grid.Column="2" Content="Select Start Date:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="27,8,0,6" FontWeight="Bold"/>
         <DatePicker  Grid.Row="8" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <TextBox x:Name="Unit" Grid.Row="9" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Height="22" TextWrapping="Wrap" Text="TextBox" Width="120" Margin="177,10,160,8"/>
-        <Label x:Name="UnitLabel" Grid.Row="9" Grid.Column="2" Content="Input Unit (s, m, h, d, w):" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="27,8,0,6" FontWeight="Bold"/>
+        <Label x:Name="UnitLabel" Grid.Row="9" Grid.Column="2" Content="Input Unit (sec, min, hour, etc):" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="27,8,0,6" FontWeight="Bold"/>
         <TextBox x:Name="Number" Grid.Row="10" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Height="24" TextWrapping="Wrap" Text="TextBox" Width="120" Margin="178,6,159,10"/>
         <Label x:Name="NumberLabel" Grid.Row="10" Grid.Column="2" Content="Input Amount:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="27,8,0,6" FontWeight="Bold"/>
 
