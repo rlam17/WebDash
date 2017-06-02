@@ -33,6 +33,18 @@
         <Label Grid.ColumnSpan="3" Grid.Row="0" x:Name="label" Content="Webdepot Database" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Century Gothic" FontSize="36" FontWeight="Bold"/>
         <GridSplitter Grid.Row="1" Grid.ColumnSpan="3" Height="5" HorizontalAlignment="Stretch" Background="Black" ShowsPreview="True" IsEnabled="False"/>
         <DataGrid Grid.Row="2" Grid.ColumnSpan="3" AutoGenerateColumns="False" HorizontalAlignment="Stretch" Name="dataGridResult" ItemsSource="{Binding Path=LoadDataBinding}" CanUserResizeRows="True">
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Path=Status}" Value="false">
+                            <Setter Property="Background" Value="Red"></Setter>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Path=Status}" Value="true">
+                            <Setter Property="Background" Value="Green"></Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.RowStyle>
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Path=csv_service}" Header="Service" Width="*" IsReadOnly="True" />
                 <DataGridTextColumn Binding="{Binding Path=csv_subservice}" Header="Sub Service" Width="*" IsReadOnly="True" />
@@ -41,6 +53,7 @@
                 <DataGridTextColumn Binding="{Binding Path=csv_error}" Header="Error" Width="*" IsReadOnly="True" />
             </DataGrid.Columns>
         </DataGrid>
+
         <GridSplitter Grid.Row="3" Grid.ColumnSpan="3" Height="5" HorizontalAlignment="Stretch" Background="Black" ShowsPreview="True" IsEnabled="False"/>
         <Label x:Name="sqlabel" Grid.Row="4" Content="SQL Options" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="20"/>
         <CheckBox Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" x:Name="checkBox" Content="Service" Margin="38,0,0,0" />
