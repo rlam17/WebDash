@@ -22,6 +22,7 @@ namespace WpfApplication1
     public partial class SubWindow : Window
     {
         private MySqlConnection connect;
+        private char selectRadio;
 
         public SubWindow()
         {
@@ -54,5 +55,18 @@ namespace WpfApplication1
             LastReboot.Content = restartDate;
         }
 
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            DateTime newStartDate = (DateTime)dtpStartTime.Value;
+        }
+
+        private void radioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            RadioButton ck = sender as RadioButton;
+            if (ck.IsChecked.Value)
+            {
+                selectRadio = ck.Content.ToString()[0];
+            }
+        }
     }
 }
