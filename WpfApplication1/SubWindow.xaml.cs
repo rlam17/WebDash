@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using MySql.Data.MySqlClient;
+using System.Data;
 
 namespace WpfApplication1
 {
@@ -19,14 +21,28 @@ namespace WpfApplication1
     /// </summary>
     public partial class SubWindow : Window
     {
+        private MySqlConnection connect;
+
         public SubWindow()
         {
             InitializeComponent();
+
+
         }
 
-        private void closeButton_Click(object sender, RoutedEventArgs e)
+        public SubWindow(MySqlConnection connect)
         {
-            this.Close();
+            this.connect = connect;
+            InitializeComponent();
+
+            string query = @"Select t1.* from server_programs.csv_service t1 inner join (select max(csv_timestmp) recent from server_programs.csv_service) t2 on t1.csv_timestmp = t2.recent;";
+            MySqlCommand cmd = new MySqlCommand(query, connect);
+            MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            da.Fill(ds, "LoadDataBinding");
+            dataGridResult.DataContext = ds;
         }
+
+
     }
 }
