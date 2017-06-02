@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
 using System.Linq;
@@ -29,7 +30,7 @@ namespace WpfApplication1
         public MainWindow()
         {            
             InitializeComponent();
-
+            
             Ping heartbeat = new Ping();
             IPAddress sqlAddress = IPAddress.Parse("192.168.7.24");
             PingReply response = heartbeat.Send(sqlAddress);
@@ -46,9 +47,37 @@ namespace WpfApplication1
 
         private void connectButton_Click(object sender, RoutedEventArgs e)
         {
-            serverLabel.Visibility = Visibility.Visible;
-            serverCombo.Visibility = Visibility.Visible;
-            viewServerButton.Visibility = Visibility.Visible;
+
+            DbConnectionStringBuilder builder = new DbConnectionStringBuilder();
+
+            //string[] sqlInfo = getSql();
+            builder.Add("Server", "192.168.7.24");
+            builder.Add("Port", "3306");
+            builder.Add("Uid", usernameInput.Text);
+            builder.Add("Pwd", passwordInput.Password);
+            builder.Add("Database", "server_programs");
+            //Console.WriteLine(builder.ConnectionString);
+
+            connect = new MySqlConnection();
+            connect.ConnectionString = builder.ConnectionString;
+
+            try
+            {
+                connect.Open();
+                //Program.writeLog("Connection to SQL success");
+                serverLabel.Visibility = Visibility.Visible;
+                serverCombo.Visibility = Visibility.Visible;
+                viewServerButton.Visibility = Visibility.Visible;
+
+
+            }
+            catch (Exception ex)
+            {
+                //Program.writeLog("Connection to SQL failed: " + e.Message);
+                //Program.exit(2);
+            }
+
+            
             
         }
 
@@ -59,9 +88,11 @@ namespace WpfApplication1
 
         private void viewServerButton_Click(object sender, RoutedEventArgs e)
         {
-            Window win2 = new SubWindow();
+            Window win2 = new SubWindow(connect);
             win2.Show();
         }
+
+        
     }
 
 
