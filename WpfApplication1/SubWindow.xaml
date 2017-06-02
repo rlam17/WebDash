@@ -5,23 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApplication1"
         mc:Ignorable="d"
-        Title="SubWindow" Height="350" Width="903">
+        Title="SubWindow" Height="720.3" Width="893">
     <Grid Height="350" Width="625" >
         <Grid HorizontalAlignment="Left" Height="310" VerticalAlignment="Top" Width="615" Margin="10,0,0,0">
-            <DataGrid AutoGenerateColumns="False" HorizontalAlignment="Left" Margin="-16,61,0,40"
-Name="dataGridResult" Width="631" ItemsSource="{Binding Path=LoadDataBinding}"
+            <DataGrid AutoGenerateColumns="False" HorizontalAlignment="Left" Margin="-75,-139,0,0"
+Name="dataGridResult" Width="652" ItemsSource="{Binding Path=LoadDataBinding}"
 CanUserResizeRows="False">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding Path=csv_id}" Header="ID" Width="50"
+                    <DataGridTextColumn Binding="{Binding Path=csv_id}" Header="ID" Width="*"
 IsReadOnly="True" />
-                    <DataGridTextColumn Binding="{Binding Path=csv_startup}" Header="Start Up" Width="100"
+                    <DataGridTextColumn Binding="{Binding Path=csv_startup}" Header="Start Up" Width="*"
 IsReadOnly="True" />
-                    <DataGridTextColumn Binding="{Binding Path=csv_status}" Header="Status" Width="100"
+                    <DataGridTextColumn Binding="{Binding Path=csv_status}" Header="Status" Width="*"
 IsReadOnly="True" />
-                    <DataGridTextColumn Binding="{Binding Path=csv_service}" Header="Service" Width="150" IsReadOnly="True" />
-                    <DataGridTextColumn Binding="{Binding Path=csv_subservice}" Header="Sub Service" Width="120"
+                    <DataGridTextColumn Binding="{Binding Path=csv_service}" Header="Service" Width="*" IsReadOnly="True" />
+                    <DataGridTextColumn Binding="{Binding Path=csv_subservice}" Header="Sub Service" Width="*"
 IsReadOnly="True" />
-                    <DataGridTextColumn Binding="{Binding Path=csv_error}" Header="Error" Width="120"
+                    <DataGridTextColumn Binding="{Binding Path=csv_error}" Header="Error" Width="*"
 IsReadOnly="True" />
                 </DataGrid.Columns>
             </DataGrid>
