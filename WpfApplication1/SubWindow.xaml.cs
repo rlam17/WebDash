@@ -41,8 +41,13 @@ namespace WpfApplication1
             DataSet ds = new DataSet();
             da.Fill(ds, "LoadDataBinding");
             dataGridResult.DataContext = ds;
+            loadRecentReboot();
         }
 
+        private void loadRecentReboot()
+        {
+
+        }
 
     }
 }
