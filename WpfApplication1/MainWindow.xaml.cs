@@ -13,6 +13,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -30,19 +31,12 @@ namespace WpfApplication1
         public MainWindow()
         {            
             InitializeComponent();
+            Timer timer1;
+            timer1 = new Timer();
+            timer1.Tick += new EventHandler(pingCheck);
+            timer1.Interval = 2000; // in miliseconds
+            timer1.Start();
             
-            Ping heartbeat = new Ping();
-            IPAddress sqlAddress = IPAddress.Parse("192.168.7.24");
-            PingReply response = heartbeat.Send(sqlAddress);
-            if(response.Status == IPStatus.Success)
-            {
-                sqlStatus.Content = "Online";
-                sqlStatusLight.Fill = new SolidColorBrush(Colors.Green);
-            } else
-            {
-                sqlStatus.Content = "Offline";
-                sqlStatusLight.Fill = new SolidColorBrush(Colors.Red);
-            }
         }
 
         private void connectButton_Click(object sender, RoutedEventArgs e)
@@ -111,7 +105,24 @@ namespace WpfApplication1
             usernameInput.IsEnabled = true;
             passwordInput.IsEnabled = true;
         }
+        private void pingCheck(object sender, EventArgs e)
+        {
+
+            Ping heartbeat = new Ping();
+            IPAddress sqlAddress = IPAddress.Parse("192.168.7.24");
+            PingReply response = heartbeat.Send(sqlAddress);
+            if (response.Status == IPStatus.Success)
+            {
+                sqlStatus.Content = "Online";
+                sqlStatusLight.Fill = new SolidColorBrush(Colors.Green);
+            }
+            else
+            {
+                sqlStatus.Content = "Offline";
+                sqlStatusLight.Fill = new SolidColorBrush(Colors.Red);
+            }
+        }
     }
 
-
+    
 }
