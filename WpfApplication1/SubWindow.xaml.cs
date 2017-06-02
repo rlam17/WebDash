@@ -58,6 +58,7 @@ namespace WpfApplication1
         private void button_Click(object sender, RoutedEventArgs e)
         {
             DateTime newStartDate = (DateTime)dtpStartTime.Value;
+            int interval = (int)intervalAmount.Value;
         }
 
         private void radioButton_Checked(object sender, RoutedEventArgs e)

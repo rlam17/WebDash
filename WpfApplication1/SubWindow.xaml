@@ -69,6 +69,6 @@
         <Button x:Name="button" Grid.Row="11" Grid.Column="2"  Content="Change Time" HorizontalAlignment="Center" VerticalAlignment="Center" Width="227" Height="50" Grid.RowSpan="2" Click="button_Click"/>
 
         <GridSplitter Grid.Row="4" Grid.Column="1" Grid.RowSpan="10" Width="5" HorizontalAlignment="Left" Background="Black" ShowsPreview="True" IsEnabled="True"/>
-        <xctk:IntegerUpDown Name="myUpDownControl" Margin="177,10,178,10" Grid.Row="10" Grid.Column="2" />
+        <xctk:IntegerUpDown x:Name="intervalAmount" Margin="177,10,178,10" Grid.Row="10" Grid.Column="2" />
     </Grid>
 </Window>
