@@ -5,23 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApplication1"
         mc:Ignorable="d"
-        Title="SubWindow" >
-    <DataGrid AutoGenerateColumns="False" HorizontalAlignment="Stretch" VerticalAlignment="Top"
+        Title="SubWindow" d:DesignWidth="926" d:DesignHeight="886" >
+    <Grid>
+        <DataGrid AutoGenerateColumns="False" HorizontalAlignment="Stretch" VerticalAlignment="Top"
 Name="dataGridResult" ItemsSource="{Binding Path=LoadDataBinding}"
 CanUserResizeRows="False">
-        <DataGrid.Columns>
-            <DataGridTextColumn Binding="{Binding Path=csv_id}" Header="ID" Width="*"
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Path=csv_id}" Header="ID" Width="*"
 IsReadOnly="True" />
-            <DataGridTextColumn Binding="{Binding Path=csv_startup}" Header="Start Up" Width="*"
+                <DataGridTextColumn Binding="{Binding Path=csv_startup}" Header="Start Up" Width="*"
 IsReadOnly="True" />
-            <DataGridTextColumn Binding="{Binding Path=csv_status}" Header="Status" Width="*"
+                <DataGridTextColumn Binding="{Binding Path=csv_status}" Header="Status" Width="*"
 IsReadOnly="True" />
-            <DataGridTextColumn Binding="{Binding Path=csv_service}" Header="Service" Width="*" IsReadOnly="True" />
-            <DataGridTextColumn Binding="{Binding Path=csv_subservice}" Header="Sub Service" Width="*"
+                <DataGridTextColumn Binding="{Binding Path=csv_service}" Header="Service" Width="*" IsReadOnly="True" />
+                <DataGridTextColumn Binding="{Binding Path=csv_subservice}" Header="Sub Service" Width="*"
 IsReadOnly="True" />
-            <DataGridTextColumn Binding="{Binding Path=csv_error}" Header="Error" Width="*"
+                <DataGridTextColumn Binding="{Binding Path=csv_error}" Header="Error" Width="*"
 IsReadOnly="True" />
-        </DataGrid.Columns>
-    </DataGrid>
-
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Margin="83,648,0,0" VerticalAlignment="Top" Width="75"/>
+    </Grid>
 </Window>
