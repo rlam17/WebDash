@@ -12,7 +12,7 @@
 Name="dataGridResult" Width="631" ItemsSource="{Binding Path=LoadDataBinding}"
 CanUserResizeRows="False">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding Path=csvid}" Header="ID" Width="50"
+                    <DataGridTextColumn Binding="{Binding Path=csv_id}" Header="ID" Width="50"
 IsReadOnly="True" />
                     <DataGridTextColumn Binding="{Binding Path=csv_startup}" Header="Start Up" Width="100"
 IsReadOnly="True" />
