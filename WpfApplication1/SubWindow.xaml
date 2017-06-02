@@ -7,23 +7,31 @@
         mc:Ignorable="d"
         Title="SubWindow" d:DesignWidth="926" d:DesignHeight="886" >
     <Grid>
-        <DataGrid AutoGenerateColumns="False" HorizontalAlignment="Stretch" VerticalAlignment="Top"
-Name="dataGridResult" ItemsSource="{Binding Path=LoadDataBinding}"
-CanUserResizeRows="False">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Label Grid.ColumnSpan="3" Grid.Row="0" x:Name="label" Content="Webdepot Database" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Century Gothic" FontSize="36" FontWeight="Bold"/>
+        <GridSplitter Grid.Row="1" Grid.ColumnSpan="3" Height="5" HorizontalAlignment="Stretch" Background="Black" ShowsPreview="True" IsEnabled="False"/>
+        <DataGrid Grid.Row="2" Grid.ColumnSpan="3" AutoGenerateColumns="False" HorizontalAlignment="Stretch" Name="dataGridResult" ItemsSource="{Binding Path=LoadDataBinding}" CanUserResizeRows="True">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding Path=csv_id}" Header="ID" Width="*"
-IsReadOnly="True" />
-                <DataGridTextColumn Binding="{Binding Path=csv_startup}" Header="Start Up" Width="*"
-IsReadOnly="True" />
-                <DataGridTextColumn Binding="{Binding Path=csv_status}" Header="Status" Width="*"
-IsReadOnly="True" />
                 <DataGridTextColumn Binding="{Binding Path=csv_service}" Header="Service" Width="*" IsReadOnly="True" />
-                <DataGridTextColumn Binding="{Binding Path=csv_subservice}" Header="Sub Service" Width="*"
-IsReadOnly="True" />
-                <DataGridTextColumn Binding="{Binding Path=csv_error}" Header="Error" Width="*"
-IsReadOnly="True" />
+                <DataGridTextColumn Binding="{Binding Path=csv_subservice}" Header="Sub Service" Width="*" IsReadOnly="True" />
+                <DataGridTextColumn Binding="{Binding Path=csv_status}" Header="Status" Width="*" IsReadOnly="True" />
+                <DataGridTextColumn Binding="{Binding Path=csv_startup}" Header="Start Up" Width="*" IsReadOnly="True" />
+                <DataGridTextColumn Binding="{Binding Path=csv_error}" Header="Error" Width="*" IsReadOnly="True" />
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Margin="83,648,0,0" VerticalAlignment="Top" Width="75"/>
+        <GridSplitter Grid.Row="3" Grid.ColumnSpan="3" Height="5" HorizontalAlignment="Stretch" Background="Black" ShowsPreview="True" IsEnabled="True"/>
+        <CheckBox />
+        <GridSplitter Grid.Row="4" Grid.Column="1" Width="5" HorizontalAlignment="Stretch" Background="Black" ShowsPreview="True" IsEnabled="True"/>
     </Grid>
 </Window>
