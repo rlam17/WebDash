@@ -4,8 +4,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApplication1"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" 
         mc:Ignorable="d"
         Title="SubWindow" d:DesignWidth="926" d:DesignHeight="886" >
+        
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50" />
@@ -52,7 +54,8 @@
 
         <Label x:Name="ChangeRebootLabel" Grid.Row="7" Grid.Column="3" Content="Change Reboot Time" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="20"/>
         <Label x:Name="DateLabel" Grid.Row="8" Grid.Column="2" Content="Select Start Date:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="27,8,0,6" FontWeight="Bold"/>
-        <DatePicker  Grid.Row="8" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+        <xctk:DateTimePicker x:Name="dtpStartTime" Format="Custom" FormatString="HH:mm tt" Margin="5" Grid.Row="8" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
         <Label x:Name="UnitLabel" Grid.Row="9" Grid.Column="2" Content="Select Unit:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="27,8,0,6" FontWeight="Bold"/>
         <RadioButton x:Name="Seconds" Content="second" Grid.Row="9" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="115,0,0,0"/>
@@ -61,7 +64,6 @@
         <RadioButton x:Name="Days" Content="day" Grid.Row="9" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="305,0,0,0"/>
         <RadioButton x:Name="Weeks" Content="week" Grid.Row="9" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="348,0,0,0"/>
         <RadioButton x:Name="Months" Content="month" Grid.Row="9" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="396,0,0,0"/>
-
 
         <TextBox x:Name="Number" Grid.Row="10" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Height="24" TextWrapping="Wrap" Text="TextBox" Width="120" Margin="178,6,159,10"/>
         <Label x:Name="NumberLabel" Grid.Row="10" Grid.Column="2" Content="Input Amount:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="27,8,0,6" FontWeight="Bold"/>
