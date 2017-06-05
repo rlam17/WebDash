@@ -90,12 +90,35 @@ namespace WpfApplication1
             try
             {
                 DateTime newStartDate = (DateTime)dtpStartTime.Value;
-                int interval = (int)intervalAmount.Value;
+                int interval = (int)intervalAmount.Value;                
+                updateConfiguredReboot(newStartDate, interval, selectRadio);
             } catch (Exception ex)
             {
 
-                MessageBoxResult warning = MessageBox.Show(ex.Message);
-            }            
+                MessageBoxResult warning = MessageBox.Show("Invalid date or interval!");
+            }
+        }
+
+        private void updateConfiguredReboot(DateTime date, int intervalNum, char period)
+        {
+            
+            MySqlDataReader recentRow = pullRow();
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.Connection = connect;
+
+
+
+            MySqlCommandBuilder builder = new MySqlCommandBuilder();
+        }
+
+        private MySqlDataReader pullRow()
+        {
+            //Pull row with: SELECT * from server_programs.configfile_info ORDER BY conf_id DESC LIMIT 1;
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.Connection = connect;
+            cmd.CommandText = @"SELECT * from server_programs.configfile_info ORDER BY conf_id DESC LIMIT 1;";
+            return cmd.ExecuteReader();
+
         }
 
         private void radioButton_Checked(object sender, RoutedEventArgs e)
