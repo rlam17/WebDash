@@ -34,6 +34,7 @@ namespace WpfApplication1
 
         public SubWindow(MySqlConnection connection, string db)
         {
+            
             connect = connection;
             database = db;
             InitializeComponent();
@@ -44,6 +45,7 @@ namespace WpfApplication1
             DataSet ds = new DataSet();
             da.Fill(ds, "LoadDataBinding");
             dataGridResult.DataContext = ds;
+            title.Content = "Database: " + db;
             loadRecentReboot();
         }
 
@@ -169,18 +171,24 @@ namespace WpfApplication1
         {
             DataGrid dataGrid = sender as DataGrid;
             DataRowView rowView = dataGrid.SelectedItem as DataRowView;
-            string strSelected;
-            strSelected = rowView.Row[5].ToString();
+            string strSelected = "";
+            try{
+                strSelected = rowView.Row[5].ToString();
+            }
+            catch (Exception ev) { }
+            
 
             if (!String.IsNullOrEmpty(strSelected))
             {
-                string query = "Select t1.csv_service from server_programs.csv_service t1 inner join (select max(csv_timestmp) recent from server_programs.csv_service) t2 on t1.csv_timestmp = t2.recent where csv_subservice =\"" + strSelected + "\";";
+                string query = "Select * from server_programs.csv_service t1 inner join (select max(csv_timestmp) recent from server_programs.csv_service) t2 on t1.csv_timestmp = t2.recent where csv_subservice =\"" + strSelected + "\";";
                 MySqlCommand sqlQuery = new MySqlCommand(query, connect);
                 MySqlDataAdapter dAdaptor = new MySqlDataAdapter(sqlQuery);
                 DataSet dSet = new DataSet();
                 dAdaptor.Fill(dSet, "subDataBind");
                 subGrid.DataContext = dSet;
-            }else
+                sqlLabel.Content = "Subservice: "+strSelected;
+            }
+            else
             {
                 string query = "select 1 from dual where false;";
                 MySqlCommand sqlQuery = new MySqlCommand(query, connect);
@@ -188,9 +196,11 @@ namespace WpfApplication1
                 DataSet dSet = new DataSet();
                 dAdaptor.Fill(dSet, "subDataBind");
                 subGrid.DataContext = dSet;
-
+                sqlLabel.Content = "Subservice";
             }
+
             
+
         }
     }
 }

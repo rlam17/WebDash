@@ -6,18 +6,21 @@
         xmlns:local="clr-namespace:WpfApplication1"
         mc:Ignorable="d"
         ResizeMode="CanMinimize"
-        Title="CreateDatabase" Height="305.949" Width="396.884">
+        Title="CreateDatabase" Height="305.949" Width="396.884"
+        Background="Black">
     <Grid>
-        <Label x:Name="label" Content="Database Name:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="65,67,0,0"/>
+
+        <Label x:Name="label" Content="Database Name:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="65,67,0,0" Foreground="White"/>
         <TextBox x:Name="inputDbName" HorizontalAlignment="Left" Height="23" Margin="167,70,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Label x:Name="label1" Content="Display Name:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="76,98,0,0"/>
+        <Label x:Name="label1" Content="Display Name:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="76,98,0,0" Foreground="White"/>
         <TextBox x:Name="inputDisplayName" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="167,101,0,0"/>
-        <Label x:Name="label2" Content="Username:" HorizontalAlignment="Left" Margin="96,129,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label2" Content="Username:" HorizontalAlignment="Left" Margin="96,129,0,0" VerticalAlignment="Top" Foreground="White"/>
         <TextBox x:Name="inputUsername" HorizontalAlignment="Left" Height="23" Margin="167,131,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="inputPassword" HorizontalAlignment="Left" Height="23" Margin="167,159,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Label x:Name="label3" Content="Password:" HorizontalAlignment="Left" Margin="99,156,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="createDbButton" Content="Create" HorizontalAlignment="Left" Margin="65,214,0,0" VerticalAlignment="Top" Width="75" Click="createDbButton_Click"/>
-        <Button x:Name="closeButton" Content="Cancel" HorizontalAlignment="Left" Margin="212,214,0,0" VerticalAlignment="Top" Width="75" Click="closeButton_Click"/>
+        <Label x:Name="label3" Content="Password:" HorizontalAlignment="Left" Margin="99,156,0,0" VerticalAlignment="Top" Foreground="White"/>
+        <Button x:Name="createDbButton" Content="Create" HorizontalAlignment="Left" Margin="89,215,0,0" VerticalAlignment="Top" Width="75" Click="createDbButton_Click"/>
+        <Button x:Name="closeButton" Content="Cancel" HorizontalAlignment="Left" Margin="241,215,0,0" VerticalAlignment="Top" Width="75" Click="closeButton_Click"/>
+        <Label x:Name="label4" Content="Create Database" HorizontalAlignment="Left" Margin="113,26,0,0" VerticalAlignment="Top" Foreground="White" FontSize="22" FontWeight="Bold"/>
 
     </Grid>
 </Window>
