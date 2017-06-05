@@ -31,6 +31,7 @@ namespace WpfApplication1
         Timer pingTimer;
         string serverIp;
         string serverPort;
+        string serverDatabase;
 
         public MainWindow()
         {            
@@ -49,8 +50,8 @@ namespace WpfApplication1
             DbConnectionStringBuilder builder = new DbConnectionStringBuilder();
 
             //string[] sqlInfo = getSql();
-            builder.Add("Server", "192.168.7.24");
-            builder.Add("Port", "3306");
+            builder.Add("Server", serverIp);
+            builder.Add("Port", serverPort);
             builder.Add("Uid", usernameInput.Text);
             builder.Add("Pwd", passwordInput.Password);
             builder.Add("Database", "server_programs");
@@ -112,21 +113,28 @@ namespace WpfApplication1
             passwordInput.IsEnabled = true;
         }
         private void pingCheck(object sender, EventArgs e)
-        {
-
-            Ping heartbeat = new Ping();
-            IPAddress sqlAddress = IPAddress.Parse("192.168.7.24");
-            PingReply response = heartbeat.Send(sqlAddress);
-            if (response.Status == IPStatus.Success)
+        {            
+            try
             {
-                sqlStatus.Content = "Online";
-                sqlStatusLight.Fill = new SolidColorBrush(Colors.Green);
-            }
-            else
+                Ping heartbeat = new Ping();
+                IPAddress sqlAddress = IPAddress.Parse(serverIp);
+                PingReply response = heartbeat.Send(sqlAddress);
+                if (response.Status == IPStatus.Success)
+                {
+                    sqlStatus.Content = "Online";
+                    sqlStatusLight.Fill = new SolidColorBrush(Colors.Green);
+                }
+                else
+                {
+                    sqlStatus.Content = "Offline";
+                    sqlStatusLight.Fill = new SolidColorBrush(Colors.Red);
+                }
+            } catch (Exception ex)
             {
-                sqlStatus.Content = "Offline";
-                sqlStatusLight.Fill = new SolidColorBrush(Colors.Red);
+                sqlStatus.Content = "Unknown";
+                sqlStatusLight.Fill = new SolidColorBrush(Colors.Gray);
             }
+            
         }
 
         private void inputAddress_TextChanged(object sender, TextChangedEventArgs e)
@@ -137,6 +145,11 @@ namespace WpfApplication1
         private void inputPort_TextChanged(object sender, TextChangedEventArgs e)
         {
             serverPort = inputPort.Text;
+        }
+
+        private void inputDatabase_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            serverDatabase = inputDatabase.Text;
         }
     }
 
