@@ -169,21 +169,19 @@ namespace WpfApplication1
         {
             DataGrid dataGrid = sender as DataGrid;
             DataRowView rowView = dataGrid.SelectedItem as DataRowView;
-            string myCellValue;
+            string strSelected;
+            strSelected = rowView.Row[5].ToString();
 
-            try
+            if (!String.IsNullOrEmpty(strSelected))
             {
-                myCellValue = rowView.Row[1].ToString();
-                Console.WriteLine(myCellValue);
+                string query = "Select t1.csv_service from server_programs.csv_service t1 inner join (select max(csv_timestmp) recent from server_programs.csv_service) t2 on t1.csv_timestmp = t2.recent where csv_subservice =\"" + strSelected + "\";";
+                MySqlCommand sqlQuery = new MySqlCommand(query, connect);
+                MySqlDataAdapter dAdaptor = new MySqlDataAdapter(sqlQuery);
+                DataSet dSet = new DataSet();
+                dAdaptor.Fill(dSet, "subDataBind");
+                subGrid.DataContext = dSet;
             }
-            catch(Exception ev) { }
-            string query = "SELECT * from "+database+".csv_service;";
-            MySqlCommand sqlQuery = new MySqlCommand(query, connect);
-            MySqlDataAdapter dAdaptor = new MySqlDataAdapter(sqlQuery);
-            DataSet dSet = new DataSet();
-            dAdaptor.Fill(dSet, "subDataBind");
-            subGrid.DataContext = dSet;
-            Console.WriteLine();
+            
         }
     }
 }
