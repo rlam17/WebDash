@@ -92,7 +92,7 @@ namespace WpfApplication1
             MySqlDataAdapter da = new MySqlDataAdapter(cmd);
             DataSet ds = new DataSet();
             da.Fill(ds, "LoadDataBinding");
-            Console.Write(ds);
+            //Console.Write(ds);
             serverCombo.DataContext = ds;
         }
 
