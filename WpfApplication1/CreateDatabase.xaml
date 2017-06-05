@@ -1,0 +1,23 @@
+﻿<Window x:Class="WpfApplication1.CreateDatabase"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApplication1"
+        mc:Ignorable="d"
+        ResizeMode="CanMinimize"
+        Title="CreateDatabase" Height="305.949" Width="396.884">
+    <Grid>
+        <Label x:Name="label" Content="Database Name:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="65,67,0,0"/>
+        <TextBox x:Name="inputDbName" HorizontalAlignment="Left" Height="23" Margin="167,70,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="label1" Content="Display Name:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="76,98,0,0"/>
+        <TextBox x:Name="inputDisplayName" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="167,101,0,0"/>
+        <Label x:Name="label2" Content="Username:" HorizontalAlignment="Left" Margin="96,129,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="inputUsername" HorizontalAlignment="Left" Height="23" Margin="167,131,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="inputPassword" HorizontalAlignment="Left" Height="23" Margin="167,159,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="label3" Content="Password:" HorizontalAlignment="Left" Margin="99,156,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="createDbButton" Content="Create" HorizontalAlignment="Left" Margin="65,214,0,0" VerticalAlignment="Top" Width="75" Click="createDbButton_Click"/>
+        <Button x:Name="closeButton" Content="Cancel" HorizontalAlignment="Left" Margin="212,214,0,0" VerticalAlignment="Top" Width="75" Click="closeButton_Click"/>
+
+    </Grid>
+</Window>

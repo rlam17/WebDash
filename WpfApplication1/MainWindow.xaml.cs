@@ -68,6 +68,8 @@ namespace WpfApplication1
                 viewServerButton.Visibility = Visibility.Visible;
                 disconnectButton.Visibility = Visibility.Visible;
                 connectButton.Visibility = Visibility.Hidden;
+                databaseLabel.Visibility = Visibility.Visible;
+                createDbButton.Visibility = Visibility.Visible;
 
                 usernameInput.IsEnabled = false;
                 passwordInput.IsEnabled = false;
@@ -86,6 +88,8 @@ namespace WpfApplication1
 
         private void populateCombo()
         {
+            serverCombo.DataContext = null;
+
             string query = @"SHOW Databases;";
             MySqlCommand cmd = new MySqlCommand(query, connect);
             MySqlDataAdapter da = new MySqlDataAdapter(cmd);
@@ -120,9 +124,11 @@ namespace WpfApplication1
             viewServerButton.Visibility = Visibility.Hidden;
             disconnectButton.Visibility = Visibility.Hidden;
             connectButton.Visibility = Visibility.Visible;
-            viewServerButton.IsEnabled = false;
+            databaseLabel.Visibility = Visibility.Hidden;
+            createDbButton.Visibility = Visibility.Hidden;
+            viewServerButton.Visibility = Visibility.Hidden;
 
-            serverCombo.DataContext = null;
+            
 
             usernameInput.Clear();
             passwordInput.Clear();
@@ -159,6 +165,12 @@ namespace WpfApplication1
         private void serverCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {            
             viewServerButton.IsEnabled = true;
+        }
+
+        private void createDbButton_Click(object sender, RoutedEventArgs e)
+        {
+            Window createDbWindow = new CreateDatabase(connect);
+            createDbWindow.ShowDialog();
         }
     }
     
