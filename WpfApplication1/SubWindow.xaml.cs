@@ -164,5 +164,14 @@ namespace WpfApplication1
                 selectRadio = ck.Content.ToString()[0];
             }
         }
+
+        private void dataGridResult_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DataGrid data = sender as DataGrid;
+            DataGridRow row = (DataGridRow)data.ItemContainerGenerator.ContainerFromIndex(data.SelectedIndex);
+            DataGridCell RowColumn = data.Columns[0].GetCellContent(row).Parent as DataGridCell;
+            string CellValue = ((TextBlock)RowColumn.Content).Text;
+            System.Console.WriteLine(CellValue);
+        }
     }
 }
