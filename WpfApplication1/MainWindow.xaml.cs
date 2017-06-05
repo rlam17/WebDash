@@ -92,8 +92,10 @@ namespace WpfApplication1
             MySqlDataAdapter da = new MySqlDataAdapter(cmd);
             DataSet ds = new DataSet();
             da.Fill(ds, "LoadDataBinding");
+           
             //Console.Write(ds);
             serverCombo.DataContext = ds;
+            serverCombo.DisplayMemberPath = "Database";
         }
 
         private void quitButton_Click(object sender, RoutedEventArgs e)
