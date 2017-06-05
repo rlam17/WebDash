@@ -87,9 +87,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CreateDatabase.xaml.cs">
+      <DependentUpon>CreateDatabase.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SubWindow.xaml.cs">
       <DependentUpon>SubWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="CreateDatabase.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
