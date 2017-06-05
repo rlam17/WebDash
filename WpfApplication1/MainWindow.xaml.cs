@@ -99,7 +99,16 @@ namespace WpfApplication1
             //Console.Write(ds);
             serverCombo.DataContext = ds;
             serverCombo.DisplayMemberPath = "Database";
+            databaseList.DataContext = ds;
+            databaseList.DisplayMemberPath = "Database";
+
+            colorList();
             
+        }
+
+        private void colorList()
+        {
+
         }
 
         private void quitButton_Click(object sender, RoutedEventArgs e)
