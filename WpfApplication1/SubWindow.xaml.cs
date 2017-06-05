@@ -93,12 +93,65 @@ namespace WpfApplication1
             try
             {
                 DateTime newStartDate = (DateTime)dtpStartTime.Value;
-                int interval = (int)intervalAmount.Value;
+                int interval = (int)intervalAmount.Value;                
+                updateConfiguredReboot(newStartDate, interval, selectRadio);
             } catch (Exception ex)
             {
 
-                MessageBoxResult warning = MessageBox.Show(ex.Message);
-            }            
+                MessageBoxResult warning = MessageBox.Show("Invalid date or interval!");
+            }
+        }
+
+        private void updateConfiguredReboot(DateTime date, int intervalNum, char period)
+        {
+            
+            MySqlDataReader recentRow = pullRow();
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.Connection = connect;
+            recentRow.Read();
+
+            string newRebootTime;
+
+            newRebootTime = "Start=" + date + "\n" + "Interval=" + intervalNum + "," + period + "\n";
+
+            
+            try
+            {
+                cmd.CommandText = "INSERT INTO " +
+                    "configfile_info(conf_id, conf_uldate, conf_md5hash, conf_tagline, conf_settings, conf_timestmp) " +
+                    "VALUES(@conf_id, @conf_uldate, @conf_md5hash, @conf_tagline, @conf_settings, @conf_timestmp)";
+                cmd.Prepare();
+
+                cmd.Parameters.AddWithValue("@conf_id", null);
+                cmd.Parameters.AddWithValue("@conf_uldate", Convert.ToDateTime(recentRow[1]));
+                cmd.Parameters.AddWithValue("@conf_md5hash", recentRow[2]);
+                cmd.Parameters.AddWithValue("@conf_tagline", @"[configured reboot times]");
+                cmd.Parameters.AddWithValue("@conf_settings", newRebootTime);
+                cmd.Parameters.AddWithValue("@conf_timestmp", DateTime.Now);
+
+                recentRow.Close();
+
+                cmd.ExecuteNonQuery();
+
+                MessageBox.Show("Reboot time has been successfully configured.");
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+
+            MySqlCommandBuilder builder = new MySqlCommandBuilder();
+        }
+
+        private MySqlDataReader pullRow()
+        {
+            //Pull row with: SELECT * from server_programs.configfile_info ORDER BY conf_id DESC LIMIT 1;
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.Connection = connect;
+            cmd.CommandText = @"SELECT * from server_programs.configfile_info ORDER BY conf_id DESC LIMIT 1;";
+            
+            return cmd.ExecuteReader();
+
         }
 
         private void radioButton_Checked(object sender, RoutedEventArgs e)
