@@ -31,7 +31,6 @@ namespace WpfApplication1
         Timer pingTimer;
         string serverIp = "192.168.7.24";
         string serverPort = "3306";
-        string serverDatabase;
 
         public MainWindow()
         {
@@ -96,6 +95,7 @@ namespace WpfApplication1
             //Console.Write(ds);
             serverCombo.DataContext = ds;
             serverCombo.DisplayMemberPath = "Database";
+            
         }
 
         private void quitButton_Click(object sender, RoutedEventArgs e)
@@ -105,7 +105,7 @@ namespace WpfApplication1
 
         private void viewServerButton_Click(object sender, RoutedEventArgs e)
         {
-            Window win2 = new SubWindow(connect);
+            Window win2 = new SubWindow(connect, serverCombo.Text);
             win2.Show();
         }
 
@@ -120,6 +120,9 @@ namespace WpfApplication1
             viewServerButton.Visibility = Visibility.Hidden;
             disconnectButton.Visibility = Visibility.Hidden;
             connectButton.Visibility = Visibility.Visible;
+            viewServerButton.IsEnabled = false;
+
+            serverCombo.DataContext = null;
 
             usernameInput.Clear();
             passwordInput.Clear();
@@ -153,6 +156,10 @@ namespace WpfApplication1
 
         }
 
+        private void serverCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {            
+            viewServerButton.IsEnabled = true;
+        }
     }
     
 }

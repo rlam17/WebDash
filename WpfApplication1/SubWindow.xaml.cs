@@ -23,6 +23,7 @@ namespace WpfApplication1
     {
         private MySqlConnection connect;
         private char selectRadio;
+        private string database;
 
         public SubWindow()
         {
@@ -31,12 +32,13 @@ namespace WpfApplication1
 
         }
 
-        public SubWindow(MySqlConnection connect)
+        public SubWindow(MySqlConnection connection, string db)
         {
-            this.connect = connect;
+            connect = connection;
+            database = db;
             InitializeComponent();
 
-            string query = @"Select t1.* from server_programs.csv_service t1 inner join (select max(csv_timestmp) recent from server_programs.csv_service) t2 on t1.csv_timestmp = t2.recent;";
+            string query = @"Select t1.* from "+database+".csv_service t1 inner join (select max(csv_timestmp) recent from " + database +".csv_service) t2 on t1.csv_timestmp = t2.recent;";
             MySqlCommand cmd = new MySqlCommand(query, connect);
             MySqlDataAdapter da = new MySqlDataAdapter(cmd);
             DataSet ds = new DataSet();
@@ -47,7 +49,7 @@ namespace WpfApplication1
 
         private void loadRecentReboot()
         {
-            string query = "SELECT conf_settings From server_programs.configfile_info where conf_tagline=\"[configured reboot times]\" order by conf_timestmp DESC limit 1;";
+            string query = "SELECT conf_settings From " + database +".configfile_info where conf_tagline=\"[configured reboot times]\" order by conf_timestmp DESC limit 1;";
             MySqlCommand cmd = new MySqlCommand(query, connect);
             string result = cmd.ExecuteScalar().ToString();
             string[] split = result.Split('\n');
