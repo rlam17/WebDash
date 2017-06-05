@@ -108,7 +108,36 @@ namespace WpfApplication1
             MySqlDataReader recentRow = pullRow();
             MySqlCommand cmd = new MySqlCommand();
             cmd.Connection = connect;
+            recentRow.Read();
 
+            string newRebootTime;
+
+            newRebootTime = "Start=" + date + "\n" + "Interval=" + intervalNum + "," + period + "\n";
+
+            
+            try
+            {
+                cmd.CommandText = "INSERT INTO " +
+                    "configfile_info(conf_id, conf_uldate, conf_md5hash, conf_tagline, conf_settings, conf_timestmp) " +
+                    "VALUES(@conf_id, @conf_uldate, @conf_md5hash, @conf_tagline, @conf_settings, @conf_timestmp)";
+                cmd.Prepare();
+
+                cmd.Parameters.AddWithValue("@conf_id", null);
+                cmd.Parameters.AddWithValue("@conf_uldate", Convert.ToDateTime(recentRow[1]));
+                cmd.Parameters.AddWithValue("@conf_md5hash", recentRow[2]);
+                cmd.Parameters.AddWithValue("@conf_tagline", @"[configured reboot times]");
+                cmd.Parameters.AddWithValue("@conf_settings", newRebootTime);
+                cmd.Parameters.AddWithValue("@conf_timestmp", DateTime.Now);
+
+                recentRow.Close();
+
+                cmd.ExecuteNonQuery();
+
+                MessageBox.Show("Reboot time has been successfully configured.");
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
 
 
             MySqlCommandBuilder builder = new MySqlCommandBuilder();
@@ -120,6 +149,7 @@ namespace WpfApplication1
             MySqlCommand cmd = new MySqlCommand();
             cmd.Connection = connect;
             cmd.CommandText = @"SELECT * from server_programs.configfile_info ORDER BY conf_id DESC LIMIT 1;";
+            
             return cmd.ExecuteReader();
 
         }
