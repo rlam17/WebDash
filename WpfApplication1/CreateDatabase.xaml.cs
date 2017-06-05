@@ -39,13 +39,28 @@ namespace WpfApplication1
             {
                 MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = connect;
-                cmd.CommandText = ("create database " + inputDbName);
+                cmd.CommandText = ("create database " + inputDbName + ";");
                 cmd.ExecuteNonQuery();
+
+                useDatabase();
             } catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
             
+        }
+        private void useDatabase()
+        {
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand();
+                cmd.Connection = connect;
+                cmd.CommandText = ("Use database " + inputDbName + ";");
+                cmd.ExecuteNonQuery();
+            } catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void closeButton_Click(object sender, RoutedEventArgs e)
