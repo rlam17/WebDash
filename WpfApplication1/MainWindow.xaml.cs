@@ -29,19 +29,19 @@ namespace WpfApplication1
     {
         MySqlConnection connect;
         Timer pingTimer;
-        string serverIp;
-        string serverPort;
+        string serverIp = "192.168.7.24";
+        string serverPort = "3306";
         string serverDatabase;
 
         public MainWindow()
-        {            
+        {
             InitializeComponent();
-            
+
             pingTimer = new Timer();
             pingTimer.Tick += new EventHandler(pingCheck);
             pingTimer.Interval = 2000; // in miliseconds
             pingTimer.Start();
-            
+
         }
 
         private void connectButton_Click(object sender, RoutedEventArgs e)
@@ -54,7 +54,7 @@ namespace WpfApplication1
             builder.Add("Port", serverPort);
             builder.Add("Uid", usernameInput.Text);
             builder.Add("Pwd", passwordInput.Password);
-            builder.Add("Database", "server_programs");
+            //builder.Add("Database", serverDatabase);
             //Console.WriteLine(builder.ConnectionString);
 
             connect = new MySqlConnection();
@@ -73,14 +73,27 @@ namespace WpfApplication1
                 usernameInput.IsEnabled = false;
                 passwordInput.IsEnabled = false;
 
+                populateCombo();
+
             }
             catch (Exception ex)
             {
                 System.Windows.MessageBox.Show("Connection failed: " + ex.Message);
             }
 
-            
-            
+
+
+        }
+
+        private void populateCombo()
+        {
+            string query = @"SHOW Databases;";
+            MySqlCommand cmd = new MySqlCommand(query, connect);
+            MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            da.Fill(ds, "LoadDataBinding");
+            Console.Write(ds);
+            serverCombo.DataContext = ds;
         }
 
         private void quitButton_Click(object sender, RoutedEventArgs e)
@@ -113,7 +126,7 @@ namespace WpfApplication1
             passwordInput.IsEnabled = true;
         }
         private void pingCheck(object sender, EventArgs e)
-        {            
+        {
             try
             {
                 Ping heartbeat = new Ping();
@@ -129,29 +142,15 @@ namespace WpfApplication1
                     sqlStatus.Content = "Offline";
                     sqlStatusLight.Fill = new SolidColorBrush(Colors.Red);
                 }
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 sqlStatus.Content = "Unknown";
                 sqlStatusLight.Fill = new SolidColorBrush(Colors.Gray);
             }
-            
+
         }
 
-        private void inputAddress_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            serverIp = inputAddress.Text;
-        }
-
-        private void inputPort_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            serverPort = inputPort.Text;
-        }
-
-        private void inputDatabase_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            serverDatabase = inputDatabase.Text;
-        }
     }
-
     
 }

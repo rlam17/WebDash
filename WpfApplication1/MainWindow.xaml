@@ -11,20 +11,14 @@
         <TextBox x:Name="usernameInput" HorizontalAlignment="Left" Height="23" Margin="98,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" MaxLength="15" Text="wddev_prog"/>
         <Label x:Name="label1" Content="Password: " HorizontalAlignment="Left" Margin="18,89,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.12,0.408" Foreground="White"/>
         <PasswordBox x:Name="passwordInput" HorizontalAlignment="Left" Margin="98,95,0,0" VerticalAlignment="Top" Width="120" Password="d3Ve7op%#4wd$?"/>
-        <ComboBox x:Name="serverCombo" HorizontalAlignment="Left" Margin="98,188,0,0" VerticalAlignment="Top" Width="120" Visibility="Hidden" ItemsSource="{Binding LoadDataBinding}"/>
+        <ComboBox x:Name="serverCombo" HorizontalAlignment="Left" Margin="98,188,0,0" VerticalAlignment="Top" Width="340" Visibility="Visible" ItemsSource="{Binding LoadDataBinding}"/>
         <Label x:Name="serverLabel" Content="Server: " HorizontalAlignment="Left" Margin="18,188,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
         <Button x:Name="connectButton" Content="Connect" HorizontalAlignment="Left" Margin="18,132,0,0" VerticalAlignment="Top" Width="75" Click="connectButton_Click"/>
         <Button x:Name="quitButton" Content="Exit" HorizontalAlignment="Left" Margin="143,132,0,0" VerticalAlignment="Top" Width="75" Click="quitButton_Click"/>
         <Button x:Name="viewServerButton" Content="View Server" HorizontalAlignment="Left" Margin="143,238,0,0" VerticalAlignment="Top" Width="75" Click="viewServerButton_Click" Visibility="Hidden"/>
-        <Label x:Name="label2" Content="SQL Server Status:" HorizontalAlignment="Left" Margin="276,25,0,0" VerticalAlignment="Top" Foreground="White"/>
-        <Label x:Name="sqlStatus" Content="Unknown" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="387,25,0,0" Foreground="White"/>
-        <Ellipse x:Name="sqlStatusLight" Fill="Gray" HorizontalAlignment="Left" Height="23" Margin="452,28,0,0" Stroke="Black" VerticalAlignment="Top" Width="26"/>
+        <Label x:Name="label2" Content="SQL Server Status:" HorizontalAlignment="Left" Margin="285,35,0,0" VerticalAlignment="Top" Foreground="White"/>
+        <Label x:Name="sqlStatus" Content="Unknown" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="396,35,0,0" Foreground="White"/>
+        <Ellipse x:Name="sqlStatusLight" Fill="Gray" HorizontalAlignment="Left" Height="23" Margin="461,38,0,0" Stroke="Black" VerticalAlignment="Top" Width="26"/>
         <Button x:Name="disconnectButton" Content="Disconnect" HorizontalAlignment="Left" Margin="18,132,0,0" VerticalAlignment="Top" Width="75" Click="disconnectButton_Click" Visibility="Hidden"/>
-        <Label x:Name="label3" Content="Host:" HorizontalAlignment="Left" Margin="308,61,0,0" VerticalAlignment="Top" Foreground="White" RenderTransformOrigin="-0.279,0.474"/>
-        <TextBox x:Name="inputAddress" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="358,66,0,0" TextChanged="inputAddress_TextChanged"/>
-        <Label x:Name="label4" Content="Database:" HorizontalAlignment="Left" Margin="283,122,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.87,-0.937" Foreground="White"/>
-        <TextBox x:Name="inputDatabase" HorizontalAlignment="Left" Height="23" Margin="358,126,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="inputDatabase_TextChanged"/>
-        <Label x:Name="label5" Content="Port:" HorizontalAlignment="Left" Margin="310,92,0,0" VerticalAlignment="Top" Foreground="White"/>
-        <TextBox x:Name="inputPort" HorizontalAlignment="Left" Height="23" Margin="358,95,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="inputPort_TextChanged"/>
     </Grid>
 </Window>
