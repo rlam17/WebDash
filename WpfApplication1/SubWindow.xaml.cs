@@ -167,11 +167,22 @@ namespace WpfApplication1
 
         private void dataGridResult_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            DataGrid data = sender as DataGrid;
-            DataGridRow row = (DataGridRow)data.ItemContainerGenerator.ContainerFromIndex(data.SelectedIndex);
-            DataGridCell RowColumn = data.Columns[0].GetCellContent(row).Parent as DataGridCell;
-            string CellValue = ((TextBlock)RowColumn.Content).Text;
-            System.Console.WriteLine(CellValue);
+            DataGrid dataGrid = sender as DataGrid;
+            DataRowView rowView = dataGrid.SelectedItem as DataRowView;
+            string myCellValue;
+
+            try
+            {
+                myCellValue = rowView.Row[1].ToString();
+                Console.WriteLine(myCellValue);
+            }
+            catch(Exception ev) { }
+            string query = "SELECT * from "+database+".csv_service;";
+            MySqlCommand sqlQuery = new MySqlCommand(query, connect);
+            MySqlDataAdapter dAdaptor = new MySqlDataAdapter(sqlQuery);
+            DataSet dSet = new DataSet();
+            dAdaptor.Fill(dSet, "subDataBind");
+            Console.WriteLine();
         }
     }
 }
