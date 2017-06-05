@@ -182,6 +182,7 @@ namespace WpfApplication1
             MySqlDataAdapter dAdaptor = new MySqlDataAdapter(sqlQuery);
             DataSet dSet = new DataSet();
             dAdaptor.Fill(dSet, "subDataBind");
+            subGrid.DataContext = dSet;
             Console.WriteLine();
         }
     }
