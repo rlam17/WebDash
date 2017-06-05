@@ -39,7 +39,7 @@ namespace WpfApplication1
             {
                 MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = connect;
-                cmd.CommandText = ("create database " + inputDbName + ";");
+                cmd.CommandText = ("create database " + inputDbName.Text + ";");
                 cmd.ExecuteNonQuery();
 
                 useDatabase();
@@ -55,7 +55,7 @@ namespace WpfApplication1
             {
                 MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = connect;
-                cmd.CommandText = ("Use database " + inputDbName + ";");
+                cmd.CommandText = ("Use database " + inputDbName.Text + ";");
                 cmd.ExecuteNonQuery();
                 createTables();
             } catch(Exception ex)
@@ -98,7 +98,7 @@ namespace WpfApplication1
             {
                 MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = connect;
-                cmd.CommandText = (@"GRANT INSERT, SELECT ON dbTest.* To 'user'@'hostname' IDENTIFIED BY 'password';");
+                cmd.CommandText = (@"GRANT INSERT, SELECT ON dbTest.* To '"+inputUsername.Text+"'@'hostname' IDENTIFIED BY '"+inputPassword.Password+"';");
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("Database created!");
                 Close();
