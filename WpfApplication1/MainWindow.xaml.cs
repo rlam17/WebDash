@@ -28,14 +28,18 @@ namespace WpfApplication1
     public partial class MainWindow : Window
     {
         MySqlConnection connect;
+        Timer pingTimer;
+        string serverIp;
+        string serverPort;
+
         public MainWindow()
         {            
             InitializeComponent();
-            Timer timer1;
-            timer1 = new Timer();
-            timer1.Tick += new EventHandler(pingCheck);
-            timer1.Interval = 2000; // in miliseconds
-            timer1.Start();
+            
+            pingTimer = new Timer();
+            pingTimer.Tick += new EventHandler(pingCheck);
+            pingTimer.Interval = 2000; // in miliseconds
+            pingTimer.Start();
             
         }
 
@@ -71,8 +75,7 @@ namespace WpfApplication1
             }
             catch (Exception ex)
             {
-                //Program.writeLog("Connection to SQL failed: " + e.Message);
-                //Program.exit(2);
+                System.Windows.MessageBox.Show("Connection failed: " + ex.Message);
             }
 
             
@@ -93,6 +96,9 @@ namespace WpfApplication1
         private void disconnectButton_Click(object sender, RoutedEventArgs e)
         {
             connect.Close();
+
+
+
             serverLabel.Visibility = Visibility.Hidden;
             serverCombo.Visibility = Visibility.Hidden;
             viewServerButton.Visibility = Visibility.Hidden;
@@ -121,6 +127,16 @@ namespace WpfApplication1
                 sqlStatus.Content = "Offline";
                 sqlStatusLight.Fill = new SolidColorBrush(Colors.Red);
             }
+        }
+
+        private void inputAddress_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            serverIp = inputAddress.Text;
+        }
+
+        private void inputPort_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            serverPort = inputPort.Text;
         }
     }
 

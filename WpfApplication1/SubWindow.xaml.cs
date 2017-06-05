@@ -140,7 +140,7 @@ namespace WpfApplication1
             }
 
 
-            MySqlCommandBuilder builder = new MySqlCommandBuilder();
+            
         }
 
         private MySqlDataReader pullRow()
