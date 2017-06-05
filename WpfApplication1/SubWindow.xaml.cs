@@ -180,6 +180,15 @@ namespace WpfApplication1
                 DataSet dSet = new DataSet();
                 dAdaptor.Fill(dSet, "subDataBind");
                 subGrid.DataContext = dSet;
+            }else
+            {
+                string query = "select 1 from dual where false;";
+                MySqlCommand sqlQuery = new MySqlCommand(query, connect);
+                MySqlDataAdapter dAdaptor = new MySqlDataAdapter(sqlQuery);
+                DataSet dSet = new DataSet();
+                dAdaptor.Fill(dSet, "subDataBind");
+                subGrid.DataContext = dSet;
+
             }
             
         }
