@@ -47,7 +47,7 @@ namespace WpfApplication1
 
         private void loadRecentReboot()
         {
-            string query = "Select t1.conf_settings from server_programs.configfile_info t1 inner join (select max(conf_timestmp) recent from server_programs.configfile_info) t2 on t1.conf_timestmp = t2.recent where t1.conf_tagline=\"[configured reboot times]\" LIMIT 1;";
+            string query = "SELECT conf_settings From server_programs.configfile_info where conf_tagline=\"[configured reboot times]\" order by conf_timestmp DESC limit 1;";
             MySqlCommand cmd = new MySqlCommand(query, connect);
             string result = cmd.ExecuteScalar().ToString();
             string[] split = result.Split('\n');
@@ -55,9 +55,12 @@ namespace WpfApplication1
             string[] rawInterval = split[1].Split('=')[1].Split(',');
 
             string period = getPeriod(rawInterval[1]);
-            LastReboot.Content = restartDate + " Interval: " + rawInterval[0] + " " + period;
+            LastReboot.Content = restartDate + "    Interval: " + rawInterval[0] + " " + period;
         }
+        private void changeColours()
+        {
 
+        }
         private string getPeriod(string input)
         {
             if(input.ToLower() == "s")
