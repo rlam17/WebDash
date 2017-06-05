@@ -27,5 +27,30 @@ namespace WpfApplication1
             this.connect = connect;
             InitializeComponent();
         }
+
+        private void createDbButton_Click(object sender, RoutedEventArgs e)
+        {
+            createDb();
+        }
+
+        private void createDb()
+        {
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand();
+                cmd.Connection = connect;
+                cmd.CommandText = ("create database " + inputDbName);
+                cmd.ExecuteNonQuery();
+            } catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
+        }
+
+        private void closeButton_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }
