@@ -34,7 +34,7 @@ namespace WpfApplication1
         }
 
         private void createDb()
-        {
+        {//phase 1
             try
             {
                 MySqlCommand cmd = new MySqlCommand();
@@ -50,14 +50,60 @@ namespace WpfApplication1
             
         }
         private void useDatabase()
-        {
+        {//phase 2
             try
             {
                 MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = connect;
                 cmd.CommandText = ("Use database " + inputDbName + ";");
                 cmd.ExecuteNonQuery();
+                createTables();
             } catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        private void createTables()
+        {//phase 3
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand();
+                cmd.Connection = connect;
+                cmd.CommandText = @"CREATE TABLE `test`.`csv_service` (
+                      `csv_id` INT(11) NOT NULL AUTO_INCREMENT COMMENT '',
+                      `csv_startup` DATETIME NOT NULL COMMENT '',
+                      `csv_server` VARCHAR(100) NOT NULL COMMENT '',
+                      `csv_status` VARCHAR(10) NOT NULL COMMENT '',
+                      `csv_service` VARCHAR(100) NOT NULL COMMENT '',
+                      `csv_subservice` VARCHAR(100) NULL DEFAULT NULL COMMENT '',
+                      `csv_error` VARCHAR(300) NULL DEFAULT NULL COMMENT '',
+                      `csv_timestmp` DATETIME NOT NULL COMMENT '',
+                      PRIMARY KEY (`csv_id`)  COMMENT '')
+                    ENGINE = InnoDB
+                    DEFAULT CHARACTER SET = utf8;
+                    ";
+                cmd.ExecuteNonQuery();
+                cmd.CommandText = "";
+                createUser();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void createUser()
+        { //Phase 4
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand();
+                cmd.Connection = connect;
+                cmd.CommandText = (@"GRANT INSERT, SELECT ON dbTest.* To 'user'@'hostname' IDENTIFIED BY 'password';");
+                cmd.ExecuteNonQuery();
+                MessageBox.Show("Database created!");
+                Close();
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
