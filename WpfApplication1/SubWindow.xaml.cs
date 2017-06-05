@@ -52,7 +52,37 @@ namespace WpfApplication1
             string result = cmd.ExecuteScalar().ToString();
             string[] split = result.Split('\n');
             string restartDate = split[0].Split('=')[1];
-            LastReboot.Content = restartDate;
+            string[] rawInterval = split[1].Split('=')[1].Split(',');
+
+            string period = getPeriod(rawInterval[1]);
+            LastReboot.Content = restartDate + " Interval: " + rawInterval[0] + " " + period;
+        }
+
+        private string getPeriod(string input)
+        {
+            if(input.ToLower() == "s")
+            {
+                return "seconds";
+            }
+            else if(input.ToLower() == "m") {
+
+                return "minutes";
+            } else if(input.ToLower() == "h")
+            {
+                return "hours";
+            }else if(input.ToLower() == "d"){
+                return "days";
+            }else if(input.ToLower() == "w")
+            {
+                return "weeks";
+            } else if(input.ToLower() == "m")
+            {
+                return "months";
+            }
+            else
+            {
+                return "";
+            }
         }
 
         private void button_Click(object sender, RoutedEventArgs e)
@@ -63,8 +93,8 @@ namespace WpfApplication1
                 int interval = (int)intervalAmount.Value;
             } catch (Exception ex)
             {
-                
-                MessageBoxResult warning = MessageBox.Show("Invalid start date or interval!");
+
+                MessageBoxResult warning = MessageBox.Show(ex.Message);
             }            
         }
 
