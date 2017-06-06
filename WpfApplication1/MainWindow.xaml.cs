@@ -99,8 +99,7 @@ namespace WpfApplication1
             //Console.Write(ds);
             serverCombo.DataContext = ds;
             serverCombo.DisplayMemberPath = "Database";
-            databaseList.DataContext = ds;
-            databaseList.DisplayMemberPath = "Database";
+
 
             colorList();
             
@@ -108,19 +107,6 @@ namespace WpfApplication1
 
         private void colorList()
         {
-            foreach(DataRowView item in databaseList.Items)
-            {
-                Console.WriteLine(item.Row[0].ToString());
-                try
-                {
-                    string dbName = item.Row[0].ToString();
-                    bool isThereAFalse = findFalse(dbName);
-                    
-                } catch(Exception ex)
-                {
-
-                }
-            }
         }
 
         private bool findFalse(string dbName)
@@ -129,6 +115,19 @@ namespace WpfApplication1
             MySqlCommand cmd = new MySqlCommand(query, connect);
             MySqlDataAdapter da = new MySqlDataAdapter(cmd);
             DataSet ds = new DataSet();
+            da.Fill(ds);
+
+            foreach (DataTable table in ds.Tables)
+            {
+                foreach (DataRow row in table.Rows)
+                {
+                    foreach (DataColumn column in table.Columns)
+                    {
+                        object item = row[column];
+                        // read column and item
+                    }
+                }
+            }
             return false;
         }
 
