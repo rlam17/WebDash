@@ -100,6 +100,8 @@ namespace WpfApplication1
             serverCombo.DataContext = ds;
             serverCombo.DisplayMemberPath = "Database";
 
+            databaseList.DataContext = ds;
+            databaseList.DisplayMemberPath = "Database";
 
             colorList();
             
@@ -107,28 +109,37 @@ namespace WpfApplication1
 
         private void colorList()
         {
-        }
-
-        private bool findFalse(string dbName)
-        {
-            string query = @"Select t1.* from " + dbName + ".csv_service t1 inner join (select max(csv_timestmp) recent from " + dbName + ".csv_service) t2 on t1.csv_timestmp = t2.recent;";
-            MySqlCommand cmd = new MySqlCommand(query, connect);
-            MySqlDataAdapter da = new MySqlDataAdapter(cmd);
-            DataSet ds = new DataSet();
-            da.Fill(ds);
-
-            foreach (DataTable table in ds.Tables)
+            foreach(DataRowView item in databaseList.Items)
             {
-                foreach (DataRow row in table.Rows)
-                {
-                    foreach (DataColumn column in table.Columns)
-                    {
-                        object item = row[column];
-                        // read column and item
-                    }
+                //Console.WriteLine(item.Row[0].ToString());
+                if (findFalse(item.Row[0].ToString()) == 1)
+                {                    
+
                 }
             }
-            return false;
+        }
+
+        private int findFalse(string dbName)
+        {
+            try
+            {
+                string query = @"Select t1.* from " + dbName + ".csv_service t1 inner join (select max(csv_timestmp) recent from " + dbName + ".csv_service) t2 on t1.csv_timestmp = t2.recent;";
+                MySqlCommand cmd = new MySqlCommand(query, connect);
+                MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+                DataSet ds = new DataSet();
+                da.Fill(ds);
+
+                foreach (DataTable table in ds.Tables)
+                {
+
+                }
+                return 0;
+            }
+            catch (Exception ex)
+            {
+                return -1;
+
+            }
         }
 
         private void quitButton_Click(object sender, RoutedEventArgs e)
@@ -202,7 +213,7 @@ namespace WpfApplication1
             createDbWindow.ShowDialog();
         }
 
-        private void databaseList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void databaseList_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
 
         }

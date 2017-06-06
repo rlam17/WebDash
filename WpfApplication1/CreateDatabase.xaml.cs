@@ -55,7 +55,7 @@ namespace WpfApplication1
             {
                 MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = connect;
-                cmd.CommandText = ("Use database " + inputDbName.Text + ";");
+                cmd.CommandText = ("Use " + inputDbName.Text + ";");
                 cmd.ExecuteNonQuery();
                 createTables();
             } catch(Exception ex)
@@ -69,7 +69,7 @@ namespace WpfApplication1
             {
                 MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = connect;
-                cmd.CommandText = @"CREATE TABLE `test`.`csv_service` (
+                cmd.CommandText = @"CREATE TABLE `csv_service` (
                       `csv_id` INT(11) NOT NULL AUTO_INCREMENT COMMENT '',
                       `csv_startup` DATETIME NOT NULL COMMENT '',
                       `csv_server` VARCHAR(100) NOT NULL COMMENT '',
