@@ -95,7 +95,7 @@ namespace WpfApplication1
         {
             serverCombo.DataContext = null;
 
-            string query = @"SHOW Databases;";
+            string query = @"SELECT table_schema `Database` FROM INFORMATION_SCHEMA.TABLES WHERE table_name='csv_service';";
             MySqlCommand cmd = new MySqlCommand(query, connect);
             MySqlDataAdapter da = new MySqlDataAdapter(cmd);
             DataSet ds = new DataSet();
@@ -143,7 +143,6 @@ namespace WpfApplication1
             catch (Exception ex)
             {
                 return -1;
-
             }
         }
 
