@@ -118,8 +118,8 @@ namespace WpfApplication1
             {
                 //Console.WriteLine(item.Row[0].ToString());
                 if (findFalse(item.Row[0].ToString()) == 1)
-                {                    
-
+                {
+                    Console.WriteLine(item.Row[0].ToString());
                 }
             }
         }
@@ -136,7 +136,7 @@ namespace WpfApplication1
 
                 foreach (DataTable table in ds.Tables)
                 {
-
+                    return 1;
                 }
                 return 0;
             }
@@ -219,7 +219,7 @@ namespace WpfApplication1
         }
 
 
-        private void databaseList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void databaseList_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
 
         }
