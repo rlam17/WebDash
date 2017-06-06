@@ -99,6 +99,7 @@ namespace WpfApplication1
                 string composedDate = dr[1].ToString() + "/" + dr[2].ToString() + "/" + dr[0].ToString();
                 DateTime date = Convert.ToDateTime(composedDate);
                 Console.WriteLine(date);
+                lAcceptableDates.Add(date);
             }
             //dr.Read();
             
