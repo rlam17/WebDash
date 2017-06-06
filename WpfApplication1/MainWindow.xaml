@@ -26,15 +26,15 @@
             <Calendar.CalendarDayButtonStyle>
                 <Style TargetType="CalendarDayButton" BasedOn="{StaticResource {x:Type CalendarDayButton}}">
                     <Style.Triggers>
-                        <Trigger Property="IsBlackedOut" Value="True">
-                            <Setter Property="Background" Value="Red"/>
-                        </Trigger>
                         <Trigger Property="IsBlackedOut" Value="False">
                             <Setter Property="Background" Value="#FF00E000"/>
                         </Trigger>
                     </Style.Triggers>
                 </Style>
             </Calendar.CalendarDayButtonStyle>
+            <Calendar.BlackoutDates>
+                <!--<CalendarDateRange Start="1/1/1900" End="1/1/3000"/>-->
+            </Calendar.BlackoutDates>
         </Calendar>
         <ListBox x:Name="databaseList" HorizontalAlignment="Left" Height="164" Margin="295,269,0,0" VerticalAlignment="Top" Width="179" SelectionChanged="databaseList_SelectionChanged_1" ItemsSource="{Binding LoadDataBinding}"/>
         <!--<ListBox x:Name="databaseList" HorizontalAlignment="Left" Height="171" Margin="301,89,0,0" VerticalAlignment="Top" Width="179" SelectionChanged="databaseList_SelectionChanged_1" ItemsSource="{Binding LoadDataBinding}"/>-->
