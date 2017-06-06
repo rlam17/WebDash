@@ -21,6 +21,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 using System.Globalization;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 
 namespace WpfApplication1
 {
@@ -68,7 +70,7 @@ namespace WpfApplication1
                 serverLabel.Visibility = Visibility.Visible;
                 serverCombo.Visibility = Visibility.Visible;
                 viewServerButton.Visibility = Visibility.Visible;
-                disconnectButton.Visibility = Visibility.Visible;
+                disconnectAndExitButton.Visibility = Visibility.Visible;
                 connectButton.Visibility = Visibility.Hidden;
                 databaseLabel.Visibility = Visibility.Visible;
                 createDbButton.Visibility = Visibility.Visible;
@@ -106,25 +108,19 @@ namespace WpfApplication1
                 lAcceptableDates.Add(date);
             }
             //dr.Read();
-            List<DateTime> lDateRanges = new List<DateTime>();
-            lDateRanges.Add(new DateTime(1900, 1, 1));
+            
 
-            //oCal.BlackoutDates.Remove(new CalendarDateRange(new DateTime(2017, 6, 6), new DateTime(2017, 7, 7)));
-            bool blnContinue = true;
-
-            DateTime dDate = new DateTime(2000, 1, 1);
-            DateTime end = new DateTime(2100, 1, 1);
-
-            while (blnContinue)
+            dr.Close();
+            
+            foreach(DateTime date in lAcceptableDates)
             {
-                if (dDate == end)
+                if (oCal.BlackoutDates.Contains(date))
                 {
-                    blnContinue = false;
+                    oCal.BlackoutDates.Remove(new CalendarDateRange(date, date.AddDays(1)));
                 }
-                System.Console.WriteLine(dDate);
-                dDate = dDate.AddDays(+1);
             }
-            System.Console.WriteLine("done");
+
+            
 
             //serverCombo.Text;
 
@@ -133,57 +129,76 @@ namespace WpfApplication1
         private void populateCombo()
         {
             serverCombo.DataContext = null;
+            
 
             string query = @"SELECT table_schema `Database` FROM INFORMATION_SCHEMA.TABLES WHERE table_name='csv_service';";
             MySqlCommand cmd = new MySqlCommand(query, connect);
-            MySqlDataAdapter da = new MySqlDataAdapter(cmd);
-            DataSet ds = new DataSet();
-            da.Fill(ds, "LoadDataBinding");
-           
+            //MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+            //DataSet ds = new DataSet();
+            //da.Fill(ds, "LoadDataBinding");
+
+            MySqlDataReader dr = cmd.ExecuteReader();
+
+            ObservableCollection<ServiceStatus> services = new ObservableCollection<ServiceStatus>();
+
+            while (dr.Read())
+            {
+                services.Add(findFalse(dr[0].ToString()));
+            }
+
             //Console.Write(ds);
-            serverCombo.DataContext = ds;
-            serverCombo.DisplayMemberPath = "Database";
+            //serverCombo.DataContext = ds;
+            //serverCombo.DisplayMemberPath = "Database";
+            dr.Close();
+            databaseList.ItemsSource = services;
 
-            databaseList.DataContext = ds;
-            databaseList.DisplayMemberPath = "Database";
 
-            colorList();
+            //databaseList.DataContext = ds;
+            //databaseList.DisplayMemberPath = "Database";
+            
+            //colorList();
             
         }
 
         private void colorList()
         {
-            foreach(DataRowView item in databaseList.Items)
-            {
-                //Console.WriteLine(item.Row[0].ToString());
-                if (findFalse(item.Row[0].ToString()) == 1)
-                {
-                    Console.WriteLine(item.Row[0].ToString());
-                }
-            }
+            //foreach(DataRowView item in databaseList.Items)
+            //{
+            //    //Console.WriteLine(item.Row[0].ToString());
+            //    if (findFalse(item.Row[0].ToString()) == 1)
+            //    {
+                    
+            //    }
+            //}
         }
 
-        private int findFalse(string dbName)
+        private ServiceStatus findFalse(string dbName)
         {
             try
             {
                 string query = @"Select t1.* from " + dbName + ".csv_service t1 inner join (select max(csv_timestmp) recent from " + dbName + ".csv_service) t2 on t1.csv_timestmp = t2.recent;";
                 MySqlCommand cmd = new MySqlCommand(query, connect);
-                MySqlDataAdapter da = new MySqlDataAdapter(cmd);
-                DataSet ds = new DataSet();
-                da.Fill(ds);
+                MySqlDataReader dr = cmd.ExecuteReader();
 
-                foreach (DataTable table in ds.Tables)
+                while (dr.Read())
                 {
-                    return 1;
+                    if (String.Compare(dr[3].ToString(), "false") == 0)
+                    {
+                        dr.Close();
+                        return new ServiceStatus(dbName, false);
+                    }
                 }
-                return 0;
+                dr.Close();
+                return new ServiceStatus(dbName, false);
             }
             catch (Exception ex)
             {
-                return -1;
+
+                return new ServiceStatus(dbName, false);
             }
         }
+
+        
 
         private void quitButton_Click(object sender, RoutedEventArgs e)
         {
@@ -196,29 +211,7 @@ namespace WpfApplication1
             win2.Show();
         }
 
-        private void disconnectButton_Click(object sender, RoutedEventArgs e)
-        {
-            connect.Close();
-
-
-
-            serverLabel.Visibility = Visibility.Hidden;
-            serverCombo.Visibility = Visibility.Hidden;
-            viewServerButton.Visibility = Visibility.Hidden;
-            disconnectButton.Visibility = Visibility.Hidden;
-            connectButton.Visibility = Visibility.Visible;
-            databaseLabel.Visibility = Visibility.Hidden;
-            createDbButton.Visibility = Visibility.Hidden;
-            viewServerButton.Visibility = Visibility.Hidden;
-
-            
-
-            usernameInput.Clear();
-            passwordInput.Clear();
-
-            usernameInput.IsEnabled = true;
-            passwordInput.IsEnabled = true;
-        }
+        
         private void pingCheck(object sender, EventArgs e)
         {
             try
@@ -261,6 +254,57 @@ namespace WpfApplication1
         {
 
         }
+
+        private void disconnectAndExitButton_Click(object sender, RoutedEventArgs e)
+        {
+            System.Environment.Exit(0);
+        }
     }
+    
+    public class ServiceStatus
+    {
+        private string _name;
+        public string name
+        {
+            get
+            {
+                return _name;
+            }
+            set
+            {
+                _name = value;
+            }
+        }
+        private bool _status;
+        public bool status
+        {
+            get
+            {
+                return _status;
+            }
+            set
+            {
+                _status = value;
+            }
+
+        }
+
+        public ServiceStatus(string inputName, bool inputStatus)
+        {
+            _name = inputName;
+            _status = inputStatus;
+        }
+
+        public override string ToString()
+        {
+            return _name;
+        }
+
+        public bool getStatus()
+        {
+            return _status;
+        }
+    }
+
     
 }
