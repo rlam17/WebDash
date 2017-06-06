@@ -154,7 +154,7 @@ namespace WpfApplication1
             dr.Close();
             databaseList.ItemsSource = services;
 
-
+            serverCombo.ItemsSource = services;
             //databaseList.DataContext = ds;
             //databaseList.DisplayMemberPath = "Database";
             
