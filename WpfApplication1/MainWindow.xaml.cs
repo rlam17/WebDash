@@ -108,16 +108,23 @@ namespace WpfApplication1
                 lAcceptableDates.Add(date);
             }
             //dr.Read();
-            
+            int intYear = DateTime.Now.Year;
+            DateTime dBegin = new DateTime(intYear, 1, 1);
+            DateTime dEnd = new DateTime(intYear, 12, 31);
 
-            dr.Close();
-            
-            foreach(DateTime date in lAcceptableDates)
+            bool blnContinue = true;
+            while (blnContinue)
             {
-                if (oCal.BlackoutDates.Contains(date))
+                if(dBegin == dEnd)
                 {
-                    oCal.BlackoutDates.Remove(new CalendarDateRange(date, date.AddDays(1)));
+                    blnContinue = false;
                 }
+
+                if (!lAcceptableDates.Contains(dBegin))
+                {
+                    oCal.BlackoutDates.Add(new CalendarDateRange(dBegin));
+                }
+                dBegin = dBegin.AddDays(1);
             }
 
             

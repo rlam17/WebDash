@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApplication1"
         mc:Ignorable="d"
-        Title="MainWindow" Height="523" Width="525">
-    <Grid Background="Black">
+        Title="MainWindow" Height="714.268" Width="716.268">
+    <Grid Background="Black" Margin="0,0,2,0">
         <Label x:Name="label" Content="User Name: " HorizontalAlignment="Left" Margin="18,63,0,0" VerticalAlignment="Top" Foreground="White"/>
         <TextBox x:Name="usernameInput" HorizontalAlignment="Left" Height="23" Margin="98,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" MaxLength="15" Text="wddev_prog"/>
         <Label x:Name="label1" Content="Password: " HorizontalAlignment="Left" Margin="18,89,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.12,0.408" Foreground="White"/>
@@ -21,7 +21,15 @@
         <Ellipse x:Name="sqlStatusLight" Fill="Gray" HorizontalAlignment="Left" Height="23" Margin="461,38,0,0" Stroke="Black" VerticalAlignment="Top" Width="26"/>
         <Label x:Name="databaseLabel" Content="Database:" HorizontalAlignment="Left" Margin="22,184,0,0" VerticalAlignment="Top" Foreground="White" Visibility="Hidden"/>
         <Button x:Name="createDbButton" Content="Create Database" HorizontalAlignment="Left" VerticalAlignment="Top" Width="97" Margin="18,238,0,0" Click="createDbButton_Click" Visibility="Hidden"/>
-        <Calendar x:Name="oCal" HorizontalAlignment="Left" Margin="295,270,0,0" VerticalAlignment="Top" SelectionMode="None" Background="#FFCDCDCD" Width="192">
+        <Calendar x:Name="oCal" HorizontalAlignment="Left" Margin="386,418,0,0" VerticalAlignment="Top" SelectionMode="None" Background="#FFCDCDCD" Width="192" RenderTransformOrigin="0.5,0.5">
+            <Calendar.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleY="2" ScaleX="2"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform X="4" Y="4"/>
+                </TransformGroup>
+            </Calendar.RenderTransform>
             <Calendar.CalendarDayButtonStyle>
                 <Style TargetType="CalendarDayButton" BasedOn="{StaticResource {x:Type CalendarDayButton}}">
                     <Style.Triggers>
@@ -32,7 +40,7 @@
                 </Style>
             </Calendar.CalendarDayButtonStyle>
         </Calendar>
-        <ListBox x:Name="databaseList" HorizontalAlignment="Stretch" Height="164" Margin="295,75,30,0" VerticalAlignment="Top" SelectionChanged="databaseList_SelectionChanged_1" ItemsSource="{Binding LoadDataBinding}" HorizontalContentAlignment="Stretch">
+        <ListBox x:Name="databaseList" HorizontalAlignment="Stretch" Height="164" Margin="299,148,26,0" VerticalAlignment="Top" SelectionChanged="databaseList_SelectionChanged_1" ItemsSource="{Binding LoadDataBinding}" HorizontalContentAlignment="Stretch" Background="Gray">
             <ListBox.ItemTemplate>
                 <DataTemplate>
 
@@ -55,6 +63,7 @@
             </ListBox.ItemTemplate>
         </ListBox>
         <Button x:Name="disconnectAndExitButton" Content="Disconnect and Exit" HorizontalAlignment="Left" Height="22" Margin="18,132,0,0" VerticalAlignment="Top" Width="200" Click="disconnectAndExitButton_Click" Visibility="Hidden"/>
+        <Label x:Name="label3" Content="Server Overview" HorizontalAlignment="Left" Margin="396,89,0,0" VerticalAlignment="Top" Foreground="White" Height="46" Width="174" FontSize="20" FontWeight="Bold"/>
         <!--<ListBox x:Name="databaseList" HorizontalAlignment="Left" Height="171" Margin="301,89,0,0" VerticalAlignment="Top" Width="179" SelectionChanged="databaseList_SelectionChanged_1" ItemsSource="{Binding LoadDataBinding}"/>-->
 
     </Grid>
