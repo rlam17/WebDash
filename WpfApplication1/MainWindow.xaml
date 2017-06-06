@@ -21,7 +21,7 @@
         <Ellipse x:Name="sqlStatusLight" Fill="Gray" HorizontalAlignment="Left" Height="43" Margin="563,31,0,0" Stroke="Black" VerticalAlignment="Top" Width="48"/>
 
         <Button x:Name="createDbButton" Content="Create Database" HorizontalAlignment="Left" VerticalAlignment="Top" Width="97" Margin="18,238,0,0" Click="createDbButton_Click" Visibility="Hidden"/>
-        <Calendar x:Name="oCal" HorizontalAlignment="Left" Margin="386,418,0,0" VerticalAlignment="Top" SelectionMode="None" Background="#FFCDCDCD" Width="192" RenderTransformOrigin="0.5,0.5">
+        <Calendar x:Name="oCal" HorizontalAlignment="Left" Margin="386,418,0,0" VerticalAlignment="Top" Background="#FFCDCDCD" Width="192" RenderTransformOrigin="0.5,0.5" SelectionMode="None">
             <Calendar.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleY="2" ScaleX="2"/>
