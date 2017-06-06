@@ -266,8 +266,13 @@ namespace WpfApplication1
         {
             System.Environment.Exit(0);
         }
+
+        private void oCal_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Console.WriteLine(oCal.SelectedDate);
+        }
     }
-    
+
     public class ServiceStatus
     {
         private string _name;
