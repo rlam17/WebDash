@@ -82,8 +82,13 @@ namespace WpfApplication1
                 System.Windows.MessageBox.Show("Connection failed: " + ex.Message);
             }
 
+            blackDates();
+        }
 
-
+        private void blackDates()
+        {
+            oCal.SelectionMode = CalendarSelectionMode.SingleDate;
+            oCal.BlackoutDates.Add(new CalendarDateRange(new DateTime(2017, 6, 8), new DateTime(2017, 7, 11)));
         }
 
         private void populateCombo()
