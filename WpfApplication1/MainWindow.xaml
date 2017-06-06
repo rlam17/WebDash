@@ -11,15 +11,15 @@
         <TextBox x:Name="usernameInput" HorizontalAlignment="Left" Height="23" Margin="98,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" MaxLength="15" Text="wddev_prog"/>
         <Label x:Name="label1" Content="Password: " HorizontalAlignment="Left" Margin="18,89,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.12,0.408" Foreground="White"/>
         <PasswordBox x:Name="passwordInput" HorizontalAlignment="Left" Margin="98,95,0,0" VerticalAlignment="Top" Width="120" Password="d3Ve7op%#4wd$?"/>
-        
+
         <Label x:Name="serverLabel" Content="Server: " HorizontalAlignment="Left" Margin="18,188,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
         <Button x:Name="connectButton" Content="Connect" HorizontalAlignment="Left" Margin="18,132,0,0" VerticalAlignment="Top" Width="75" Click="connectButton_Click"/>
         <Button x:Name="quitButton" Content="Exit" HorizontalAlignment="Left" Margin="143,132,0,0" VerticalAlignment="Top" Width="75" Click="quitButton_Click"/>
         <Button x:Name="viewServerButton" Content="View Server" HorizontalAlignment="Left" Margin="143,238,0,0" VerticalAlignment="Top" Width="75" Click="viewServerButton_Click" Visibility="Hidden" IsEnabled="False"/>
-        <Label x:Name="label2" Content="SQL Server Status:" HorizontalAlignment="Left" Margin="285,35,0,0" VerticalAlignment="Top" Foreground="White"/>
-        <Label x:Name="sqlStatus" Content="Unknown" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="396,35,0,0" Foreground="White"/>
-        <Ellipse x:Name="sqlStatusLight" Fill="Gray" HorizontalAlignment="Left" Height="23" Margin="461,38,0,0" Stroke="Black" VerticalAlignment="Top" Width="26"/>
-        
+        <Label x:Name="label2" Content="SQL Server Status:" HorizontalAlignment="Left" Margin="329,35,0,0" VerticalAlignment="Top" Foreground="White" FontSize="16" FontWeight="Bold"/>
+        <Label x:Name="sqlStatus" Content="Unknown" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="485,35,0,0" Foreground="White" FontSize="16"/>
+        <Ellipse x:Name="sqlStatusLight" Fill="Gray" HorizontalAlignment="Left" Height="43" Margin="563,31,0,0" Stroke="Black" VerticalAlignment="Top" Width="48"/>
+
         <Button x:Name="createDbButton" Content="Create Database" HorizontalAlignment="Left" VerticalAlignment="Top" Width="97" Margin="18,238,0,0" Click="createDbButton_Click" Visibility="Hidden"/>
         <Calendar x:Name="oCal" HorizontalAlignment="Left" Margin="386,418,0,0" VerticalAlignment="Top" SelectionMode="None" Background="#FFCDCDCD" Width="192" RenderTransformOrigin="0.5,0.5">
             <Calendar.RenderTransform>
@@ -40,13 +40,13 @@
                 </Style>
             </Calendar.CalendarDayButtonStyle>
         </Calendar>
-        <ListBox x:Name="databaseList" HorizontalAlignment="Stretch" Height="164" Margin="299,148,26,0" VerticalAlignment="Top" SelectionChanged="databaseList_SelectionChanged_1" ItemsSource="{Binding LoadDataBinding}" HorizontalContentAlignment="Stretch" Background="Gray">
+        <ListBox x:Name="databaseList" HorizontalAlignment="Stretch" Height="164" Margin="299,135,26,0" VerticalAlignment="Top" SelectionChanged="databaseList_SelectionChanged_1" ItemsSource="{Binding LoadDataBinding}" HorizontalContentAlignment="Stretch" Background="Gray">
             <ListBox.ItemTemplate>
                 <DataTemplate>
 
                     <!-- Step #1: give an x:Name to this Grid -->
                     <Grid Margin="1" x:Name="BackgroundGrid" HorizontalAlignment="Stretch">
-                        <TextBlock Grid.Column="1" Text="{Binding name}"/>
+                        <TextBlock Name="serverNames" Grid.Column="1" Text="{Binding name}"/>
                     </Grid>
 
                     <!-- Step #2: create a DataTrigger that sets the Background of the Grid, depending on the value of IsOccupied property in the Model -->
@@ -56,14 +56,15 @@
                         </DataTrigger>
 
                         <DataTrigger Binding="{Binding status}" Value="False">
-                            <Setter TargetName="BackgroundGrid" Property="Background" Value="Red"/>
+                            <Setter TargetName="BackgroundGrid" Property="Background" Value="Red" />
+                            <Setter TargetName="serverNames" Property="Foreground" Value="White" />
                         </DataTrigger>
                     </DataTemplate.Triggers>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
         <Button x:Name="disconnectAndExitButton" Content="Disconnect and Exit" HorizontalAlignment="Left" Height="22" Margin="18,132,0,0" VerticalAlignment="Top" Width="200" Click="disconnectAndExitButton_Click" Visibility="Hidden"/>
-        <Label x:Name="label3" Content="Server Overview" HorizontalAlignment="Left" Margin="396,89,0,0" VerticalAlignment="Top" Foreground="White" Height="46" Width="174" FontSize="20" FontWeight="Bold"/>
+        <Label x:Name="label3" Content="Server Overview" HorizontalAlignment="Left" Margin="408,89,0,0" VerticalAlignment="Top" Foreground="White" Height="33" Width="183" FontWeight="Bold" FontSize="16"/>
         <!--<ListBox x:Name="databaseList" HorizontalAlignment="Left" Height="171" Margin="301,89,0,0" VerticalAlignment="Top" Width="179" SelectionChanged="databaseList_SelectionChanged_1" ItemsSource="{Binding LoadDataBinding}"/>-->
 
     </Grid>
