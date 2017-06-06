@@ -83,7 +83,26 @@ namespace WpfApplication1
                     DEFAULT CHARACTER SET = utf8;
                     ";
                 cmd.ExecuteNonQuery();
-                cmd.CommandText = "";
+                cmd.CommandText = @"CREATE TABLE `configfile_info` (
+                      `conf_id` INT(11) NOT NULL AUTO_INCREMENT COMMENT '',
+                      `conf_uldate` DATE NOT NULL COMMENT '',
+                      `conf_md5hash` VARCHAR(300) NOT NULL COMMENT '',
+                      `conf_tagline` VARCHAR(50) NOT NULL COMMENT '',
+                      `conf_settings` TEXT NOT NULL COMMENT '',
+                      `conf_timestmp` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT COMMENT '',
+                      PRIMARY KEY (`conf_id`)  COMMENT '')
+                    ENGINE = InnoDB
+                    DEFAULT CHARACTER SET = utf8;
+                    ";
+                cmd.ExecuteNonQuery();
+                cmd.CommandText = @"CREATE TABLE `config_log` (
+                      `log_id` INT(11) NOT NULL AUTO_INCREMENT COMMENT '',
+                      `log_device` VARCHAR(50) NOT NULL COMMENT '',
+                      `log_timestmp` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '',
+                      PRIMARY KEY (`log_id`)  COMMENT '')
+                    ENGINE = InnoDB
+                    DEFAULT CHARACTER SET = utf8;
+                    ";
                 createUser();
             }
             catch (Exception ex)
