@@ -21,6 +21,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 using System.Globalization;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 
 namespace WpfApplication1
 {
@@ -112,6 +114,15 @@ namespace WpfApplication1
 
             dr.Close();
             
+            foreach(DateTime date in lAcceptableDates)
+            {
+                if (oCal.BlackoutDates.Contains(date))
+                {
+                    oCal.BlackoutDates.Remove(new CalendarDateRange(date, date.AddDays(1)));
+                }
+            }
+
+            
 
             //serverCombo.Text;
 
@@ -124,34 +135,46 @@ namespace WpfApplication1
 
             string query = @"SELECT table_schema `Database` FROM INFORMATION_SCHEMA.TABLES WHERE table_name='csv_service';";
             MySqlCommand cmd = new MySqlCommand(query, connect);
-            MySqlDataAdapter da = new MySqlDataAdapter(cmd);
-            DataSet ds = new DataSet();
-            da.Fill(ds, "LoadDataBinding");
-           
+            //MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+            //DataSet ds = new DataSet();
+            //da.Fill(ds, "LoadDataBinding");
+
+            MySqlDataReader dr = cmd.ExecuteReader();
+
+            ObservableCollection<ServiceStatus> services = new ObservableCollection<ServiceStatus>();
+
+            while (dr.Read())
+            {
+                services.Add(findFalse(dr[0].ToString()));
+            }
+
             //Console.Write(ds);
             //serverCombo.DataContext = ds;
             //serverCombo.DisplayMemberPath = "Database";
+            dr.Close();
+            databaseList.ItemsSource = services;
 
-            databaseList.DataContext = ds;
-            databaseList.DisplayMemberPath = "Database";
+
+            //databaseList.DataContext = ds;
+            //databaseList.DisplayMemberPath = "Database";
             
-            colorList();
+            //colorList();
             
         }
 
         private void colorList()
         {
-            foreach(DataRowView item in databaseList.Items)
-            {
-                //Console.WriteLine(item.Row[0].ToString());
-                if (findFalse(item.Row[0].ToString()) == 1)
-                {
-                    Console.WriteLine(item.Row[0].ToString());
-                }
-            }
+            //foreach(DataRowView item in databaseList.Items)
+            //{
+            //    //Console.WriteLine(item.Row[0].ToString());
+            //    if (findFalse(item.Row[0].ToString()) == 1)
+            //    {
+                    
+            //    }
+            //}
         }
 
-        private int findFalse(string dbName)
+        private ServiceStatus findFalse(string dbName)
         {
             try
             {
@@ -164,18 +187,20 @@ namespace WpfApplication1
                     if (String.Compare(dr[3].ToString(), "false") == 0)
                     {
                         dr.Close();
-                        return 1;
+                        return new ServiceStatus(dbName, false);
                     }
                 }
                 dr.Close();
-                return 0;
+                return new ServiceStatus(dbName, false);
             }
             catch (Exception ex)
             {
-                
-                return -1;
+
+                return new ServiceStatus(dbName, false);
             }
         }
+
+        
 
         private void quitButton_Click(object sender, RoutedEventArgs e)
         {
@@ -237,5 +262,51 @@ namespace WpfApplication1
             System.Environment.Exit(0);
         }
     }
+    
+    public class ServiceStatus
+    {
+        private string _name;
+        public string name
+        {
+            get
+            {
+                return _name;
+            }
+            set
+            {
+                _name = value;
+            }
+        }
+        private bool _status;
+        public bool status
+        {
+            get
+            {
+                return _status;
+            }
+            set
+            {
+                _status = value;
+            }
+
+        }
+
+        public ServiceStatus(string inputName, bool inputStatus)
+        {
+            _name = inputName;
+            _status = inputStatus;
+        }
+
+        public override string ToString()
+        {
+            return _name;
+        }
+
+        public bool getStatus()
+        {
+            return _status;
+        }
+    }
+
     
 }

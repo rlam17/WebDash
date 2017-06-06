@@ -35,7 +35,28 @@
                 <!--<CalendarDateRange Start="1/1/1900" End="1/1/3000"/>-->
             </Calendar.BlackoutDates>
         </Calendar>
-        <ListBox x:Name="databaseList" HorizontalAlignment="Left" Height="164" Margin="295,75,0,0" VerticalAlignment="Top" Width="179" SelectionChanged="databaseList_SelectionChanged_1" ItemsSource="{Binding LoadDataBinding}"/>
+        <ListBox x:Name="databaseList" HorizontalAlignment="Stretch" Height="164" Margin="295,75,0,0" VerticalAlignment="Top" Width="179" SelectionChanged="databaseList_SelectionChanged_1" ItemsSource="{Binding LoadDataBinding}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+
+                    <!-- Step #1: give an x:Name to this Grid -->
+                    <Grid Margin="1" x:Name="BackgroundGrid" HorizontalAlignment="Stretch">
+                        <TextBlock Grid.Column="1" Text="{Binding name}" />
+                    </Grid>
+                  
+                    <!-- Step #2: create a DataTrigger that sets the Background of the Grid, depending on the value of IsOccupied property in the Model -->
+                    <DataTemplate.Triggers>
+                        <DataTrigger Binding="{Binding status}" Value="True">
+                            <Setter TargetName="BackgroundGrid" Property="Background" Value="Green"/>
+                        </DataTrigger>
+
+                        <DataTrigger Binding="{Binding status}" Value="False">
+                            <Setter TargetName="BackgroundGrid" Property="Background" Value="Red"/>
+                        </DataTrigger>
+                    </DataTemplate.Triggers>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
         <Button x:Name="disconnectAndExitButton" Content="Disconnect and Exit" HorizontalAlignment="Left" Height="22" Margin="18,132,0,0" VerticalAlignment="Top" Width="200" Click="disconnectAndExitButton_Click" Visibility="Hidden"/>
         <!--<ListBox x:Name="databaseList" HorizontalAlignment="Left" Height="171" Margin="301,89,0,0" VerticalAlignment="Top" Width="179" SelectionChanged="databaseList_SelectionChanged_1" ItemsSource="{Binding LoadDataBinding}"/>-->
 
