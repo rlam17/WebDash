@@ -98,7 +98,7 @@ namespace WpfApplication1
             {
                 MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = connect;
-                cmd.CommandText = (@"GRANT INSERT, SELECT ON dbTest.* To '"+inputUsername.Text+"'@'hostname' IDENTIFIED BY '"+inputPassword.Password+"';");
+                cmd.CommandText = (@"GRANT INSERT, SELECT ON dbTest.* To '" +inputUsername.Text+"'@'hostname' IDENTIFIED BY '"+inputPassword.Password+"';");
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("Database created!");
                 Close();

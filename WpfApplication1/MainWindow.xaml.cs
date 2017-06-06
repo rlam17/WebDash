@@ -90,9 +90,15 @@ namespace WpfApplication1
             oCal.SelectionMode = CalendarSelectionMode.SingleDate;
             oCal.BlackoutDates.Add(new CalendarDateRange(new DateTime(1900, 6, 6), new DateTime(2018, 10, 10)));
             List<DateTime> lAcceptableDates = new List<DateTime>();
-            string strQuery = @"select * from server_programs.config_log;";
+            string strQuery = @"SELECT EXTRACT(day from log_timestmp) as test, EXTRACT(month from log_timestmp) as test2, EXTRACT(year from log_timestmp) as test3 FROM server_programs.config_log group by test;";
             MySqlCommand cmd = new MySqlCommand(strQuery, connect);
-            string result = cmd.ExecuteScalar().ToString();
+            MySqlDataReader dr = cmd.ExecuteReader();
+
+            dr.Read();
+            Console.WriteLine(dr[0]);
+
+            string composedDate = dr[1].ToString() +"/"+ dr[0].ToString() + "/" + dr[2].ToString();
+            DateTime date = Convert.ToDateTime(composedDate);
             
 
             //serverCombo.Text;
