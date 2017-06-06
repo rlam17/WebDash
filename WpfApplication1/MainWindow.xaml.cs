@@ -253,6 +253,7 @@ namespace WpfApplication1
         private void oCal_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
         {
             Console.WriteLine(oCal.SelectedDate);
+
         }
     }
 
