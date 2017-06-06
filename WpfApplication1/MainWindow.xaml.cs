@@ -167,18 +167,6 @@ namespace WpfApplication1
             
         }
 
-        private void colorList()
-        {
-            //foreach(DataRowView item in databaseList.Items)
-            //{
-            //    //Console.WriteLine(item.Row[0].ToString());
-            //    if (findFalse(item.Row[0].ToString()) == 1)
-            //    {
-                    
-            //    }
-            //}
-        }
-
         private ServiceStatus findFalse(string dbName)
         {
             try
@@ -243,11 +231,6 @@ namespace WpfApplication1
                 sqlStatusLight.Fill = new SolidColorBrush(Colors.Gray);
             }
 
-        }
-
-        private void serverCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {            
-            
         }
 
         private void createDbButton_Click(object sender, RoutedEventArgs e)
