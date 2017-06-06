@@ -20,6 +20,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using System.Globalization;
+
 namespace WpfApplication1
 {
     /// <summary>
@@ -97,8 +99,13 @@ namespace WpfApplication1
             while (dr.Read())
             {
                 string composedDate = dr[1].ToString() + "/" + dr[2].ToString() + "/" + dr[0].ToString();
-                DateTime date = Convert.ToDateTime(composedDate);
+
+                DateTime date = DateTime.Parse(composedDate, CultureInfo.CreateSpecificCulture("en-US"));
                 Console.WriteLine(date);
+                lAcceptableDates.Add(date);
+                
+                
+                
             }
             //dr.Read();
             
