@@ -90,7 +90,7 @@ namespace WpfApplication1
             oCal.SelectionMode = CalendarSelectionMode.SingleDate;
             oCal.BlackoutDates.Add(new CalendarDateRange(new DateTime(1900, 6, 6), new DateTime(2018, 10, 10)));
             List<DateTime> lAcceptableDates = new List<DateTime>();
-            string strQuery = @"SELECT EXTRACT(year from log_timestmp) as y, EXTRACT(month from log_timestmp) as m, EXTRACT(day from log_timestmp) as d FROM server_programs.config_log group by y, m;";
+            string strQuery = @"SELECT EXTRACT(year from log_timestmp) as y, EXTRACT(month from log_timestmp) as m, EXTRACT(day from log_timestmp) as d FROM server_programs.config_log group by y, m, d;";
             MySqlCommand cmd = new MySqlCommand(strQuery, connect);
             MySqlDataReader dr = cmd.ExecuteReader();
 
