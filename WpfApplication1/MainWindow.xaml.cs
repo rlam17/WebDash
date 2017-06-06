@@ -90,8 +90,9 @@ namespace WpfApplication1
         private void enableDates()
         {
             oCal.SelectionMode = CalendarSelectionMode.SingleDate;
-            oCal.BlackoutDates.Add(new CalendarDateRange(new DateTime(1900, 6, 6), new DateTime(2018, 10, 10)));
+            //oCal.BlackoutDates.Add(new CalendarDateRange(new DateTime(1900, 6, 6), new DateTime(2018, 10, 10)));
             List<DateTime> lAcceptableDates = new List<DateTime>();
+            
             string strQuery = @"SELECT EXTRACT(year from log_timestmp) as y, EXTRACT(month from log_timestmp) as m, EXTRACT(day from log_timestmp) as d FROM server_programs.config_log group by y, m, d;";
             MySqlCommand cmd = new MySqlCommand(strQuery, connect);
             MySqlDataReader dr = cmd.ExecuteReader();
@@ -103,15 +104,27 @@ namespace WpfApplication1
                 DateTime date = DateTime.Parse(composedDate, CultureInfo.CreateSpecificCulture("en-US"));
                 Console.WriteLine(date);
                 lAcceptableDates.Add(date);
-                
-                
-                
             }
             //dr.Read();
-            
+            List<DateTime> lDateRanges = new List<DateTime>();
+            lDateRanges.Add(new DateTime(1900, 1, 1));
 
-            
-            
+            //oCal.BlackoutDates.Remove(new CalendarDateRange(new DateTime(2017, 6, 6), new DateTime(2017, 7, 7)));
+            bool blnContinue = true;
+
+            DateTime dDate = new DateTime(2000, 1, 1);
+            DateTime end = new DateTime(2100, 1, 1);
+
+            while (blnContinue)
+            {
+                if (dDate == end)
+                {
+                    blnContinue = false;
+                }
+                System.Console.WriteLine(dDate);
+                dDate = dDate.AddDays(+1);
+            }
+            System.Console.WriteLine("done");
 
             //serverCombo.Text;
 
