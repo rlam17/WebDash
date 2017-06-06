@@ -68,11 +68,11 @@ namespace WpfApplication1
                 connect.Open();
                 //Program.writeLog("Connection to SQL success");
                 serverLabel.Visibility = Visibility.Visible;
-                serverCombo.Visibility = Visibility.Visible;
+                //serverCombo.Visibility = Visibility.Visible;
                 viewServerButton.Visibility = Visibility.Visible;
                 disconnectAndExitButton.Visibility = Visibility.Visible;
                 connectButton.Visibility = Visibility.Hidden;
-                databaseLabel.Visibility = Visibility.Visible;
+                //databaseLabel.Visibility = Visibility.Visible;
                 createDbButton.Visibility = Visibility.Visible;
 
                 usernameInput.IsEnabled = false;
@@ -128,7 +128,7 @@ namespace WpfApplication1
 
         private void populateCombo()
         {
-            serverCombo.DataContext = null;
+            //serverCombo.DataContext = null;
             
 
             string query = @"SELECT table_schema `Database` FROM INFORMATION_SCHEMA.TABLES WHERE table_name='csv_service';";
@@ -152,7 +152,7 @@ namespace WpfApplication1
             dr.Close();
             databaseList.ItemsSource = services;
 
-            serverCombo.ItemsSource = services;
+            //serverCombo.ItemsSource = services;
             //databaseList.DataContext = ds;
             //databaseList.DisplayMemberPath = "Database";
             
@@ -207,7 +207,7 @@ namespace WpfApplication1
 
         private void viewServerButton_Click(object sender, RoutedEventArgs e)
         {
-            Window win2 = new SubWindow(connect, serverCombo.Text);
+            Window win2 = new SubWindow(connect, databaseList.SelectedItem.ToString());
             win2.Show();
         }
 
@@ -240,7 +240,7 @@ namespace WpfApplication1
 
         private void serverCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {            
-            viewServerButton.IsEnabled = true;
+            
         }
 
         private void createDbButton_Click(object sender, RoutedEventArgs e)
@@ -252,7 +252,7 @@ namespace WpfApplication1
 
         private void databaseList_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
-
+            viewServerButton.IsEnabled = true;
         }
 
         private void disconnectAndExitButton_Click(object sender, RoutedEventArgs e)
