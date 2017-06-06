@@ -203,7 +203,10 @@ namespace WpfApplication1
             createDbWindow.ShowDialog();
         }
 
-        
+        private void databaseList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
     
 }
