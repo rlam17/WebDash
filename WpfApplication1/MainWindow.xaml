@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApplication1"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="523" Width="525">
     <Grid Background="Black">
         <Label x:Name="label" Content="User Name: " HorizontalAlignment="Left" Margin="18,63,0,0" VerticalAlignment="Top" Foreground="White"/>
         <TextBox x:Name="usernameInput" HorizontalAlignment="Left" Height="23" Margin="98,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" MaxLength="15" Text="wddev_prog"/>
@@ -22,6 +22,30 @@
         <Button x:Name="disconnectButton" Content="Disconnect" HorizontalAlignment="Left" Margin="18,132,0,0" VerticalAlignment="Top" Width="75" Click="disconnectButton_Click" Visibility="Hidden"/>
         <Label x:Name="databaseLabel" Content="Database:" HorizontalAlignment="Left" Margin="22,184,0,0" VerticalAlignment="Top" Foreground="White" Visibility="Hidden"/>
         <Button x:Name="createDbButton" Content="Create Database" HorizontalAlignment="Left" VerticalAlignment="Top" Width="97" Margin="18,238,0,0" Click="createDbButton_Click" Visibility="Hidden"/>
-        <ListBox x:Name="databaseList" HorizontalAlignment="Left" Height="173" Margin="291,95,0,0" ItemsSource="{Binding LoadDataBinding}" VerticalAlignment="Top" Width="189"/>
+        <ListBox x:Name="databaseList" HorizontalAlignment="Left" Height="165" Margin="301,95,0,0" ItemsSource="{Binding LoadDataBinding}" VerticalAlignment="Top" Width="179" SelectionChanged="databaseList_SelectionChanged">
+            <Style TargetType="DataGridRow">
+                <Setter Property="Background" Value="Black"></Setter>
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding Path=csv_status}" Value="false">
+                        <Setter Property="Background" Value="Red"></Setter>
+                        <Setter Property="Foreground" Value="White"></Setter>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Path=csv_status}" Value="true">
+                        <Setter Property="Background" Value="Green"></Setter>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </ListBox>
+        <Calendar x:Name="overviewCal" HorizontalAlignment="Left" Margin="301,288,0,0" VerticalAlignment="Top" Background="Black" Foreground="White">
+            <Calendar.BorderBrush>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFA3AEB9" Offset="0"/>
+                    <GradientStop Color="#FF8399A9" Offset="0.375"/>
+                    <GradientStop Color="#FF718597" Offset="0.375"/>
+                    <GradientStop Color="#FF1A75B9" Offset="1"/>
+                </LinearGradientBrush>
+            </Calendar.BorderBrush>
+        </Calendar>
+
     </Grid>
 </Window>
