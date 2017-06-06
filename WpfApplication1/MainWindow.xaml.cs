@@ -90,7 +90,8 @@ namespace WpfApplication1
             oCal.SelectionMode = CalendarSelectionMode.SingleDate;
             oCal.BlackoutDates.Add(new CalendarDateRange(new DateTime(1900, 6, 6), new DateTime(2018, 10, 10)));
             List<DateTime> lAcceptableDates = new List<DateTime>();
-            
+
+            //serverCombo.Text;
 
         }
 

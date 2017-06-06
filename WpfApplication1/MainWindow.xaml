@@ -22,7 +22,7 @@
         <Button x:Name="disconnectButton" Content="Disconnect" HorizontalAlignment="Left" Margin="18,132,0,0" VerticalAlignment="Top" Width="75" Click="disconnectButton_Click" Visibility="Hidden"/>
         <Label x:Name="databaseLabel" Content="Database:" HorizontalAlignment="Left" Margin="22,184,0,0" VerticalAlignment="Top" Foreground="White" Visibility="Hidden"/>
         <Button x:Name="createDbButton" Content="Create Database" HorizontalAlignment="Left" VerticalAlignment="Top" Width="97" Margin="18,238,0,0" Click="createDbButton_Click" Visibility="Hidden"/>
-        <Calendar x:Name="oCal" HorizontalAlignment="Left" Margin="295,74,0,0" VerticalAlignment="Top" SelectionMode="None" Background="#FFCDCDCD">
+        <Calendar x:Name="oCal" HorizontalAlignment="Left" Margin="295,269,0,0" VerticalAlignment="Top" SelectionMode="None" Background="#FFCDCDCD">
             <Calendar.CalendarDayButtonStyle>
                 <Style TargetType="CalendarDayButton" BasedOn="{StaticResource {x:Type CalendarDayButton}}">
                     <Style.Triggers>
@@ -36,7 +36,7 @@
                 <!--<CalendarDateRange Start="1/1/1900" End="1/1/3000"/>-->
             </Calendar.BlackoutDates>
         </Calendar>
-        <ListBox x:Name="databaseList" HorizontalAlignment="Left" Height="164" Margin="295,269,0,0" VerticalAlignment="Top" Width="179" SelectionChanged="databaseList_SelectionChanged_1" ItemsSource="{Binding LoadDataBinding}"/>
+        <ListBox x:Name="databaseList" HorizontalAlignment="Left" Height="164" Margin="295,75,0,0" VerticalAlignment="Top" Width="179" SelectionChanged="databaseList_SelectionChanged_1" ItemsSource="{Binding LoadDataBinding}"/>
         <!--<ListBox x:Name="databaseList" HorizontalAlignment="Left" Height="171" Margin="301,89,0,0" VerticalAlignment="Top" Width="179" SelectionChanged="databaseList_SelectionChanged_1" ItemsSource="{Binding LoadDataBinding}"/>-->
 
     </Grid>
