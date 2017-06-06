@@ -36,15 +36,19 @@
                 </Style.Triggers>
             </Style>
         </ListBox>
-        <Calendar x:Name="overviewCal" HorizontalAlignment="Left" Margin="301,288,0,0" VerticalAlignment="Top" Background="Black" Foreground="White">
-            <Calendar.BorderBrush>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#FFA3AEB9" Offset="0"/>
-                    <GradientStop Color="#FF8399A9" Offset="0.375"/>
-                    <GradientStop Color="#FF718597" Offset="0.375"/>
-                    <GradientStop Color="#FF1A75B9" Offset="1"/>
-                </LinearGradientBrush>
-            </Calendar.BorderBrush>
+        <Calendar x:Name="oCal" HorizontalAlignment="Left" Margin="301,288,0,0" VerticalAlignment="Top" SelectionMode="None" Background="#FFCDCDCD">
+            <Calendar.CalendarDayButtonStyle>
+                <Style TargetType="CalendarDayButton" BasedOn="{StaticResource {x:Type CalendarDayButton}}">
+                    <Style.Triggers>
+                        <Trigger Property="IsBlackedOut" Value="True">
+                            <Setter Property="Background" Value="Red"/>
+                        </Trigger>
+                        <Trigger Property="IsBlackedOut" Value="False">
+                            <Setter Property="Background" Value="#FF00E000"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Calendar.CalendarDayButtonStyle>
         </Calendar>
 
     </Grid>

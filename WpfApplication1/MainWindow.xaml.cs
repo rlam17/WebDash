@@ -87,7 +87,8 @@ namespace WpfApplication1
 
         private void blackDates()
         {
-            oCal.BlackoutDates.Add(new CalendarDateRange(new DateTime(2017, 7, 8), new DateTime(2017, 7, 11)));
+            oCal.SelectionMode = CalendarSelectionMode.SingleDate;
+            oCal.BlackoutDates.Add(new CalendarDateRange(new DateTime(2017, 6, 8), new DateTime(2017, 7, 11)));
         }
 
         private void populateCombo()
