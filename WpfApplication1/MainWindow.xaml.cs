@@ -108,7 +108,28 @@ namespace WpfApplication1
 
         private void colorList()
         {
+            foreach(DataRowView item in databaseList.Items)
+            {
+                Console.WriteLine(item.Row[0].ToString());
+                try
+                {
+                    string dbName = item.Row[0].ToString();
+                    bool isThereAFalse = findFalse(dbName);
+                    
+                } catch(Exception ex)
+                {
 
+                }
+            }
+        }
+
+        private bool findFalse(string dbName)
+        {
+            string query = @"Select t1.* from " + dbName + ".csv_service t1 inner join (select max(csv_timestmp) recent from " + dbName + ".csv_service) t2 on t1.csv_timestmp = t2.recent;";
+            MySqlCommand cmd = new MySqlCommand(query, connect);
+            MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            return false;
         }
 
         private void quitButton_Click(object sender, RoutedEventArgs e)
