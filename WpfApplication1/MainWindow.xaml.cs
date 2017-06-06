@@ -127,8 +127,8 @@ namespace WpfApplication1
                 dBegin = dBegin.AddDays(1);
             }
 
-            
 
+            dr.Close();
             //serverCombo.Text;
 
         }
