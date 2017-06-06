@@ -19,7 +19,6 @@
         <Label x:Name="label2" Content="SQL Server Status:" HorizontalAlignment="Left" Margin="285,35,0,0" VerticalAlignment="Top" Foreground="White"/>
         <Label x:Name="sqlStatus" Content="Unknown" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="396,35,0,0" Foreground="White"/>
         <Ellipse x:Name="sqlStatusLight" Fill="Gray" HorizontalAlignment="Left" Height="23" Margin="461,38,0,0" Stroke="Black" VerticalAlignment="Top" Width="26"/>
-        <Button x:Name="disconnectButton" Content="Disconnect" HorizontalAlignment="Left" Margin="18,132,0,0" VerticalAlignment="Top" Width="75" Click="disconnectButton_Click" Visibility="Hidden"/>
         <Label x:Name="databaseLabel" Content="Database:" HorizontalAlignment="Left" Margin="22,184,0,0" VerticalAlignment="Top" Foreground="White" Visibility="Hidden"/>
         <Button x:Name="createDbButton" Content="Create Database" HorizontalAlignment="Left" VerticalAlignment="Top" Width="97" Margin="18,238,0,0" Click="createDbButton_Click" Visibility="Hidden"/>
         <Calendar x:Name="oCal" HorizontalAlignment="Left" Margin="295,270,0,0" VerticalAlignment="Top" SelectionMode="None" Background="#FFCDCDCD">
@@ -37,6 +36,7 @@
             </Calendar.BlackoutDates>
         </Calendar>
         <ListBox x:Name="databaseList" HorizontalAlignment="Left" Height="164" Margin="295,75,0,0" VerticalAlignment="Top" Width="179" SelectionChanged="databaseList_SelectionChanged_1" ItemsSource="{Binding LoadDataBinding}"/>
+        <Button x:Name="disconnectAndExitButton" Content="Disconnect and Exit" HorizontalAlignment="Left" Height="22" Margin="18,132,0,0" VerticalAlignment="Top" Width="200" Click="disconnectAndExitButton_Click" Visibility="Hidden"/>
         <!--<ListBox x:Name="databaseList" HorizontalAlignment="Left" Height="171" Margin="301,89,0,0" VerticalAlignment="Top" Width="179" SelectionChanged="databaseList_SelectionChanged_1" ItemsSource="{Binding LoadDataBinding}"/>-->
 
     </Grid>

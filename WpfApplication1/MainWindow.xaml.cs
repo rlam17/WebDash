@@ -68,7 +68,7 @@ namespace WpfApplication1
                 serverLabel.Visibility = Visibility.Visible;
                 serverCombo.Visibility = Visibility.Visible;
                 viewServerButton.Visibility = Visibility.Visible;
-                disconnectButton.Visibility = Visibility.Visible;
+                disconnectAndExitButton.Visibility = Visibility.Visible;
                 connectButton.Visibility = Visibility.Hidden;
                 databaseLabel.Visibility = Visibility.Visible;
                 createDbButton.Visibility = Visibility.Visible;
@@ -108,9 +108,9 @@ namespace WpfApplication1
                 
             }
             //dr.Read();
-            
 
-            
+
+            dr.Close();
             
 
             //serverCombo.Text;
@@ -120,6 +120,7 @@ namespace WpfApplication1
         private void populateCombo()
         {
             serverCombo.DataContext = null;
+            
 
             string query = @"SELECT table_schema `Database` FROM INFORMATION_SCHEMA.TABLES WHERE table_name='csv_service';";
             MySqlCommand cmd = new MySqlCommand(query, connect);
@@ -128,12 +129,12 @@ namespace WpfApplication1
             da.Fill(ds, "LoadDataBinding");
            
             //Console.Write(ds);
-            serverCombo.DataContext = ds;
-            serverCombo.DisplayMemberPath = "Database";
+            //serverCombo.DataContext = ds;
+            //serverCombo.DisplayMemberPath = "Database";
 
             databaseList.DataContext = ds;
             databaseList.DisplayMemberPath = "Database";
-
+            
             colorList();
             
         }
@@ -156,18 +157,22 @@ namespace WpfApplication1
             {
                 string query = @"Select t1.* from " + dbName + ".csv_service t1 inner join (select max(csv_timestmp) recent from " + dbName + ".csv_service) t2 on t1.csv_timestmp = t2.recent;";
                 MySqlCommand cmd = new MySqlCommand(query, connect);
-                MySqlDataAdapter da = new MySqlDataAdapter(cmd);
-                DataSet ds = new DataSet();
-                da.Fill(ds);
+                MySqlDataReader dr = cmd.ExecuteReader();
 
-                foreach (DataTable table in ds.Tables)
+                while (dr.Read())
                 {
-                    return 1;
+                    if (String.Compare(dr[3].ToString(), "false") == 0)
+                    {
+                        dr.Close();
+                        return 1;
+                    }
                 }
+                dr.Close();
                 return 0;
             }
             catch (Exception ex)
             {
+                
                 return -1;
             }
         }
@@ -183,29 +188,7 @@ namespace WpfApplication1
             win2.Show();
         }
 
-        private void disconnectButton_Click(object sender, RoutedEventArgs e)
-        {
-            connect.Close();
-
-
-
-            serverLabel.Visibility = Visibility.Hidden;
-            serverCombo.Visibility = Visibility.Hidden;
-            viewServerButton.Visibility = Visibility.Hidden;
-            disconnectButton.Visibility = Visibility.Hidden;
-            connectButton.Visibility = Visibility.Visible;
-            databaseLabel.Visibility = Visibility.Hidden;
-            createDbButton.Visibility = Visibility.Hidden;
-            viewServerButton.Visibility = Visibility.Hidden;
-
-            
-
-            usernameInput.Clear();
-            passwordInput.Clear();
-
-            usernameInput.IsEnabled = true;
-            passwordInput.IsEnabled = true;
-        }
+        
         private void pingCheck(object sender, EventArgs e)
         {
             try
@@ -247,6 +230,11 @@ namespace WpfApplication1
         private void databaseList_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        private void disconnectAndExitButton_Click(object sender, RoutedEventArgs e)
+        {
+            System.Environment.Exit(0);
         }
     }
     
