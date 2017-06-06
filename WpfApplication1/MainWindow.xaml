@@ -21,7 +21,7 @@
         <Ellipse x:Name="sqlStatusLight" Fill="Gray" HorizontalAlignment="Left" Height="23" Margin="461,38,0,0" Stroke="Black" VerticalAlignment="Top" Width="26"/>
         <Label x:Name="databaseLabel" Content="Database:" HorizontalAlignment="Left" Margin="22,184,0,0" VerticalAlignment="Top" Foreground="White" Visibility="Hidden"/>
         <Button x:Name="createDbButton" Content="Create Database" HorizontalAlignment="Left" VerticalAlignment="Top" Width="97" Margin="18,238,0,0" Click="createDbButton_Click" Visibility="Hidden"/>
-        <Calendar x:Name="oCal" HorizontalAlignment="Left" Margin="295,270,0,0" VerticalAlignment="Top" SelectionMode="None" Background="#FFCDCDCD">
+        <Calendar x:Name="oCal" HorizontalAlignment="Left" Margin="295,270,0,0" VerticalAlignment="Top" SelectionMode="None" Background="#FFCDCDCD" Width="192">
             <Calendar.CalendarDayButtonStyle>
                 <Style TargetType="CalendarDayButton" BasedOn="{StaticResource {x:Type CalendarDayButton}}">
                     <Style.Triggers>
@@ -32,7 +32,7 @@
                 </Style>
             </Calendar.CalendarDayButtonStyle>
         </Calendar>
-        <ListBox x:Name="databaseList" HorizontalAlignment="Stretch" Height="164" Margin="295,75,0,0" VerticalAlignment="Top" Width="179" SelectionChanged="databaseList_SelectionChanged_1" ItemsSource="{Binding LoadDataBinding}" HorizontalContentAlignment="Stretch">
+        <ListBox x:Name="databaseList" HorizontalAlignment="Stretch" Height="164" Margin="295,75,30,0" VerticalAlignment="Top" SelectionChanged="databaseList_SelectionChanged_1" ItemsSource="{Binding LoadDataBinding}" HorizontalContentAlignment="Stretch">
             <ListBox.ItemTemplate>
                 <DataTemplate>
 
@@ -40,7 +40,7 @@
                     <Grid Margin="1" x:Name="BackgroundGrid" HorizontalAlignment="Stretch">
                         <TextBlock Grid.Column="1" Text="{Binding name}"/>
                     </Grid>
-                  
+
                     <!-- Step #2: create a DataTrigger that sets the Background of the Grid, depending on the value of IsOccupied property in the Model -->
                     <DataTemplate.Triggers>
                         <DataTrigger Binding="{Binding status}" Value="True">
