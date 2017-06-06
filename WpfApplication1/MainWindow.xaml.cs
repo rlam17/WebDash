@@ -94,11 +94,16 @@ namespace WpfApplication1
             MySqlCommand cmd = new MySqlCommand(strQuery, connect);
             MySqlDataReader dr = cmd.ExecuteReader();
 
-            dr.Read();
-            Console.WriteLine(dr[0]);
+            while (dr.Read())
+            {
+                string composedDate = dr[1].ToString() + "/" + dr[0].ToString() + "/" + dr[2].ToString();
+                DateTime date = Convert.ToDateTime(composedDate);
+                Console.WriteLine(date);
+            }
+            //dr.Read();
+            
 
-            string composedDate = dr[1].ToString() +"/"+ dr[0].ToString() + "/" + dr[2].ToString();
-            DateTime date = Convert.ToDateTime(composedDate);
+            
             
 
             //serverCombo.Text;
