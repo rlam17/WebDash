@@ -32,13 +32,13 @@
                 </Style>
             </Calendar.CalendarDayButtonStyle>
         </Calendar>
-        <ListBox x:Name="databaseList" HorizontalAlignment="Stretch" Height="164" Margin="295,75,0,0" VerticalAlignment="Top" Width="179" SelectionChanged="databaseList_SelectionChanged_1" ItemsSource="{Binding LoadDataBinding}">
+        <ListBox x:Name="databaseList" HorizontalAlignment="Stretch" Height="164" Margin="295,75,0,0" VerticalAlignment="Top" Width="179" SelectionChanged="databaseList_SelectionChanged_1" ItemsSource="{Binding LoadDataBinding}" HorizontalContentAlignment="Stretch">
             <ListBox.ItemTemplate>
                 <DataTemplate>
 
                     <!-- Step #1: give an x:Name to this Grid -->
                     <Grid Margin="1" x:Name="BackgroundGrid" HorizontalAlignment="Stretch">
-                        <TextBlock Grid.Column="1" Text="{Binding name}" />
+                        <TextBlock Grid.Column="1" Text="{Binding name}"/>
                     </Grid>
                   
                     <!-- Step #2: create a DataTrigger that sets the Background of the Grid, depending on the value of IsOccupied property in the Model -->
