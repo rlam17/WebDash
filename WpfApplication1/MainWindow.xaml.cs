@@ -20,9 +20,11 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-using System.Globalization;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Windows.Controls.Primitives;
+using System.Reflection;
+using System.Globalization;
 
 namespace WpfApplication1
 {
@@ -36,6 +38,7 @@ namespace WpfApplication1
         string serverIp = "192.168.7.24";
         string serverPort = "3306";
         ObservableCollection<ServiceStatus> services;
+        
 
         public MainWindow()
         {
@@ -46,6 +49,7 @@ namespace WpfApplication1
             pingTimer.Interval = 2000; // in miliseconds
             pingTimer.Start();
 
+  
         }
 
         private void connectButton_Click(object sender, RoutedEventArgs e)
@@ -86,7 +90,7 @@ namespace WpfApplication1
             {
                 System.Windows.MessageBox.Show("Connection failed: " + ex.Message);
             }
-
+            
             enableDates();
         }
 
@@ -258,6 +262,29 @@ namespace WpfApplication1
             SelectedDate win3 = new SelectedDate(connect, (DateTime)oCal.SelectedDate, services);
             win3.ShowDialog();
 
+        }
+
+        private void calendarButton_Loaded(object sender, EventArgs e)
+        {
+            CalendarDayButton button = (CalendarDayButton)sender;
+            DateTime date = (DateTime)button.DataContext;
+            HighlightDay(button, date);
+            button.DataContextChanged += new DependencyPropertyChangedEventHandler(calendarButton_DataContextChanged);
+        }
+
+        private void calendarButton_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            CalendarDayButton button = (CalendarDayButton)sender;
+            DateTime date = (DateTime)button.DataContext;
+            HighlightDay(button, date);
+        }
+
+        private void HighlightDay(CalendarDayButton button, DateTime date)
+        {
+            if (date == DateTime.Today)
+            {
+                button.Background = Brushes.SandyBrown;
+            }
         }
     }
 

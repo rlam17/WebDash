@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:WpfApplication1"
         mc:Ignorable="d"
         Title="MainWindow" Height="714.268" Width="716.268">
+    
     <Grid Background="Black" Margin="0,0,2,0">
         <Label x:Name="label" Content="User Name: " HorizontalAlignment="Left" Margin="18,63,0,0" VerticalAlignment="Top" Foreground="White"/>
         <TextBox x:Name="usernameInput" HorizontalAlignment="Left" Height="23" Margin="98,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" MaxLength="15" Text="wddev_prog"/>
@@ -31,6 +32,13 @@
                 </TransformGroup>
             </Calendar.RenderTransform>
             <Calendar.CalendarDayButtonStyle>
+
+                <Style TargetType="CalendarDayButton" BasedOn="{StaticResource {x:Type CalendarDayButton}}">
+                    <EventSetter Event="Loaded" Handler="calendarButton_Loaded"/>
+                </Style>
+            </Calendar.CalendarDayButtonStyle>
+            
+            <!--<Calendar.CalendarDayButtonStyle>
                 <Style TargetType="CalendarDayButton" BasedOn="{StaticResource {x:Type CalendarDayButton}}">
                     <Style.Triggers>
                         <Trigger Property="IsBlackedOut" Value="False">
@@ -40,8 +48,10 @@
                         
                     </Style.Triggers>
                 </Style>
-            </Calendar.CalendarDayButtonStyle>
+            </Calendar.CalendarDayButtonStyle>-->
+            
         </Calendar>
+        
         <ListBox x:Name="databaseList" HorizontalAlignment="Stretch" Height="164" Margin="299,135,26,0" VerticalAlignment="Top" SelectionChanged="databaseList_SelectionChanged_1" ItemsSource="{Binding LoadDataBinding}" HorizontalContentAlignment="Stretch" Background="Gray">
             <ListBox.ItemTemplate>
                 <DataTemplate>
@@ -68,6 +78,6 @@
         <Button x:Name="disconnectAndExitButton" Content="Disconnect and Exit" HorizontalAlignment="Left" Height="22" Margin="18,132,0,0" VerticalAlignment="Top" Width="200" Click="disconnectAndExitButton_Click" Visibility="Hidden"/>
         <Label x:Name="label3" Content="Server Overview" HorizontalAlignment="Left" Margin="408,89,0,0" VerticalAlignment="Top" Foreground="White" Height="33" Width="183" FontWeight="Bold" FontSize="16"/>
         <!--<ListBox x:Name="databaseList" HorizontalAlignment="Left" Height="171" Margin="301,89,0,0" VerticalAlignment="Top" Width="179" SelectionChanged="databaseList_SelectionChanged_1" ItemsSource="{Binding LoadDataBinding}"/>-->
-
     </Grid>
+
 </Window>
