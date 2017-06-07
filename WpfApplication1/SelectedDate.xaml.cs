@@ -45,12 +45,44 @@ namespace WpfApplication1
 
         private void populateList()
         {
-            //SELECT * from server_programs.csv_service WHERE CAST(csv_startup as DATE) = '2017-06-01';
+            
+            ObservableCollection<ServiceStatus> serversAtDate = new ObservableCollection<ServiceStatus>();
             foreach (ServiceStatus item in databaseList)
             {
-                Console.WriteLine(item);
+                serversAtDate.Add(findError(item));
+            }
+
+            databaseListbox.ItemsSource = serversAtDate;
+        }
+
+        private ServiceStatus findError(ServiceStatus i)
+        {
+            //SELECT * from server_programs.csv_service WHERE CAST(csv_startup as DATE) = '2017-06-01';
+            try
+            {
+                string atDate = focusedDate.Year.ToString() + "-" + focusedDate.Month.ToString() + "-" + focusedDate.Day.ToString();
+                string query = @"SELECT * from "+i.ToString()+".csv_service WHERE CAST(csv_startup as DATE) = '"+atDate+"';";
+                MySqlCommand cmd = new MySqlCommand(query, connect);
+                MySqlDataReader dr = cmd.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    if (String.Compare(dr[3].ToString(), "false") == 0)
+                    {
+                        dr.Close();
+                        return new ServiceStatus(i.ToString(), false);
+                    }
+                }
+                dr.Close();
+                return new ServiceStatus(i.ToString(), true);
+            }
+            catch (Exception ex)
+            {
+
+                return new ServiceStatus(i.ToString(), false);
             }
         }
+
 
         private void closeButton_Click(object sender, RoutedEventArgs e)
         {

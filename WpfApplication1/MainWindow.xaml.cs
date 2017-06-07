@@ -185,7 +185,7 @@ namespace WpfApplication1
                     }
                 }
                 dr.Close();
-                return new ServiceStatus(dbName, false);
+                return new ServiceStatus(dbName, true);
             }
             catch (Exception ex)
             {
