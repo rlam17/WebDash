@@ -36,6 +36,8 @@
                         <Trigger Property="IsBlackedOut" Value="False">
                             <Setter Property="Background" Value="#FF00E000"/>
                         </Trigger>
+
+                        
                     </Style.Triggers>
                 </Style>
             </Calendar.CalendarDayButtonStyle>
