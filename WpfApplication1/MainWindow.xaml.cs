@@ -78,7 +78,7 @@ namespace WpfApplication1
                 usernameInput.IsEnabled = false;
                 passwordInput.IsEnabled = false;
 
-                populateCombo();
+                populateList();
 
             }
             catch (Exception ex)
@@ -133,7 +133,7 @@ namespace WpfApplication1
 
         }
 
-        private void populateCombo()
+        private void populateList()
         {
             //serverCombo.DataContext = null;
             
@@ -252,7 +252,10 @@ namespace WpfApplication1
 
         private void oCal_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
         {
-            Console.WriteLine(oCal.SelectedDate);
+            //Console.WriteLine(oCal.SelectedDate);
+
+            SelectedDate win3 = new SelectedDate(connect, (DateTime)oCal.SelectedDate);
+            win3.ShowDialog();
 
         }
     }
