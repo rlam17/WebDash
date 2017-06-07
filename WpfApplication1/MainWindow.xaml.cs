@@ -35,6 +35,7 @@ namespace WpfApplication1
         Timer pingTimer;
         string serverIp = "192.168.7.24";
         string serverPort = "3306";
+        ObservableCollection<ServiceStatus> services;
 
         public MainWindow()
         {
@@ -104,7 +105,7 @@ namespace WpfApplication1
                 string composedDate = dr[1].ToString() + "/" + dr[2].ToString() + "/" + dr[0].ToString();
 
                 DateTime date = DateTime.Parse(composedDate, CultureInfo.CreateSpecificCulture("en-US"));
-                Console.WriteLine(date);
+                //Console.WriteLine(date);
                 lAcceptableDates.Add(date);
             }
             //dr.Read();
@@ -146,7 +147,7 @@ namespace WpfApplication1
 
             MySqlDataReader dr = cmd.ExecuteReader();
 
-            ObservableCollection<ServiceStatus> services = new ObservableCollection<ServiceStatus>();
+            services = new ObservableCollection<ServiceStatus>();
 
             while (dr.Read())
             {
@@ -254,7 +255,7 @@ namespace WpfApplication1
         {
             //Console.WriteLine(oCal.SelectedDate);
 
-            SelectedDate win3 = new SelectedDate(connect, (DateTime)oCal.SelectedDate);
+            SelectedDate win3 = new SelectedDate(connect, (DateTime)oCal.SelectedDate, services);
             win3.ShowDialog();
 
         }
