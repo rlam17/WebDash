@@ -26,11 +26,14 @@ namespace WpfApplication1
 
         MySqlConnection connect;
         ObservableCollection<ServiceStatus> services;
+        List<DateTime> activeDays;
 
-        public PrimaryDisplay(MySqlConnection cn)
+        public PrimaryDisplay(MySqlConnection cn, List<DateTime> ad)
         {
             connect = cn;
+            activeDays = ad;
             InitializeComponent();
+            populateList();
         }
 
         private void populateList()
@@ -184,7 +187,12 @@ namespace WpfApplication1
 
         private void HighlightDay(CalendarDayButton button, DateTime date)
         {
-            if (date == DateTime.Today)
+            //if (date == DateTime.Today)
+            //{
+            //    button.Background = Brushes.SandyBrown;
+            //}
+
+            if (activeDays.Contains(date))
             {
                 button.Background = Brushes.SandyBrown;
             }

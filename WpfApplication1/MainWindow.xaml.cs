@@ -85,8 +85,11 @@ namespace WpfApplication1
 
                 //populateList();
 
-                PrimaryDisplay display = new PrimaryDisplay(connect);
+                List<DateTime> passDates = compileDates();
+
+                PrimaryDisplay display = new PrimaryDisplay(connect, passDates);
                 display.ShowDialog();
+
 
             }
             catch (Exception ex)
@@ -100,7 +103,25 @@ namespace WpfApplication1
         }
 
         
+        private List<DateTime> compileDates()
+        {
+            List<DateTime> lAcceptableDates = new List<DateTime>();
 
+            string strQuery = @"SELECT EXTRACT(year from log_timestmp) as y, EXTRACT(month from log_timestmp) as m, EXTRACT(day from log_timestmp) as d FROM server_programs.config_log group by y, m, d;";
+            MySqlCommand cmd = new MySqlCommand(strQuery, connect);
+            MySqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                string composedDate = dr[1].ToString() + "/" + dr[2].ToString() + "/" + dr[0].ToString();
+
+                DateTime date = DateTime.Parse(composedDate, CultureInfo.CreateSpecificCulture("en-US"));
+                //Console.WriteLine(date);
+                lAcceptableDates.Add(date);
+            }
+            dr.Close();
+            return lAcceptableDates;
+        }
        
 
         
