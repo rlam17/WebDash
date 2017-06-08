@@ -287,7 +287,10 @@ namespace WpfApplication1
 
         }
 
-       
+        private void textBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
     public class ServiceStatus
     {
