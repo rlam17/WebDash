@@ -11,7 +11,7 @@
         <Calendar x:Name="oCal" HorizontalAlignment="Left" Margin="352,379,0,0" VerticalAlignment="Top" SelectionMode="None" Background="#FFCDCDCD" Width="192" RenderTransformOrigin="0.5,0.5">
             <Calendar.Resources>
                 <Style TargetType="CalendarDayButton">
-                    <EventSetter Event="Click" Handler="calendarDayButton_Click"/>
+                    <EventSetter Event="MouseDoubleClick" Handler="calendarDayButton_Click"/>
                 </Style>
             </Calendar.Resources>
             <Calendar.RenderTransform>

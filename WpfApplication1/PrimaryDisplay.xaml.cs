@@ -194,22 +194,18 @@ namespace WpfApplication1
 
         private void calendarDayButton_Click(object sender, EventArgs e)
         {
-            var calendar = sender as System.Windows.Controls.Calendar;
+            var bButton = sender as System.Windows.Controls.Primitives.CalendarDayButton;
 
             // ... See if a date is selected.
-            if (calendar == null)
+            if (bButton.IsBlackedOut)
             {
                 Console.WriteLine("Nothing to see here");
                 
             }else
             {
-                if (calendar.SelectedDate.HasValue)
-                {
-                    // ... Display SelectedDate in Title.
-                    DateTime date = calendar.SelectedDate.Value;
-                    Console.WriteLine(date);
-                }
+                DateTime dDate = (DateTime)bButton.DataContext;
                 Console.WriteLine("Does this get poked?");
+                Console.WriteLine(dDate);
             }
             
         }
