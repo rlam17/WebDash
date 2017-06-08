@@ -51,15 +51,24 @@ namespace WpfApplication1
 
         private void loadRecentReboot()
         {
-            string query = "SELECT conf_settings From " + database +".configfile_info where conf_tagline=\"[configured reboot times]\" order by conf_timestmp DESC limit 1;";
-            MySqlCommand cmd = new MySqlCommand(query, connect);
-            string result = cmd.ExecuteScalar().ToString();
-            string[] split = result.Split('\n');
-            string restartDate = split[0].Split('=')[1];
-            string[] rawInterval = split[1].Split('=')[1].Split(',');
+            try
+            {
+                string query = "SELECT conf_settings From " + database + ".configfile_info where conf_tagline=\"[configured reboot times]\" order by conf_timestmp DESC limit 1;";
+                MySqlCommand cmd = new MySqlCommand(query, connect);
+                string result = cmd.ExecuteScalar().ToString();
+                string[] split = result.Split('\n');
+                string restartDate = split[0].Split('=')[1];
+                string[] rawInterval = split[1].Split('=')[1].Split(',');
 
-            string period = getPeriod(rawInterval[1]);
-            LastReboot.Content = restartDate + "    Interval: " + rawInterval[0] + " " + period;
+                string period = getPeriod(rawInterval[1]);
+                LastReboot.Content = restartDate + "    Interval: " + rawInterval[0] + " " + period;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("This server does not have a reboot yet");
+                this.Close();
+            }
+            
         }
         private void changeColours()
         {
@@ -99,9 +108,9 @@ namespace WpfApplication1
                 DateTime newStartDate = (DateTime)dtpStartTime.Value;
                 int interval = (int)intervalAmount.Value;                
                 updateConfiguredReboot(newStartDate, interval, selectRadio);
-            } catch (Exception )
+            } catch (Exception ex)
             {
-
+                throw (ex);
                 MessageBoxResult warning = MessageBox.Show("Invalid date or interval!");
             }
         }
@@ -140,6 +149,7 @@ namespace WpfApplication1
                 MessageBox.Show("Reboot time has been successfully configured.");
             }catch(Exception ex)
             {
+                throw (ex);
                 MessageBox.Show(ex.Message);
             }
 
@@ -175,7 +185,7 @@ namespace WpfApplication1
             try{
                 strSelected = rowView.Row[5].ToString();
             }
-            catch (Exception ) { }
+            catch (Exception ex) { throw (ex); }
             
 
             if (!String.IsNullOrEmpty(strSelected))

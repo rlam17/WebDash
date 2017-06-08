@@ -94,7 +94,7 @@ namespace WpfApplication1
             }
             catch (Exception ex)
             {
-                System.Windows.MessageBox.Show("Connection failed: " + ex.Message);
+                System.Windows.MessageBox.Show("Connection failed: " + ex.StackTrace);
             }
 
             // enableDates();

@@ -52,11 +52,18 @@ namespace WpfApplication1
 
             services = new ObservableCollection<ServiceStatus>();
 
+            List<string> databases = new List<string>();
+
             while (dr.Read())
             {
-                services.Add(findFalse(dr[0].ToString()));
+                databases.Add((string)dr[0]);
             }
             dr.Close();
+
+            foreach(string item in databases)
+            {
+                services.Add(findFalse(item));
+            }
 
             //Console.Write(ds);
             //serverCombo.DataContext = ds;
@@ -121,8 +128,9 @@ namespace WpfApplication1
         {
             try
             {
+                MySqlConnection con = connect;
                 string query = @"Select t1.* from " + dbName + ".csv_service t1 inner join (select max(csv_timestmp) recent from " + dbName + ".csv_service) t2 on t1.csv_timestmp = t2.recent;";
-                MySqlCommand cmd = new MySqlCommand(query, connect);
+                MySqlCommand cmd = new MySqlCommand(query, con);
                 MySqlDataReader dr = cmd.ExecuteReader();
 
                 while (dr.Read())
@@ -145,9 +153,11 @@ namespace WpfApplication1
 
         private ServiceStatus findFalse(string dbName, DateTime atDay)
         {
+            string compose = atDay.Year.ToString() + "-" + atDay.Month.ToString() + "-" + atDay.Day.ToString();
             try
             {
-                string query = @"Select t1.* from " + dbName + ".csv_service t1 inner join (select max(csv_timestmp) recent from " + dbName + ".csv_service) t2 on t1.csv_timestmp = t2.recent;";
+                //SELECT* from server_programs.csv_service WHERE CAST(csv_startup as DATE) = '2017-06-01';
+                string query = @"SELECT * from "+dbName+".csv_service WHERE CAST(csv_startup as DATE) = '"+compose+"';";
                 MySqlCommand cmd = new MySqlCommand(query, connect);
                 MySqlDataReader dr = cmd.ExecuteReader();
 
@@ -172,7 +182,16 @@ namespace WpfApplication1
         private void viewServerButton_Click(object sender, RoutedEventArgs e)
         {
             Window win2 = new SubWindow(connect, databaseList.SelectedItem.ToString());
-            win2.Show();
+            try
+            {
+                
+                win2.Show();
+            }
+            catch (Exception)
+            {
+                win2.Close();
+            }
+            
         }
 
         private void createDbButton_Click(object sender, RoutedEventArgs e)
@@ -206,7 +225,11 @@ namespace WpfApplication1
                 DateTime dDate = (DateTime)bButton.DataContext;
                 Console.WriteLine("Does this get poked?");
                 Console.WriteLine(dDate);
+                Window selectDate = new SelectedDate(connect, dDate, services);
+                selectDate.ShowDialog();
             }
+
+            
             
         }
 
@@ -231,31 +254,37 @@ namespace WpfApplication1
             //{
             //    button.Background = Brushes.SandyBrown;
             //}
-
+            //bool proceed = true;
             if (activeDays.Contains(date))
             {             
-                   
+                
                 foreach(ServiceStatus db in services)
                 {
-                    
                     string dbName = db.ToString();
                     ServiceStatus hasFalse = findFalse(dbName, date);
+
                     if (!hasFalse.getStatus())
                     {
                         button.Background = Brushes.Red;
                         break;
-                    }else
+                    }
+                    else
                     {
                         //button.Background = Brushes.SandyBrown;
                         button.Background = Brushes.Green;
                     }
                 }
 
+
+                
+
                 
             }else
             {
                 button.Background = Brushes.LightGray;
             }
+
+
         }
 
        
