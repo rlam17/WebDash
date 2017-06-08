@@ -59,7 +59,7 @@ namespace WpfApplication1
             date = dt;
             string strDate = dt.ToString("yyyy-MM-dd");
 
-            string query = @"Select t1.* from " + database + ".csv_service t1 inner join (select max(csv_timestmp) recent from " + database + ".csv_service) t2 on t1.csv_timestmp = t2.recent;";
+            string query = @"Select * from " + database + ".csv_service Where " + strDate + ";";
             MySqlCommand cmd = new MySqlCommand(query, connect);
             MySqlDataAdapter da = new MySqlDataAdapter(cmd);
             DataSet ds = new DataSet();
