@@ -199,7 +199,7 @@ namespace WpfApplication1
         {
             CalendarDayButton button = (CalendarDayButton)sender;
             DateTime date = (DateTime)button.DataContext;
-            HighlightDay(button, date);
+            highlightDay(button, date);
             button.DataContextChanged += new DependencyPropertyChangedEventHandler(calendarButton_DataContextChanged);
         }
 
@@ -207,10 +207,10 @@ namespace WpfApplication1
         {
             CalendarDayButton button = (CalendarDayButton)sender;
             DateTime date = (DateTime)button.DataContext;
-            HighlightDay(button, date);
+            highlightDay(button, date);
         }
 
-        private void HighlightDay(CalendarDayButton button, DateTime date)
+        private void highlightDay(CalendarDayButton button, DateTime date)
         {
             //if (date == DateTime.Today)
             //{
@@ -229,6 +229,7 @@ namespace WpfApplication1
                         break;
                     }else
                     {
+                        //button.Background = Brushes.SandyBrown;
                         button.Background = Brushes.Green;
                     }
                 }
