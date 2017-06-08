@@ -91,7 +91,7 @@ namespace WpfApplication1
 
         private void databaseListbox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Window win2 = new SubWindow(connect, databaseListbox.SelectedItem.ToString());
+            Window win2 = new SubWindow(connect, databaseListbox.SelectedItem.ToString(), focusedDate);
             try
             {
 
