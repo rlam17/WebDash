@@ -221,7 +221,7 @@ namespace WpfApplication1
                 string query;
                 if (blnConst)
                 {
-                    query = @"SELECT csv_service from " + database + ".csv_service WHERE csv_subservice = \"" + strSelected + "\" and CAST(csv_startup as DATE) = '" + strDate + "';";
+                    query = @"SELECT * from " + database + ".csv_service WHERE csv_subservice = \"" + strSelected + "\" and CAST(csv_startup as DATE) = '" + strDate + "';";
                 }
                 else
                 {
