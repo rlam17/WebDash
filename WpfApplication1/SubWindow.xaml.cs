@@ -25,6 +25,8 @@ namespace WpfApplication1
         private char selectRadio;
         private string database;
         private DateTime date;
+        private bool blnConst;
+        private string strDate;
 
         public SubWindow()
         {
@@ -39,6 +41,8 @@ namespace WpfApplication1
             connect = connection;
             database = db;
             InitializeComponent();
+
+            blnConst = false;
 
             string query = @"Select t1.* from "+database+".csv_service t1 inner join (select max(csv_timestmp) recent from " + database +".csv_service) t2 on t1.csv_timestmp = t2.recent;";
             MySqlCommand cmd = new MySqlCommand(query, connect);
@@ -57,7 +61,9 @@ namespace WpfApplication1
             database = db;
             InitializeComponent();
             date = dt;
-            string strDate = dt.ToString("yyyy-MM-dd");
+            strDate = dt.ToString("yyyy-MM-dd");
+
+            blnConst = true;
 
             string query = @"Select * from " + database + ".csv_service Where " + strDate + ";";
             MySqlCommand cmd = new MySqlCommand(query, connect);
@@ -212,13 +218,21 @@ namespace WpfApplication1
 
             if (!String.IsNullOrEmpty(strSelected))
             {
-                string query = "Select * from server_programs.csv_service t1 inner join (select max(csv_timestmp) recent from server_programs.csv_service) t2 on t1.csv_timestmp = t2.recent where csv_subservice =\"" + strSelected + "\";";
+                string query;
+                if (blnConst)
+                {
+                    query = @"SELECT csv_service from " + database + ".csv_service WHERE csv_subservice = \"" + strSelected + "\" and CAST(csv_startup as DATE) = '" + strDate + "';";
+                }
+                else
+                {
+                    query = @"Select t1.* from " + database + ".csv_service t1 inner join (select max(csv_timestmp) recent from " + database + ".csv_service) t2 on t1.csv_timestmp = t2.recent where csv_subservice =\"" + strSelected + "\";";
+                }
                 MySqlCommand sqlQuery = new MySqlCommand(query, connect);
                 MySqlDataAdapter dAdaptor = new MySqlDataAdapter(sqlQuery);
                 DataSet dSet = new DataSet();
                 dAdaptor.Fill(dSet, "subDataBind");
                 subGrid.DataContext = dSet;
-                sqlLabel.Content = "Subservice: "+strSelected;
+                sqlLabel.Content = "Subservice: " + strSelected;
             }
             else
             {
