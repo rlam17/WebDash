@@ -43,7 +43,7 @@
 
         </Calendar>
 
-        <ListBox x:Name="databaseList" HorizontalAlignment="Stretch" Height="164" Margin="257,65,29,0" VerticalAlignment="Top" SelectionChanged="databaseList_SelectionChanged_1" ItemsSource="{Binding LoadDataBinding}" HorizontalContentAlignment="Stretch" Background="Gray">
+        <ListBox x:Name="databaseList" HorizontalAlignment="Stretch" Height="164" Margin="257,65,29,0" VerticalAlignment="Top" SelectionChanged="databaseList_SelectionChanged" ItemsSource="{Binding LoadDataBinding}" HorizontalContentAlignment="Stretch" Background="Gray">
             <ListBox.ItemTemplate>
                 <DataTemplate>
 
@@ -67,11 +67,11 @@
             </ListBox.ItemTemplate>
         </ListBox>
         <Label x:Name="label3" Content="Server Overview" HorizontalAlignment="Left" Margin="375,24,0,0" VerticalAlignment="Top" Foreground="White" Height="41" Width="195" FontWeight="Bold" FontSize="20"/>
-        <Button x:Name="viewServerButton" Content="View Server" HorizontalAlignment="Left" Margin="143,238,0,0" VerticalAlignment="Top" Width="75" Click="viewServerButton_Click" Visibility="Visible" IsEnabled="False"/>
-        <Button x:Name="createDbButton" Content="Create Database" HorizontalAlignment="Left" VerticalAlignment="Top" Width="97" Margin="18,238,0,0" Click="createDbButton_Click" Visibility="Visible"/>
-        <Button x:Name="disconnectAndExitButton" Content="Disconnect and Exit" HorizontalAlignment="Left" Height="22" Margin="18,159,0,0" VerticalAlignment="Top" Width="200" Click="disconnectAndExitButton_Click" Visibility="Visible"/>
+        <Button x:Name="viewServerButton" Content="View Server" HorizontalAlignment="Left" Margin="143,382,0,0" VerticalAlignment="Top" Width="75" Click="viewServerButton_Click" Visibility="Visible" IsEnabled="False"/>
+        <Button x:Name="createDbButton" Content="Create Database" HorizontalAlignment="Left" VerticalAlignment="Top" Width="97" Margin="18,382,0,0" Click="createDbButton_Click" Visibility="Visible"/>
+        <Button x:Name="disconnectAndExitButton" Content="Disconnect and Exit" HorizontalAlignment="Left" Height="22" Margin="18,331,0,0" VerticalAlignment="Top" Width="200" Click="disconnectAndExitButton_Click" Visibility="Visible"/>
         <TextBlock x:Name="textblock" HorizontalAlignment="Left" Margin="241,682,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Tag="" Foreground="White" Text="* Double click a date to view reboot summary on that date" FontSize="16" Width="421"/>
-        <Label x:Name="label3_Copy" Content="Reboot Status by Day" HorizontalAlignment="Left" Margin="342,257,0,0" VerticalAlignment="Top" Foreground="White" Height="41" Width="228" FontWeight="Bold" FontSize="20"/>
+        <Label x:Name="label3_Copy" Content="Reboot Status by Day" HorizontalAlignment="Left" Margin="344,257,0,0" VerticalAlignment="Top" Foreground="White" Height="41" Width="228" FontWeight="Bold" FontSize="20"/>
 
     </Grid>
 </Window>

@@ -200,7 +200,7 @@ namespace WpfApplication1
             createDbWindow.ShowDialog();
         }
 
-        private void databaseList_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        private void databaseList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             viewServerButton.IsEnabled = true;
         }

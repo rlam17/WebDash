@@ -7,12 +7,11 @@
         mc:Ignorable="d"
         Title="SelectedDate" Height="502.266" Width="588.782">
     <Grid Background="Black">
-        <Label x:Name="dateTitle" Content="Label" HorizontalAlignment="Left" Margin="204,67,0,0" VerticalAlignment="Top" FontSize="16" Foreground="White" Width="131" HorizontalContentAlignment="Center"/>
-        <ListBox x:Name="databaseListbox" HorizontalAlignment="Left" Height="234" Margin="146,119,0,0" VerticalAlignment="Top" Width="270" HorizontalContentAlignment="Stretch" Background="Gray">
+        <Label x:Name="dateTitle" Content="Label" HorizontalAlignment="Left" Margin="204,67,0,0" VerticalAlignment="Top" FontSize="16" Foreground="White" Width="131" HorizontalContentAlignment="Center" />
+        <ListBox x:Name="databaseListbox" HorizontalAlignment="Left" Height="234" Margin="146,119,0,0" VerticalAlignment="Top" Width="270" HorizontalContentAlignment="Stretch" Background="Gray" SelectionChanged="databaseListbox_SelectionChanged">
 
             <ListBox.ItemTemplate>
                 <DataTemplate>
-
                     <!-- Step #1: give an x:Name to this Grid -->
                     <Grid Margin="1" x:Name="BackgroundGrid" HorizontalAlignment="Stretch">
                         <TextBlock Name="serverNames" Grid.Column="1" Text="{Binding name}"/>
