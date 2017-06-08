@@ -84,7 +84,7 @@
 
         <GridSplitter Grid.Row="4" Grid.Column="1" Grid.RowSpan="10" Width="5" HorizontalAlignment="Left" Background="White" ShowsPreview="True" IsEnabled="True"/>
         <xctk:IntegerUpDown x:Name="intervalAmount" Margin="177,10,178,10" Grid.Row="10" Grid.Column="2" />
-        
+
         <DataGrid x:Name="subGrid" Grid.Row="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.RowSpan="7" Background="Black" ItemsSource="{Binding Path=subDataBind}" AutoGenerateColumns="False"  >
             <DataGrid.RowStyle>
                 <Style TargetType="DataGridRow">

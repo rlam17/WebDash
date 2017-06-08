@@ -74,7 +74,7 @@ namespace WpfApplication1
             title.Content = "Database: " + db;
             LastRebootLabel.Content = "Rebooted on:";
             LastReboot.Content = dt.ToString();
-
+            button.IsEnabled = false;
         }
 
         private void loadRecentReboot()

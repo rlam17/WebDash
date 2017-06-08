@@ -39,7 +39,7 @@ namespace WpfApplication1
         {
             //throw new NotImplementedException();
 
-            dateTitle.Content = focusedDate.ToString("yyyy/MM/dd");
+            dateTitle.Content = "Date: " + focusedDate.ToString("dd/MM/yyyy");
             populateList();
         }
 
