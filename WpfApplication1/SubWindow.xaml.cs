@@ -99,7 +99,7 @@ namespace WpfApplication1
                 DateTime newStartDate = (DateTime)dtpStartTime.Value;
                 int interval = (int)intervalAmount.Value;                
                 updateConfiguredReboot(newStartDate, interval, selectRadio);
-            } catch (Exception ex)
+            } catch (Exception )
             {
 
                 MessageBoxResult warning = MessageBox.Show("Invalid date or interval!");
@@ -175,7 +175,7 @@ namespace WpfApplication1
             try{
                 strSelected = rowView.Row[5].ToString();
             }
-            catch (Exception ev) { }
+            catch (Exception ) { }
             
 
             if (!String.IsNullOrEmpty(strSelected))

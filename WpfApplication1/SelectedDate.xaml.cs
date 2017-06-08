@@ -76,7 +76,7 @@ namespace WpfApplication1
                 dr.Close();
                 return new ServiceStatus(i.ToString(), true);
             }
-            catch (Exception ex)
+            catch (Exception )
             {
 
                 return new ServiceStatus(i.ToString(), false);

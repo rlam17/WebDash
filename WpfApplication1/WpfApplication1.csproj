@@ -90,6 +90,9 @@
     <Compile Include="CreateDatabase.xaml.cs">
       <DependentUpon>CreateDatabase.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PrimaryDisplay.xaml.cs">
+      <DependentUpon>PrimaryDisplay.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SelectedDate.xaml.cs">
       <DependentUpon>SelectedDate.xaml</DependentUpon>
     </Compile>
@@ -112,6 +115,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="PrimaryDisplay.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SelectedDate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
