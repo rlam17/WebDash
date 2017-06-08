@@ -8,7 +8,7 @@
         Title="PrimaryDisplay" Height="696.884" Width="680.737" Background="Black">
     <Grid>
 
-        <Calendar x:Name="oCal" HorizontalAlignment="Left" Margin="364,379,0,0" VerticalAlignment="Top" SelectionMode="None" Background="#FFCDCDCD" Width="192" RenderTransformOrigin="0.5,0.5" >
+        <Calendar x:Name="oCal" HorizontalAlignment="Left" Margin="364,379,0,0" VerticalAlignment="Top" SelectionMode="None" Background="#FFCDCDCD" Width="192" RenderTransformOrigin="0.5,0.5" SelectedDatesChanged="oCal_SelectedDatesChanged">
             <Calendar.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleY="2" ScaleX="2"/>
@@ -23,6 +23,7 @@
                     <EventSetter Event="FrameworkElement.Loaded" Handler="calendarButton_Loaded"/>
                 </Style>
             </Calendar.CalendarDayButtonStyle>
+            
 
             <!--<Calendar.CalendarDayButtonStyle>
                 <Style TargetType="CalendarDayButton" BasedOn="{StaticResource {x:Type CalendarDayButton}}">

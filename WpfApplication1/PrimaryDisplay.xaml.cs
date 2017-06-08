@@ -139,6 +139,33 @@ namespace WpfApplication1
                 return new ServiceStatus(dbName, false);
             }
         }
+
+        private ServiceStatus findFalse(string dbName, DateTime atDay)
+        {
+            try
+            {
+                string query = @"Select t1.* from " + dbName + ".csv_service t1 inner join (select max(csv_timestmp) recent from " + dbName + ".csv_service) t2 on t1.csv_timestmp = t2.recent;";
+                MySqlCommand cmd = new MySqlCommand(query, connect);
+                MySqlDataReader dr = cmd.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    if (String.Compare(dr[3].ToString(), "false") == 0)
+                    {
+                        dr.Close();
+                        return new ServiceStatus(dbName, false);
+                    }
+                }
+                dr.Close();
+                return new ServiceStatus(dbName, true);
+            }
+            catch (Exception)
+            {
+
+                return new ServiceStatus(dbName, false);
+            }
+        }
+
         private void viewServerButton_Click(object sender, RoutedEventArgs e)
         {
             Window win2 = new SubWindow(connect, databaseList.SelectedItem.ToString());
@@ -163,10 +190,8 @@ namespace WpfApplication1
 
         private void oCal_SelectedDates(object sender, SelectionChangedEventArgs e)
         {
-            //Console.WriteLine(oCal.SelectedDate);
-
-            SelectedDate win3 = new SelectedDate(connect, (DateTime)oCal.SelectedDate, services);
-            win3.ShowDialog();
+            
+            
 
         }
 
@@ -195,6 +220,22 @@ namespace WpfApplication1
             if (activeDays.Contains(date))
             {
                 button.Background = Brushes.SandyBrown;
+            }else
+            {
+                button.Background = Brushes.LightGray;
+            }
+        }
+
+        private void oCal_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var calendar = sender as System.Windows.Controls.Calendar;
+
+            // ... See if a date is selected.
+            if (calendar.SelectedDate.HasValue)
+            {
+                // ... Display SelectedDate in Title.
+                DateTime date = calendar.SelectedDate.Value;
+                Console.WriteLine(date);
             }
         }
     }
