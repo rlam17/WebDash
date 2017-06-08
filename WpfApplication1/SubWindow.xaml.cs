@@ -24,6 +24,7 @@ namespace WpfApplication1
         private MySqlConnection connect;
         private char selectRadio;
         private string database;
+        private DateTime date;
 
         public SubWindow()
         {
@@ -40,6 +41,25 @@ namespace WpfApplication1
             InitializeComponent();
 
             string query = @"Select t1.* from "+database+".csv_service t1 inner join (select max(csv_timestmp) recent from " + database +".csv_service) t2 on t1.csv_timestmp = t2.recent;";
+            MySqlCommand cmd = new MySqlCommand(query, connect);
+            MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            da.Fill(ds, "LoadDataBinding");
+            dataGridResult.DataContext = ds;
+            title.Content = "Database: " + db;
+            loadRecentReboot();
+        }
+
+        public SubWindow(MySqlConnection connection, string db, DateTime dt)
+        {
+
+            connect = connection;
+            database = db;
+            InitializeComponent();
+            date = dt;
+            string strDate = dt.ToString("yyyy-MM-dd");
+
+            string query = @"Select * from " + database + ".csv_service Where " + strDate + ";";
             MySqlCommand cmd = new MySqlCommand(query, connect);
             MySqlDataAdapter da = new MySqlDataAdapter(cmd);
             DataSet ds = new DataSet();

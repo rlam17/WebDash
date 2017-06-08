@@ -200,7 +200,7 @@ namespace WpfApplication1
             createDbWindow.ShowDialog();
         }
 
-        private void databaseList_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        private void databaseList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             viewServerButton.IsEnabled = true;
         }
@@ -288,7 +288,10 @@ namespace WpfApplication1
 
         }
 
-       
+        private void textBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
     public class ServiceStatus
     {
