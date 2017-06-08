@@ -65,7 +65,7 @@ namespace WpfApplication1
 
             blnConst = true;
 
-            string query = @"Select * from " + database + ".csv_service Where " + strDate + ";";
+            string query = @"Select * from " + database + ".csv_service Where CAST(csv_startup as DATE) ='" + strDate + "';";
             MySqlCommand cmd = new MySqlCommand(query, connect);
             MySqlDataAdapter da = new MySqlDataAdapter(cmd);
             DataSet ds = new DataSet();
