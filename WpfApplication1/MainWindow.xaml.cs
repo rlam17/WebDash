@@ -76,13 +76,14 @@ namespace WpfApplication1
                 //serverCombo.Visibility = Visibility.Visible;
                 //viewServerButton.Visibility = Visibility.Visible;
                 //disconnectAndExitButton.Visibility = Visibility.Visible;
-                connectButton.Visibility = Visibility.Hidden;
+                //connectButton.Visibility = Visibility.Hidden;
                 //databaseLabel.Visibility = Visibility.Visible;
                 //createDbButton.Visibility = Visibility.Visible;
 
                 usernameInput.IsEnabled = false;
                 passwordInput.IsEnabled = false;
 
+                connectButton.IsEnabled = false;
                 //populateList();
 
                 List<DateTime> passDates = compileDates();
@@ -90,7 +91,9 @@ namespace WpfApplication1
                 PrimaryDisplay display = new PrimaryDisplay(connect, passDates);
                 display.ShowDialog();
 
-
+                usernameInput.IsEnabled = true;
+                passwordInput.IsEnabled = true;
+                connectButton.IsEnabled = true;
             }
             catch (Exception ex)
             {
