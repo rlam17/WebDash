@@ -33,6 +33,7 @@ namespace WpfApplication1
             connect = cn;
             activeDays = ad;
             InitializeComponent();
+            enableDates();
             populateList();
         }
 
@@ -55,11 +56,12 @@ namespace WpfApplication1
             {
                 services.Add(findFalse(dr[0].ToString()));
             }
+            dr.Close();
 
             //Console.Write(ds);
             //serverCombo.DataContext = ds;
             //serverCombo.DisplayMemberPath = "Database";
-            dr.Close();
+
             databaseList.ItemsSource = services;
 
             //serverCombo.ItemsSource = services;
@@ -88,6 +90,7 @@ namespace WpfApplication1
                 //Console.WriteLine(date);
                 lAcceptableDates.Add(date);
             }
+            dr.Close();
             //dr.Read();
             int intYear = DateTime.Now.Year;
             DateTime dBegin = new DateTime(intYear, 1, 1);
@@ -109,7 +112,7 @@ namespace WpfApplication1
             }
 
 
-            dr.Close();
+            
             //serverCombo.Text;
 
         }
@@ -188,14 +191,30 @@ namespace WpfApplication1
             System.Environment.Exit(0);
         }
 
-        private void oCal_SelectedDates(object sender, SelectionChangedEventArgs e)
-        {
-            
-            
 
+        private void calendarDayButton_Click(object sender, EventArgs e)
+        {
+            var calendar = sender as System.Windows.Controls.Calendar;
+
+            // ... See if a date is selected.
+            if (calendar == null)
+            {
+                Console.WriteLine("Nothing to see here");
+                
+            }else
+            {
+                if (calendar.SelectedDate.HasValue)
+                {
+                    // ... Display SelectedDate in Title.
+                    DateTime date = calendar.SelectedDate.Value;
+                    Console.WriteLine(date);
+                }
+                Console.WriteLine("Does this get poked?");
+            }
+            
         }
 
-        private void calendarButton_Loaded(object sender, EventArgs e)
+        private void calendarDayButton_Loaded(object sender, EventArgs e)
         {
             CalendarDayButton button = (CalendarDayButton)sender;
             DateTime date = (DateTime)button.DataContext;
@@ -218,9 +237,11 @@ namespace WpfApplication1
             //}
 
             if (activeDays.Contains(date))
-            {                
+            {             
+                   
                 foreach(ServiceStatus db in services)
                 {
+                    
                     string dbName = db.ToString();
                     ServiceStatus hasFalse = findFalse(dbName, date);
                     if (!hasFalse.getStatus())
@@ -241,18 +262,7 @@ namespace WpfApplication1
             }
         }
 
-        private void oCal_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var calendar = sender as System.Windows.Controls.Calendar;
-
-            // ... See if a date is selected.
-            if (calendar.SelectedDate.HasValue)
-            {
-                // ... Display SelectedDate in Title.
-                DateTime date = calendar.SelectedDate.Value;
-                Console.WriteLine(date);
-            }
-        }
+       
     }
     public class ServiceStatus
     {
