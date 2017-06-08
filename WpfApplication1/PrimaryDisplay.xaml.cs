@@ -218,8 +218,22 @@ namespace WpfApplication1
             //}
 
             if (activeDays.Contains(date))
-            {
-                button.Background = Brushes.SandyBrown;
+            {                
+                foreach(ServiceStatus db in services)
+                {
+                    string dbName = db.ToString();
+                    ServiceStatus hasFalse = findFalse(dbName, date);
+                    if (!hasFalse.getStatus())
+                    {
+                        button.Background = Brushes.Red;
+                        break;
+                    }else
+                    {
+                        button.Background = Brushes.Green;
+                    }
+                }
+
+                
             }else
             {
                 button.Background = Brushes.LightGray;
