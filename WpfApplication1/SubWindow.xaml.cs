@@ -213,7 +213,7 @@ namespace WpfApplication1
             try{
                 strSelected = rowView.Row[5].ToString();
             }
-            catch (Exception ex) { throw (ex); }
+            catch (Exception) {  }
             
 
             if (!String.IsNullOrEmpty(strSelected))
