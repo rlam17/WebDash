@@ -66,7 +66,9 @@ namespace WpfApplication1
             da.Fill(ds, "LoadDataBinding");
             dataGridResult.DataContext = ds;
             title.Content = "Database: " + db;
-            loadRecentReboot();
+            LastRebootLabel.Content = "Rebooted on:";
+            LastReboot.Content = dt.ToString();
+
         }
 
         private void loadRecentReboot()
