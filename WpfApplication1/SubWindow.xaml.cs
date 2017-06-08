@@ -130,9 +130,9 @@ namespace WpfApplication1
                 DateTime newStartDate = (DateTime)dtpStartTime.Value;
                 int interval = (int)intervalAmount.Value;                
                 updateConfiguredReboot(newStartDate, interval, selectRadio);
-            } catch (Exception ex)
+            } catch (Exception)
             {
-                throw (ex);
+                
                 MessageBoxResult warning = MessageBox.Show("Invalid date or interval!");
             }
         }
@@ -171,7 +171,7 @@ namespace WpfApplication1
                 MessageBox.Show("Reboot time has been successfully configured.");
             }catch(Exception ex)
             {
-                throw (ex);
+                
                 MessageBox.Show(ex.Message);
             }
 

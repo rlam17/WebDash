@@ -37,7 +37,7 @@ namespace WpfApplication1
         Timer pingTimer;
         string serverIp = "192.168.7.24";
         string serverPort = "3306";
-        ObservableCollection<ServiceStatus> services;
+        //ObservableCollection<ServiceStatus> services;
         
 
         public MainWindow()
