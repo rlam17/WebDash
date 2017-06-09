@@ -103,6 +103,7 @@ namespace WpfApplication1
                     ENGINE = InnoDB
                     DEFAULT CHARACTER SET = utf8;
                     ";
+                cmd.ExecuteNonQuery();
                 createUser();
             }
             catch (Exception ex)
