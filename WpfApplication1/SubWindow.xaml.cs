@@ -50,7 +50,7 @@ namespace WpfApplication1
             DataSet ds = new DataSet();
             da.Fill(ds, "LoadDataBinding");
             dataGridResult.DataContext = ds;
-            title.Content = "Database: " + db;
+            title.Content = "Service log for " + db;
             loadRecentReboot();
         }
 
@@ -71,7 +71,7 @@ namespace WpfApplication1
             DataSet ds = new DataSet();
             da.Fill(ds, "LoadDataBinding");
             dataGridResult.DataContext = ds;
-            title.Content = "Database: " + db;
+            title.Content = "Service log for " + db;
             LastRebootLabel.Content = "Rebooted on:";
             LastReboot.Content = dt.ToString();
             button.IsEnabled = false;
