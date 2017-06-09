@@ -11,8 +11,8 @@
         Name="logo" Icon="wd.png"
         >
 
-    
-    
+
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="75" />
@@ -73,15 +73,15 @@
         <xctk:DateTimePicker x:Name="dtpStartTime" Format="Custom" FormatString="HH:mm tt" Margin="5" Grid.Row="8" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" />
 
         <Label x:Name="UnitLabel" Grid.Row="9" Grid.Column="2" Content="Select Unit:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="27,8,0,6" FontWeight="Bold" Foreground="White"/>
-        <RadioButton Checked ="radioButton_Checked" x:Name="Seconds" Content="second" Grid.Row="9" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="115,0,0,0" Foreground="White"/>
-        <RadioButton Checked ="radioButton_Checked" x:Name="Minutes" Content="minute" Grid.Row="9" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="180,0,0,0" Foreground="White"/>
-        <RadioButton Checked ="radioButton_Checked" x:Name="Hours" Content="hour" Grid.Row="9" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="247,0,0,0" Foreground="White"/>
-        <RadioButton Checked ="radioButton_Checked" x:Name="Days" Content="day" Grid.Row="9" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="305,0,0,0" Foreground="White"/>
-        <RadioButton Checked ="radioButton_Checked" x:Name="Weeks" Content="week" Grid.Row="9" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="348,0,0,0" Foreground="White"/>
-        <RadioButton Checked ="radioButton_Checked" x:Name="Months" Content="month" Grid.Row="9" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="396,0,0,0" Foreground="White"/>
+        <RadioButton Checked ="radioButton_Checked" x:Name="Seconds" Content="second" Grid.Row="9" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="115,0,0,0" Foreground="White" GroupName="IntervalGroup"/>
+        <RadioButton Checked ="radioButton_Checked" x:Name="Minutes" Content="minute" Grid.Row="9" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="180,0,0,0" Foreground="White" GroupName="IntervalGroup"/>
+        <RadioButton Checked ="radioButton_Checked" x:Name="Hours" Content="hour" Grid.Row="9" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="247,0,0,0" Foreground="White" GroupName="IntervalGroup"/>
+        <RadioButton Checked ="radioButton_Checked" x:Name="Days" Content="day" Grid.Row="9" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="305,0,0,0" Foreground="White" GroupName="IntervalGroup"/>
+        <RadioButton Checked ="radioButton_Checked" x:Name="Weeks" Content="week" Grid.Row="9" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="348,0,0,0" Foreground="White" GroupName="IntervalGroup"/>
+        <RadioButton Checked ="radioButton_Checked" x:Name="Months" Content="month" Grid.Row="9" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="396,0,0,0" Foreground="White" GroupName="IntervalGroup"/>
         <Label x:Name="NumberLabel" Grid.Row="10" Grid.Column="2" Content="Input Interval:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="27,8,0,6" FontWeight="Bold" Foreground="White"/>
 
-        <Button x:Name="button" Grid.Row="11" Grid.Column="2"  Content="Change Time" HorizontalAlignment="Center" VerticalAlignment="Center" Width="227" Height="50" Grid.RowSpan="2" Click="button_Click" FontSize="24" FontWeight="Bold"/>
+        <Button x:Name="changeTimeButton" Grid.Row="11" Grid.Column="2"  Content="Change Time" HorizontalAlignment="Center" VerticalAlignment="Center" Width="227" Height="50" Grid.RowSpan="2" Click="button_Click" FontSize="24" FontWeight="Bold"/>
 
         <GridSplitter Grid.Row="4" Grid.Column="1" Grid.RowSpan="10" Width="5" HorizontalAlignment="Left" Background="White" ShowsPreview="True" IsEnabled="True"/>
         <xctk:IntegerUpDown x:Name="intervalAmount" Margin="177,10,178,10" Grid.Row="10" Grid.Column="2" />
@@ -107,5 +107,5 @@
         </DataGrid>
 
     </Grid>
-    
+
 </Window>

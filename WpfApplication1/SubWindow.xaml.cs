@@ -72,9 +72,24 @@ namespace WpfApplication1
             da.Fill(ds, "LoadDataBinding");
             dataGridResult.DataContext = ds;
             title.Content = "Service log for " + db;
-            LastRebootLabel.Content = "Rebooted on:";
+            LastRebootLabel.Content = "Attempt ran on:";
+
             LastReboot.Content = dt.ToString();
-            button.IsEnabled = false;
+            changeTimeButton.IsEnabled = false;
+            changeTimeButton.Visibility = Visibility.Hidden;
+            NumberLabel.Visibility = Visibility.Hidden;
+            intervalAmount.Visibility = Visibility.Hidden;
+            UnitLabel.Visibility = Visibility.Hidden;
+            Seconds.Visibility = Visibility.Hidden;
+            Minutes.Visibility = Visibility.Hidden;
+            Hours.Visibility = Visibility.Hidden;
+            Days.Visibility = Visibility.Hidden;
+            Weeks.Visibility = Visibility.Hidden;
+            Months.Visibility = Visibility.Hidden;
+            DateLabel.Visibility = Visibility.Hidden;
+            dtpStartTime.Visibility = Visibility.Hidden;
+            ChangeRebootLabel.Visibility = Visibility.Hidden;
+
         }
 
         private void loadRecentReboot()
