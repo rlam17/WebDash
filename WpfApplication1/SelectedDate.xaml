@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApplication1"
         mc:Ignorable="d"
-        Title="SelectedDate" Height="502.266" Width="588.782">
+        Title="SelectedDate" Height="454.943" Width="366.475">
     <Grid Background="Black">
-        <Label x:Name="dateTitle" Content="Label" HorizontalAlignment="Left" Margin="158,67,0,0" VerticalAlignment="Top" FontSize="20" Foreground="White" Width="270" HorizontalContentAlignment="Center" Background="{x:Null}" FontWeight="Bold"  />
-        <ListBox x:Name="databaseListbox" HorizontalAlignment="Left" Height="234" Margin="158,119,0,0" VerticalAlignment="Top" Width="270" HorizontalContentAlignment="Stretch" Background="Gray" SelectionChanged="databaseListbox_SelectionChanged">
+        <Label x:Name="dateTitle" Content="Label" HorizontalAlignment="Left" Margin="43,34,0,0" VerticalAlignment="Top" FontSize="20" Foreground="White" Width="270" HorizontalContentAlignment="Center" Background="{x:Null}" FontWeight="Bold"  />
+        <ListBox x:Name="databaseListbox" HorizontalAlignment="Left" Height="234" Margin="43,86,0,0" VerticalAlignment="Top" Width="270" HorizontalContentAlignment="Stretch" Background="Gray" SelectionChanged="databaseListbox_SelectionChanged">
 
             <ListBox.ItemTemplate>
                 <DataTemplate>
@@ -33,7 +33,7 @@
 
 
         </ListBox>
-        <Button x:Name="closeButton" Content="Close" HorizontalAlignment="Left" Margin="254,409,0,0" VerticalAlignment="Top" Width="75" Click="closeButton_Click"/>
+        <Button x:Name="closeButton" Content="Close" HorizontalAlignment="Left" Margin="139,356,0,0" VerticalAlignment="Top" Width="75" Click="closeButton_Click"/>
 
     </Grid>
 </Window>
