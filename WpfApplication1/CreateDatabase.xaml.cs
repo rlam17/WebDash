@@ -41,14 +41,14 @@ namespace WpfApplication1
                 //INSERT INTO `server_programs`.`dbase_alias` (`dbal_server`, `dbal_dbname`, `dbal_dbalias`) VALUES ('test', 'test2', 'test3');
                 MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = connect;
-                cmd.CommandText = @"INSERT INTO `" + inputDbName + "`.`dbase_alias` (`dbal_server`, `dbal_dbname`, `dbal_dbalias`) VALUES ('test', '"+inputDbName+"', '"+inputDisplayName+"')";
+                cmd.CommandText = @"INSERT INTO `server_programs`.`dbase_alias` (`dbal_server`, `dbal_dbname`, `dbal_dbalias`) VALUES ('"+Environment.MachineName+"', '"+inputDbName.Text+"', '"+inputDisplayName.Text+"')";
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("Database created!");
                 Close();
             }
-            catch(Exception)
+            catch(Exception ex)
             {
-
+                MessageBox.Show(ex.Message);
             }
         }
 
