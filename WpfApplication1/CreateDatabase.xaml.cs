@@ -31,6 +31,25 @@ namespace WpfApplication1
         private void createDbButton_Click(object sender, RoutedEventArgs e)
         {
             createDb();
+            registerDb();
+        }
+
+        public void registerDb()
+        {
+            try
+            {
+                //INSERT INTO `server_programs`.`dbase_alias` (`dbal_server`, `dbal_dbname`, `dbal_dbalias`) VALUES ('test', 'test2', 'test3');
+                MySqlCommand cmd = new MySqlCommand();
+                cmd.Connection = connect;
+                cmd.CommandText = @"INSERT INTO `" + inputDbName + "`.`dbase_alias` (`dbal_server`, `dbal_dbname`, `dbal_dbalias`) VALUES ('test', '"+inputDbName+"', '"+inputDisplayName+"')";
+                cmd.ExecuteNonQuery();
+                MessageBox.Show("Database created!");
+                Close();
+            }
+            catch(Exception)
+            {
+
+            }
         }
 
         private void createDb()
@@ -119,9 +138,7 @@ namespace WpfApplication1
                 MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = connect;
                 cmd.CommandText = (@"GRANT INSERT, SELECT ON dbTest.* To '" +inputUsername.Text+"'@'hostname' IDENTIFIED BY '"+inputPassword.Password+"';");
-                cmd.ExecuteNonQuery();
-                MessageBox.Show("Database created!");
-                Close();
+                
             }
             catch (Exception ex)
             {

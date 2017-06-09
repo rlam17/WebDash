@@ -135,9 +135,10 @@ namespace WpfApplication1
                 string query = @"Select t1.* from " + dbName + ".csv_service t1 inner join (select max(csv_timestmp) recent from " + dbName + ".csv_service) t2 on t1.csv_timestmp = t2.recent;";
                 MySqlCommand cmd = new MySqlCommand(query, con);
                 MySqlDataReader dr = cmd.ExecuteReader();
-
+                int rowNumber = 0;
                 while (dr.Read())
                 {
+                    rowNumber++;
                     if (String.Compare(dr[3].ToString(), "false") == 0)
                     {
                         dr.Close();
@@ -145,7 +146,14 @@ namespace WpfApplication1
                     }
                 }
                 dr.Close();
-                return new ServiceStatus(dbName, true);
+                if(rowNumber > 0)
+                {
+                    return new ServiceStatus(dbName, true);
+                }else
+                {
+                    return new ServiceStatus(dbName, false);
+                }
+                
             }
             catch (Exception )
             {
