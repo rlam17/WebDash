@@ -56,13 +56,16 @@
 
                     <!-- Step #2: create a DataTrigger that sets the Background of the Grid, depending on the value of IsOccupied property in the Model -->
                     <DataTemplate.Triggers>
-                        <DataTrigger Binding="{Binding status}" Value="True">
+                        <DataTrigger Binding="{Binding status}" Value="1">
                             <Setter TargetName="BackgroundGrid" Property="Background" Value="Green"/>
                         </DataTrigger>
 
-                        <DataTrigger Binding="{Binding status}" Value="False">
+                        <DataTrigger Binding="{Binding status}" Value="0">
                             <Setter TargetName="BackgroundGrid" Property="Background" Value="Red" />
                             <Setter TargetName="serverNames" Property="Foreground" Value="White" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding status}" Value="2">
+                            
                         </DataTrigger>
                     </DataTemplate.Triggers>
                 </DataTemplate>

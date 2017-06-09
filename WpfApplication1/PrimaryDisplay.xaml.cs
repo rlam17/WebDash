@@ -142,23 +142,23 @@ namespace WpfApplication1
                     if (String.Compare(dr[3].ToString(), "false") == 0)
                     {
                         dr.Close();
-                        return new ServiceStatus(dbName, false);
+                        return new ServiceStatus(dbName, 0);
                     }
                 }
                 dr.Close();
                 if(rowNumber > 0)
                 {
-                    return new ServiceStatus(dbName, true);
+                    return new ServiceStatus(dbName, 1);
                 }else
                 {
-                    return new ServiceStatus(dbName, false);
+                    return new ServiceStatus(dbName, 2);
                 }
                 
             }
             catch (Exception )
             {
 
-                return new ServiceStatus(dbName, false);
+                return new ServiceStatus(dbName, 2);
             }
         }
 
@@ -177,16 +177,16 @@ namespace WpfApplication1
                     if (String.Compare(dr[3].ToString(), "false") == 0)
                     {
                         dr.Close();
-                        return new ServiceStatus(dbName, false);
+                        return new ServiceStatus(dbName, 0);
                     }
                 }
                 dr.Close();
-                return new ServiceStatus(dbName, true);
+                return new ServiceStatus(dbName, 1);
             }
             catch (Exception)
             {
 
-                return new ServiceStatus(dbName, false);
+                return new ServiceStatus(dbName, 2);
             }
         }
 
@@ -275,7 +275,7 @@ namespace WpfApplication1
                     string dbName = db.ToString();
                     ServiceStatus hasFalse = findFalse(dbName, date);
 
-                    if (!hasFalse.getStatus())
+                    if (hasFalse.getStatus() == 0)
                     {
                         button.Background = Brushes.Red;
                         break;
@@ -318,8 +318,8 @@ namespace WpfApplication1
                 _name = value;
             }
         }
-        private bool _status;
-        public bool status
+        private int _status;
+        public int status
         {
             get
             {
@@ -332,7 +332,7 @@ namespace WpfApplication1
 
         }
 
-        public ServiceStatus(string inputName, bool inputStatus)
+        public ServiceStatus(string inputName, int inputStatus)
         {
             _name = inputName;
             _status = inputStatus;
@@ -343,7 +343,7 @@ namespace WpfApplication1
             return _name;
         }
 
-        public bool getStatus()
+        public int getStatus()
         {
             return _status;
         }

@@ -70,16 +70,16 @@ namespace WpfApplication1
                     if (String.Compare(dr[3].ToString(), "false") == 0)
                     {
                         dr.Close();
-                        return new ServiceStatus(i.ToString(), false);
+                        return new ServiceStatus(i.ToString(), 0);
                     }
                 }
                 dr.Close();
-                return new ServiceStatus(i.ToString(), true);
+                return new ServiceStatus(i.ToString(), 1);
             }
             catch (Exception )
             {
 
-                return new ServiceStatus(i.ToString(), false);
+                return new ServiceStatus(i.ToString(), 2);
             }
         }
 
