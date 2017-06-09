@@ -35,6 +35,9 @@ namespace WpfApplication1
             InitializeComponent();
             enableDates();
             populateList();
+
+            oCal.DisplayDateStart = new DateTime(DateTime.Now.Year, 1, 1);
+            oCal.DisplayDateEnd = new DateTime(DateTime.Now.Year, 12, 31);
         }
 
         private void populateList()
