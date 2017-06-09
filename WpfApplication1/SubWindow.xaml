@@ -6,8 +6,9 @@
         xmlns:local="clr-namespace:WpfApplication1"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
-        Title="SubWindow" d:DesignWidth="926" d:DesignHeight="886" 
+        Title="Details" d:DesignWidth="926" d:DesignHeight="886" 
         Background="Black"
+        Name="logo" Icon="wd.png"
         >
 
     

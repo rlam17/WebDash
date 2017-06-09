@@ -6,8 +6,10 @@
         xmlns:local="clr-namespace:WpfApplication1"
         mc:Ignorable="d"
         ResizeMode="CanMinimize"
-        Title="CreateDatabase" Height="305.949" Width="396.884"
-        Background="Black">
+        Title="Create Database" Height="305.949" Width="396.884"
+        Background="Black"
+        Name="logo" Icon="wd.png"
+        >
     <Grid>
 
         <Label x:Name="label" Content="Database Name:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="65,67,0,0" Foreground="White"/>

@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApplication1"
         mc:Ignorable="d"
-        Title="MainWindow" Height="216.268" Width="326.268">
+        Title="Login" Height="216.268" Width="326.268"
+        Name="logo" Icon="wd.png"
+        >
 
     <Grid Background="Black" Margin="0,0,2,0">
         <Label x:Name="label" Content="User Name: " HorizontalAlignment="Left" Margin="46,63,0,0" VerticalAlignment="Top" Foreground="White"/>
