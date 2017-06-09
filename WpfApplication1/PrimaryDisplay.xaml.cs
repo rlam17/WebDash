@@ -207,7 +207,7 @@ namespace WpfApplication1
 
         private void disconnectAndExitButton_Click(object sender, RoutedEventArgs e)
         {
-            connect.Close();
+            
             Close();
         }
 

@@ -90,7 +90,7 @@ namespace WpfApplication1
 
                 PrimaryDisplay display = new PrimaryDisplay(connect, passDates);
                 display.ShowDialog();
-
+                connect.Close();
                 usernameInput.IsEnabled = true;
                 passwordInput.IsEnabled = true;
                 connectButton.IsEnabled = true;
