@@ -134,27 +134,48 @@ namespace WpfApplication1
             try
             {
                 MySqlConnection con = connect;
-                string query = @"Select t1.* from " + dbName + ".csv_service t1 inner join (select max(csv_timestmp) recent from " + dbName + ".csv_service) t2 on t1.csv_timestmp = t2.recent;";
+                string query = @"Select t1.* from " + dbName + ".csv_service t1 inner join (select max(csv_timestmp) recent from " + dbName + ".csv_service) t2 on t1.csv_timestmp = t2.recent WHERE csv_status = 'false';";
                 MySqlCommand cmd = new MySqlCommand(query, con);
                 MySqlDataReader dr = cmd.ExecuteReader();
-                int rowNumber = 0;
-                while (dr.Read())
+                //int rowNumber = 0;
+
+                if (dr.Read())
                 {
-                    rowNumber++;
-                    if (String.Compare(dr[3].ToString(), "false") == 0)
-                    {
-                        dr.Close();
-                        return new ServiceStatus(dbName, 0);
-                    }
-                }
-                dr.Close();
-                if(rowNumber > 0)
-                {
-                    return new ServiceStatus(dbName, 1);
+                    dr.Close();
+                    return new ServiceStatus(dbName, 0);
                 }else
                 {
-                    return new ServiceStatus(dbName, 2);
+                    query = @"Select t1.* from " + dbName + ".csv_service t1 inner join (select max(csv_timestmp) recent from " + dbName + ".csv_service) t2 on t1.csv_timestmp = t2.recent WHERE csv_status = 'true';";
+                    dr.Close();
+                    dr = cmd.ExecuteReader();
+                    if (dr.Read())
+                    {
+                        dr.Close();
+                        return new ServiceStatus(dbName, 1);
+                    }
+                    else
+                    {
+                        dr.Close();
+                        return new ServiceStatus(dbName, 2);
+                    }
                 }
+                //while (dr.Read())
+                //{
+                //    rowNumber++;
+                //    if (String.Compare(dr[3].ToString(), "false") == 0)
+                //    {
+                //        dr.Close();
+                //        return new ServiceStatus(dbName, 0);
+                //    }
+                //}
+                //dr.Close();
+                //if(rowNumber > 0)
+                //{
+                //    return new ServiceStatus(dbName, 1);
+                //}else
+                //{
+                //    return new ServiceStatus(dbName, 2);
+                //}
                 
             }
             catch (Exception )
@@ -170,20 +191,41 @@ namespace WpfApplication1
             try
             {
                 //SELECT* from server_programs.csv_service WHERE CAST(csv_startup as DATE) = '2017-06-01';
-                string query = @"SELECT * from "+dbName+".csv_service WHERE CAST(csv_startup as DATE) = '"+compose+"';";
+                string query = @"SELECT * from "+dbName+".csv_service WHERE CAST(csv_startup as DATE) = '"+compose+"' AND csv_status='false';";
                 MySqlCommand cmd = new MySqlCommand(query, connect);
                 MySqlDataReader dr = cmd.ExecuteReader();
 
-                while (dr.Read())
+                //while (dr.Read())
+                //{
+                //    if (String.Compare(dr[3].ToString(), "false") == 0)
+                //    {
+                //        dr.Close();
+                //        return new ServiceStatus(dbName, 0);
+                //    }
+                //}
+                //dr.Close();
+                //return new ServiceStatus(dbName, 1);
+                if (dr.Read())
                 {
-                    if (String.Compare(dr[3].ToString(), "false") == 0)
+                    dr.Close();
+                    return new ServiceStatus(dbName, 0);
+                }
+                else
+                {
+                    query = @"SELECT * from " + dbName + ".csv_service WHERE CAST(csv_startup as DATE) = '" + compose + "' AND csv_status='true';";
+                    dr.Close();
+                    dr = cmd.ExecuteReader();
+                    if (dr.Read())
                     {
                         dr.Close();
-                        return new ServiceStatus(dbName, 0);
+                        return new ServiceStatus(dbName, 1);
+                    }
+                    else
+                    {
+                        dr.Close();
+                        return new ServiceStatus(dbName, 2);
                     }
                 }
-                dr.Close();
-                return new ServiceStatus(dbName, 1);
             }
             catch (Exception)
             {
