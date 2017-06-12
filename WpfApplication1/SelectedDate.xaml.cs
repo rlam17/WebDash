@@ -61,7 +61,7 @@ namespace WpfApplication1
             try
             {
                 string atDate = focusedDate.Year.ToString() + "-" + focusedDate.Month.ToString() + "-" + focusedDate.Day.ToString();
-                string query = @"SELECT * from "+i.ToString()+".csv_service WHERE CAST(csv_startup as DATE) = '"+atDate+"';";
+                string query = @"SELECT * from "+i.getOriginalName()+".csv_service WHERE CAST(csv_startup as DATE) = '"+atDate+"';";
                 MySqlCommand cmd = new MySqlCommand(query, connect);
                 MySqlDataReader dr = cmd.ExecuteReader();
 
@@ -70,16 +70,16 @@ namespace WpfApplication1
                     if (String.Compare(dr[3].ToString(), "false") == 0)
                     {
                         dr.Close();
-                        return new ServiceStatus(i.ToString(), 0);
+                        return new ServiceStatus(i.getOriginalName(), 0);
                     }
                 }
                 dr.Close();
-                return new ServiceStatus(i.ToString(), 1);
+                return new ServiceStatus(i.getOriginalName(), 1);
             }
             catch (Exception )
             {
 
-                return new ServiceStatus(i.ToString(), 2);
+                return new ServiceStatus(i.getOriginalName(), 2);
             }
         }
 
@@ -91,7 +91,9 @@ namespace WpfApplication1
 
         private void databaseListbox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Window win2 = new SubWindow(connect, databaseListbox.SelectedItem.ToString(), focusedDate);
+            ServiceStatus item = (ServiceStatus)databaseListbox.SelectedItem;
+            string name = item.getOriginalName();
+            Window win2 = new SubWindow(connect, item, focusedDate);
             try
             {
 

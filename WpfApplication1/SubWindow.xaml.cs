@@ -32,14 +32,13 @@ namespace WpfApplication1
         {
             InitializeComponent();
 
-
         }
 
-        public SubWindow(MySqlConnection connection, string db)
+        public SubWindow(MySqlConnection connection, ServiceStatus db)
         {
             
             connect = connection;
-            database = db;
+            database = db.getOriginalName();
             InitializeComponent();
 
             blnConst = false;
@@ -54,11 +53,11 @@ namespace WpfApplication1
             loadRecentReboot();
         }
 
-        public SubWindow(MySqlConnection connection, string db, DateTime dt)
+        public SubWindow(MySqlConnection connection, ServiceStatus db, DateTime dt)
         {
 
             connect = connection;
-            database = db;
+            database = db.getOriginalName();
             InitializeComponent();
             date = dt;
             strDate = dt.ToString("yyyy-MM-dd");

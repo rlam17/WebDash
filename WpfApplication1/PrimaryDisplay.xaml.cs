@@ -21,10 +21,12 @@ namespace WpfApplication1
     /// <summary>
     /// Interaction logic for PrimaryDisplay.xaml
     /// </summary>
+
+
     public partial class PrimaryDisplay : Window
     {
 
-        MySqlConnection connect;
+        public static MySqlConnection connect;
         ObservableCollection<ServiceStatus> services;
         List<DateTime> activeDays;
 
@@ -192,7 +194,9 @@ namespace WpfApplication1
 
         private void viewServerButton_Click(object sender, RoutedEventArgs e)
         {
-            Window win2 = new SubWindow(connect, databaseList.SelectedItem.ToString());
+            ServiceStatus item = (ServiceStatus)databaseList.SelectedItem;
+
+            Window win2 = new SubWindow(connect, item);
             try
             {
                 
@@ -272,7 +276,7 @@ namespace WpfApplication1
                 
                 foreach(ServiceStatus db in services)
                 {
-                    string dbName = db.ToString();
+                    string dbName = db.getOriginalName();
                     ServiceStatus hasFalse = findFalse(dbName, date);
 
                     if (hasFalse.getStatus() == 0)
@@ -318,6 +322,18 @@ namespace WpfApplication1
                 _name = value;
             }
         }
+        private string _originalName;
+        public string originalName
+        {
+            get
+            {
+                return _originalName;
+            }set
+            {
+                _originalName = value;
+            }
+        }
+        
         private int _status;
         public int status
         {
@@ -334,18 +350,51 @@ namespace WpfApplication1
 
         public ServiceStatus(string inputName, int inputStatus)
         {
-            _name = inputName;
+            
+            _originalName = inputName;
+            _name = generateName();
             _status = inputStatus;
         }
 
+        public ServiceStatus(ServiceStatus copy)
+        {
+            _name = copy._name;
+            _originalName = copy._originalName;
+            _status = copy._status;
+        }
+
+        public string generateName()
+        {
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand();
+                cmd.Connection = PrimaryDisplay.connect;
+                string query = @"SELECT dbal_dbalias from server_programs.dbase_alias WHERE dbal_dbname = '" + _originalName + "';";
+                cmd.CommandText = query;
+                string result = cmd.ExecuteScalar().ToString();
+
+                return result;
+            }
+            catch (Exception)
+            {
+                return _originalName;
+            }
+        }
+        
         public override string ToString()
         {
             return _name;
+            
         }
 
         public int getStatus()
         {
             return _status;
+        }
+
+        public string getOriginalName()
+        {
+            return _originalName;
         }
     }
 }
