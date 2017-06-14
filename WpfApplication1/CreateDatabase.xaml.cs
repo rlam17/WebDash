@@ -105,6 +105,7 @@ namespace WpfApplication1
                 cmd.CommandText = @"CREATE TABLE `configfile_info` (
                       `conf_id` INT(11) NOT NULL AUTO_INCREMENT COMMENT '',
                       `conf_uldate` DATE NOT NULL COMMENT '',
+                      `conf_server` VARCHAR(100) NOT NULL COMMENT '',
                       `conf_md5hash` VARCHAR(300) NOT NULL COMMENT '',
                       `conf_tagline` VARCHAR(50) NOT NULL COMMENT '',
                       `conf_settings` TEXT NOT NULL COMMENT '',
