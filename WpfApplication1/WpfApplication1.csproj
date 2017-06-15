@@ -90,6 +90,9 @@
     <Compile Include="CreateDatabase.xaml.cs">
       <DependentUpon>CreateDatabase.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EmailWindow.xaml.cs">
+      <DependentUpon>EmailWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PrimaryDisplay.xaml.cs">
       <DependentUpon>PrimaryDisplay.xaml</DependentUpon>
     </Compile>
@@ -100,6 +103,10 @@
       <DependentUpon>SubWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="CreateDatabase.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EmailWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

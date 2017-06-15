@@ -349,6 +349,12 @@ namespace WpfApplication1
         {
 
         }
+
+        private void notificationButton_Click(object sender, RoutedEventArgs e)
+        {
+            Window email = new EmailWindow();
+            email.ShowDialog();
+        }
     }
     public class ServiceStatus
     {
