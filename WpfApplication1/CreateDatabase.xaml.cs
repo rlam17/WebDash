@@ -97,6 +97,7 @@ namespace WpfApplication1
                       `csv_subservice` VARCHAR(100) NULL DEFAULT NULL COMMENT '',
                       `csv_error` VARCHAR(300) NULL DEFAULT NULL COMMENT '',
                       `csv_timestmp` DATETIME NOT NULL COMMENT '',
+                      `csv_checked` TINYINT(4) NOT NULL DEFAULT 0 COMMENT '',
                       PRIMARY KEY (`csv_id`)  COMMENT '')
                     ENGINE = InnoDB
                     DEFAULT CHARACTER SET = utf8;
