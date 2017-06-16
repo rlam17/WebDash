@@ -23,5 +23,15 @@ namespace WpfApplication1
         {
             InitializeComponent();
         }
+
+        private void confirmButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void cancelbutton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

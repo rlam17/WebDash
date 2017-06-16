@@ -4,9 +4,20 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApplication1"
+        xmlns:wpfTool="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
         mc:Ignorable="d"
-        Title="EmailWindow" Height="300" Width="300">
-    <Grid>
-        
+        Title="EmailWindow" Height="441.525" Width="550">
+    <Grid Background="Black">
+
+        <Label x:Name="label" Content="Yesterday Report Time:" HorizontalAlignment="Left" Margin="65,70,0,0" VerticalAlignment="Top" Foreground="White"/>
+        <wpfTool:TimePicker x:Name="yesterdayReportTime" Margin="203,77,140,306"></wpfTool:TimePicker>
+        <wpfTool:TimePicker x:Name="nextRebootTime" Margin="203,111,140,272"></wpfTool:TimePicker>
+        <Label x:Name="label2" Content="Upcoming Report Time:" HorizontalAlignment="Left" Margin="62,106,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.711,-0.192" Foreground="White"/>
+        <ComboBox x:Name="comboBox" HorizontalAlignment="Left" Margin="203,211,0,0" VerticalAlignment="Top" Width="199"/>
+        <Label x:Name="label1" Content="SMTP Server:" HorizontalAlignment="Left" Margin="118,207,0,0" VerticalAlignment="Top" Foreground="White"/>
+        <Label x:Name="label3" ToolTip="Generate reports based on the next hours defined here." Content="Upcoming Period:" HorizontalAlignment="Left" Margin="92,141,0,0" VerticalAlignment="Top" Foreground="White"/>
+        <wpfTool:DecimalUpDown Value="10" Increment="1" Maximum="24" Minimum="0" Margin="203,148,140,235" />
+        <Button x:Name="confirmButton" Content="Save Changes" HorizontalAlignment="Left" Margin="105,282,0,0" VerticalAlignment="Top" Width="88" Click="confirmButton_Click"/>
+        <Button x:Name="cancelbutton" Content="Cancel" HorizontalAlignment="Left" Margin="327,282,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="-0.813,0.864" Click="cancelbutton_Click"/>
     </Grid>
 </Window>
